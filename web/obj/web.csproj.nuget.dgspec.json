@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\web.csproj": {}
+    "C:\\Users\\Tinkara\\Documents\\GitHub\\eShepherd\\web\\web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\web.csproj": {
+    "C:\\Users\\Tinkara\\Documents\\GitHub\\eShepherd\\web\\web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\web.csproj",
+        "projectUniqueName": "C:\\Users\\Tinkara\\Documents\\GitHub\\eShepherd\\web\\web.csproj",
         "projectName": "web",
-        "projectPath": "C:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\web.csproj",
-        "packagesPath": "C:\\Users\\benik\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\obj\\",
+        "projectPath": "C:\\Users\\Tinkara\\Documents\\GitHub\\eShepherd\\web\\web.csproj",
+        "packagesPath": "C:\\Users\\Tinkara\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Tinkara\\Documents\\GitHub\\eShepherd\\web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\benik\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Tinkara\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -75,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
