@@ -9,8 +9,10 @@ namespace web.Models
     {
         
         [Key]
+        [Display(Name = "ID črede")] 
         public int CredeID { get; set; }
+        [Display(Name = "Število ovac v čredi")] 
         public int SteviloOvc { get; set; }
-        public string Opombe { get; set; }
+        public string? Opombe { get; set; }
     }
 }

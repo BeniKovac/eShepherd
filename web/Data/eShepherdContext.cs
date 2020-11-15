@@ -1,9 +1,10 @@
 using web.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace web.Data
 {
-    public class eShepherdContext : DbContext
+    public class eShepherdContext : IdentityDbContext<ApplicationUser>
     {
         public eShepherdContext(DbContextOptions<eShepherdContext> options) : base(options)
         {
@@ -17,7 +18,7 @@ namespace web.Data
     
      protected override void OnModelCreating(ModelBuilder modelBuilder)
         { //overridamo, da bo ime course in ne courses (kako vplivamo na obnašanje frameworka)
-            //base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Ovca>().ToTable("Ovca");
             modelBuilder.Entity<Oven>().ToTable("Oven");
             modelBuilder.Entity<Jagenjcek>().ToTable("Jagenjcek");

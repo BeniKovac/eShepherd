@@ -1,17 +1,20 @@
 @model IEnumerable<web.Models.Creda>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Črede";
 }
 
-<h1>Index</h1>
+<h1>Črede</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Dodaj čredo</a>
 </p>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CredeID)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.SteviloOvc)
             </th>
@@ -31,9 +34,9 @@
                 @Html.DisplayFor(modelItem => item.Opombe)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CredeID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CredeID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CredeID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.CredeID">Uredi čredo</a> |
+                <a asp-action="Details" asp-route-id="@item.CredeID">Podrobnosti</a> |
+                <a asp-action="Delete" asp-route-id="@item.CredeID">Odstrani čredo</a>
             </td>
         </tr>
 }

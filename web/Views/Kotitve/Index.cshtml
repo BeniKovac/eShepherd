@@ -1,17 +1,20 @@
 @model IEnumerable<web.Models.Kotitev>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Kotitve";
 }
 
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Dodaj novo kotitev</a>
 </p>
 <table class="table">
     <thead>
         <tr>
+             <td>
+                @Html.DisplayNameFor(model => model.Ovca)
+            </td>
             <th>
                 @Html.DisplayNameFor(model => model.DatumKotitve)
             </th>
@@ -31,6 +34,9 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Ovca)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.DatumKotitve)
             </td>
             <td>
@@ -43,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.Opombe)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.KotitevID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.KotitevID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.KotitevID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.KotitevID">Uredi kotitev</a> |
+                <a asp-action="Details" asp-route-id="@item.KotitevID">Podrobnosti</a> |
+                <a asp-action="Delete" asp-route-id="@item.KotitevID">Izbriši kotitev</a>
             </td>
         </tr>
 }

@@ -556,3 +556,12 @@ C:\Users\Tinkara\Documents\GitHub\eShepherd\web\obj\Debug\netcoreapp3.1\staticwe
 C:\Users\Tinkara\Documents\GitHub\eShepherd\web\obj\Debug\netcoreapp3.1\web.dll
 C:\Users\Tinkara\Documents\GitHub\eShepherd\web\obj\Debug\netcoreapp3.1\web.pdb
 C:\Users\Tinkara\Documents\GitHub\eShepherd\web\obj\Debug\netcoreapp3.1\web.genruntimeconfig.cache
+C:\Users\Tinkara\Documents\GitHub\eShepherd\web\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
+C:\Users\Tinkara\Documents\GitHub\eShepherd\web\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Logout.cshtml.g.cs
+C:\Users\Tinkara\Documents\GitHub\eShepherd\web\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs
+C:\Users\Tinkara\Documents\GitHub\eShepherd\web\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\RegisterConfirmation.cshtml.g.cs
+C:\Users\Tinkara\Documents\GitHub\eShepherd\web\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
+C:\Users\Tinkara\Documents\GitHub\eShepherd\web\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\Tinkara\Documents\GitHub\eShepherd\web\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+C:\Users\Tinkara\Documents\GitHub\eShepherd\web\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
+C:\Users\Tinkara\Documents\GitHub\eShepherd\web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs

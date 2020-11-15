@@ -13,12 +13,17 @@ namespace web.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Datum Kotitve")] 
+        [Display(Name = "Datum gonitve")] 
         public DateTime DatumGonitve { get; set; }
+
         public Oven Oven { get; set; }
+        
         public Ovca Ovca { get; set; }
+        
+        [Display(Name = "Predviden datum kotitve")] 
         public DateTime PredvidenaKotitev { get; set; }
-        public string Opombe { get; set; }
+        
+        public string? Opombe { get; set; }
 
     }
 }

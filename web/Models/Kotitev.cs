@@ -12,13 +12,21 @@ namespace web.Models
         public int KotitevID { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Datum Kotitve")] 
+        [Display(Name = "Datum kotitve")] 
         public DateTime DatumKotitve { get; set; }
+
+        [Display(Name = "Število jagenjčkov")] 
         public int SteviloMladih { get; set; }
+
         public Oven Oven { get; set; }
+        
+        [Display(Name = "Ovca")] 
         public Ovca Ovca { get; set; }
-        public int SteviloMrtvih { get; set; }
-        public string Opombe { get; set; }
+
+        [Display(Name = "Število mrtvorojenih jagenjčkov")] 
+        public int? SteviloMrtvih { get; set; }
+
+        public string? Opombe { get; set; }
 
     }
 }

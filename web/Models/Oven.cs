@@ -14,14 +14,23 @@ namespace web.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "DatumRojstva")]        
-        public DateTime DatumRojstva { get; set; }
+        [Display(Name = "Datum Rojstva")]        
+        public DateTime? DatumRojstva { get; set; }
+
         public string Pasma { get; set; }
-        public string IdMame { get; set; }
-        public string IdOceta { get; set; }
-        public int SteviloSorojencev { get; set; }
+        [Display(Name = "ID mame")] 
+        public string? IdMame { get; set; }
+
+        [Display(Name = "ID očeta")] 
+        public string? IdOceta { get; set; }
+
+        [Display(Name = "Število sorojencev")] 
+        public int? SteviloSorojencev { get; set; }
+
         public string Stanje { get; set; }
-        public string Opombe { get; set; }
+
+        public string? Opombe { get; set; }
+
         public string Poreklo { get; set; }
 
     }
