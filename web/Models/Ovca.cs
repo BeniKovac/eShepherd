@@ -10,22 +10,31 @@ namespace web.Models
         
         [Key]
         [Display(Name = "ID ovce")] 
+        [StringLength(10)]
+        [Required]
         public string OvcaID { get; set; }
-        public Creda CredaID { get; set; }
+
+        public int CredaID { get; set; }
+        public Creda creda { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", NullDisplayText = "neznan", ApplyFormatInEditMode = true)]
         [Display(Name = "Datum Rojstva")]        
         public DateTime? DatumRojstva { get; set; }
 
         public string Pasma { get; set; }
 
+        [StringLength(10)]
+        [DisplayFormat(NullDisplayText = "neznan")]
         [Display(Name = "ID mame")] 
         public string? IdMame { get; set; }
 
+        [DisplayFormat(NullDisplayText = "neznan")]
+        [StringLength(10)]
         [Display(Name = "ID očeta")] 
         public string? IdOceta { get; set; }
 
+        [DisplayFormat(NullDisplayText = "neznano")]
         [Display(Name = "Število sorojencev")] 
         public int? SteviloSorojencev { get; set; }
 
@@ -39,6 +48,7 @@ namespace web.Models
         [Display(Name = "Povprečno število jagenjčkov na kotitev")] 
         public int PovprecjeJagenjckov { get; set; }
 
+     
         public ICollection<Kotitev> SeznamKotitev { get; set; }
 
     }

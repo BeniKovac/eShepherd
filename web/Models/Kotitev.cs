@@ -9,7 +9,11 @@ namespace web.Models
     {
         
         [Key]
+        
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int KotitevID { get; set; }
+
+        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Datum kotitve")] 
@@ -18,9 +22,11 @@ namespace web.Models
         [Display(Name = "Število jagenjčkov")] 
         public int SteviloMladih { get; set; }
 
+        public string OvenID { get; set; }
         public Oven Oven { get; set; }
         
         [Display(Name = "Ovca")] 
+        public string OvcaID { get; set; }
         public Ovca Ovca { get; set; }
 
         [Display(Name = "Število mrtvorojenih jagenjčkov")] 

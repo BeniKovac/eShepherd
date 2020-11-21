@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "50nyXjgWeApRpmOGhQ5SDXsZM8WeLIrbJ9DQo8w7bUx7eW++DXbynjVsUVQwuNkygD/jNLKGfuMGdxlVWpberw==",
+  "dgSpecHash": "aCTC4pJB1zr4wa4FwicRtKqO7meEugxv4gfoM7CLgyIR7ceYN4rC2MyulOuilGp5TQbHHVlYGtq3bvLg3B3Vsg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tinkara\\Documents\\GitHub\\eShepherd\\web\\web.csproj",
+  "projectFilePath": "C:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tinkara\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.9\\microsoft.aspnetcore.cryptography.internal.3.1.9.nupkg.sha512",
     "C:\\Users\\Tinkara\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.9\\microsoft.aspnetcore.cryptography.keyderivation.3.1.9.nupkg.sha512",

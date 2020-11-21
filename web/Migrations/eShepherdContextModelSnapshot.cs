@@ -97,10 +97,12 @@ namespace web.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -137,10 +139,12 @@ namespace web.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -158,7 +162,7 @@ namespace web.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Address")
+                    b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -245,9 +249,7 @@ namespace web.Migrations
             modelBuilder.Entity("web.Models.Gonitev", b =>
                 {
                     b.Property<int>("GonitevID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DatumGonitve")
                         .HasColumnType("datetime2");
@@ -256,10 +258,10 @@ namespace web.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OvcaID")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("OvenID")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<DateTime>("PredvidenaKotitev")
                         .HasColumnType("datetime2");
@@ -275,20 +277,26 @@ namespace web.Migrations
 
             modelBuilder.Entity("web.Models.Jagenjcek", b =>
                 {
-                    b.Property<int>("IdJagenjcka")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("skritIdJagenjcka")
+                        .HasColumnType("int");
 
-                    b.Property<int?>("IdKotitveKotitevID")
+                    b.Property<int?>("CredaCredeID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdJagenjcka")
+                        .HasColumnType("int");
+
+                    b.Property<int>("KotitevID")
                         .HasColumnType("int");
 
                     b.Property<string>("spol")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IdJagenjcka");
+                    b.HasKey("skritIdJagenjcka");
 
-                    b.HasIndex("IdKotitveKotitevID");
+                    b.HasIndex("CredaCredeID");
+
+                    b.HasIndex("KotitevID");
 
                     b.ToTable("Jagenjcek");
                 });
@@ -296,9 +304,7 @@ namespace web.Migrations
             modelBuilder.Entity("web.Models.Kotitev", b =>
                 {
                     b.Property<int>("KotitevID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DatumKotitve")
                         .HasColumnType("datetime2");
@@ -307,15 +313,15 @@ namespace web.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OvcaID")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("OvenID")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<int>("SteviloMladih")
                         .HasColumnType("int");
 
-                    b.Property<int>("SteviloMrtvih")
+                    b.Property<int?>("SteviloMrtvih")
                         .HasColumnType("int");
 
                     b.HasKey("KotitevID");
@@ -330,19 +336,22 @@ namespace web.Migrations
             modelBuilder.Entity("web.Models.Ovca", b =>
                 {
                     b.Property<string>("OvcaID")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
-                    b.Property<int?>("CredaIDCredeID")
+                    b.Property<int>("CredaID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DatumRojstva")
+                    b.Property<DateTime?>("DatumRojstva")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("IdMame")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.Property<string>("IdOceta")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.Property<string>("Opombe")
                         .HasColumnType("nvarchar(max)");
@@ -359,12 +368,12 @@ namespace web.Migrations
                     b.Property<int>("SteviloKotitev")
                         .HasColumnType("int");
 
-                    b.Property<int>("SteviloSorojencev")
+                    b.Property<int?>("SteviloSorojencev")
                         .HasColumnType("int");
 
                     b.HasKey("OvcaID");
 
-                    b.HasIndex("CredaIDCredeID");
+                    b.HasIndex("CredaID");
 
                     b.ToTable("Ovca");
                 });
@@ -372,22 +381,20 @@ namespace web.Migrations
             modelBuilder.Entity("web.Models.Oven", b =>
                 {
                     b.Property<string>("OvenID")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
-                    b.Property<int?>("CredaIDCredeID")
+                    b.Property<int>("CredaID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DatumRojstva")
+                    b.Property<DateTime?>("DatumRojstva")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("IdMame")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IdOceta")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Opombe")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OvcaID")
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Pasma")
                         .HasColumnType("nvarchar(max)");
@@ -398,12 +405,14 @@ namespace web.Migrations
                     b.Property<string>("Stanje")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SteviloSorojencev")
+                    b.Property<int?>("SteviloSorojencev")
                         .HasColumnType("int");
 
                     b.HasKey("OvenID");
 
-                    b.HasIndex("CredaIDCredeID");
+                    b.HasIndex("CredaID");
+
+                    b.HasIndex("OvcaID");
 
                     b.ToTable("Oven");
                 });
@@ -472,9 +481,15 @@ namespace web.Migrations
 
             modelBuilder.Entity("web.Models.Jagenjcek", b =>
                 {
-                    b.HasOne("web.Models.Kotitev", "IdKotitve")
+                    b.HasOne("web.Models.Creda", null)
+                        .WithMany("SeznamJagenjckov")
+                        .HasForeignKey("CredaCredeID");
+
+                    b.HasOne("web.Models.Kotitev", "kotitev")
                         .WithMany()
-                        .HasForeignKey("IdKotitveKotitevID");
+                        .HasForeignKey("KotitevID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("web.Models.Kotitev", b =>
@@ -490,16 +505,24 @@ namespace web.Migrations
 
             modelBuilder.Entity("web.Models.Ovca", b =>
                 {
-                    b.HasOne("web.Models.Creda", "CredaID")
-                        .WithMany()
-                        .HasForeignKey("CredaIDCredeID");
+                    b.HasOne("web.Models.Creda", "creda")
+                        .WithMany("SeznamOvac")
+                        .HasForeignKey("CredaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("web.Models.Oven", b =>
                 {
-                    b.HasOne("web.Models.Creda", "CredaID")
+                    b.HasOne("web.Models.Creda", "creda")
                         .WithMany()
-                        .HasForeignKey("CredaIDCredeID");
+                        .HasForeignKey("CredaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("web.Models.Ovca", "Ovca")
+                        .WithMany()
+                        .HasForeignKey("OvcaID");
                 });
 #pragma warning restore 612, 618
         }

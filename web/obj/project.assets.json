@@ -8779,11 +8779,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tinkara\\Documents\\GitHub\\eShepherd\\web\\web.csproj",
+      "projectUniqueName": "C:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\web.csproj",
       "projectName": "web",
-      "projectPath": "C:\\Users\\Tinkara\\Documents\\GitHub\\eShepherd\\web\\web.csproj",
+      "projectPath": "C:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\web.csproj",
       "packagesPath": "C:\\Users\\Tinkara\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tinkara\\Documents\\GitHub\\eShepherd\\web\\obj\\",
+      "outputPath": "C:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Tinkara\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -8847,7 +8847,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.404\\RuntimeIdentifierGraph.json"
       }
     }
   }
