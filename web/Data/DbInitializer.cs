@@ -19,6 +19,17 @@ namespace web.Data
                 return;   // DB has been seeded
             }
 
+            var crede = new Creda[]
+
+            {
+                new Creda{CredeID = 1},
+            };
+
+            foreach (Creda c in crede) {
+                context.Crede.Add(c);
+            }
+            context.SaveChanges();
+
             var ovceArray = new Ovca[]
             {
             new Ovca{OvcaID="031 654", DatumRojstva=DateTime.Parse("2005-09-01")},
