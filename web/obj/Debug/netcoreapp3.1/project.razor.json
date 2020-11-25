@@ -1,5 +1,5 @@
 {
-  "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\web.csproj",
+  "FilePath": "c:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\web.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "3.0",
@@ -14392,163 +14392,83 @@
   "RootNamespace": "web",
   "Documents": [
     {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Kotitve\\Index.cshtml",
-      "TargetPath": "Views\\Kotitve\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Kotitve\\Create.cshtml",
-      "TargetPath": "Views\\Kotitve\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Crede\\Create.cshtml",
-      "TargetPath": "Views\\Crede\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Gonitve\\Delete.cshtml",
-      "TargetPath": "Views\\Gonitve\\Delete.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Jagenjcki\\Delete.cshtml",
-      "TargetPath": "Views\\Jagenjcki\\Delete.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Ovce\\Delete.cshtml",
-      "TargetPath": "Views\\Ovce\\Delete.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Crede\\Edit.cshtml",
-      "TargetPath": "Views\\Crede\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Jagenjcki\\Index.cshtml",
-      "TargetPath": "Views\\Jagenjcki\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Kotitve\\Details.cshtml",
-      "TargetPath": "Views\\Kotitve\\Details.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Gonitve\\Details.cshtml",
-      "TargetPath": "Views\\Gonitve\\Details.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Crede\\Details.cshtml",
-      "TargetPath": "Views\\Crede\\Details.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Ovce\\Details.cshtml",
-      "TargetPath": "Views\\Ovce\\Details.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Ovce\\Index.cshtml",
-      "TargetPath": "Views\\Ovce\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Ovce\\Create.cshtml",
-      "TargetPath": "Views\\Ovce\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Crede\\Delete.cshtml",
-      "TargetPath": "Views\\Crede\\Delete.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Kotitve\\Edit.cshtml",
-      "TargetPath": "Views\\Kotitve\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Gonitve\\Edit.cshtml",
-      "TargetPath": "Views\\Gonitve\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Ovce\\Edit.cshtml",
-      "TargetPath": "Views\\Ovce\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Shared\\_Layout.cshtml",
-      "TargetPath": "Views\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FilePath": "c:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Gonitve\\Index.cshtml",
-      "TargetPath": "Views\\Gonitve\\Index.cshtml",
+      "FilePath": "c:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Jagenjcki\\Details.cshtml",
-      "TargetPath": "Views\\Jagenjcki\\Details.cshtml",
+      "FilePath": "c:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\Views\\Shared\\_LoginPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_LoginPartial.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Crede\\Index.cshtml",
-      "TargetPath": "Views\\Crede\\Index.cshtml",
+      "FilePath": "c:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Logout.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Home\\Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FilePath": "c:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\Areas\\Identity\\Pages\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Kotitve\\Delete.cshtml",
-      "TargetPath": "Views\\Kotitve\\Delete.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Shared\\Error.cshtml",
-      "TargetPath": "Views\\Shared\\Error.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Jagenjcki\\Edit.cshtml",
-      "TargetPath": "Views\\Jagenjcki\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Jagenjcki\\Create.cshtml",
-      "TargetPath": "Views\\Jagenjcki\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\_ViewImports.cshtml",
+      "FilePath": "c:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Home\\Index.cshtml",
+      "FilePath": "c:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\_ViewStart.cshtml",
+      "FilePath": "c:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\Areas\\Identity\\Pages\\_ViewImports.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\benik\\Projects IS C#\\eShepherd\\web\\Views\\Gonitve\\Create.cshtml",
-      "TargetPath": "Views\\Gonitve\\Create.cshtml",
+      "FilePath": "c:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+      "TargetPath": "Areas\\Identity\\Pages\\Account\\Register.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\Views\\Home\\Privacy.cshtml",
+      "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Tinkara\\IS projekti\\eShepherd\\web\\Views\\Shared\\Error.cshtml",
+      "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"
     }
   ],
