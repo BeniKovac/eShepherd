@@ -22,7 +22,7 @@ namespace web.Data
             var crede = new Creda[]
 
             {
-                new Creda{CredeID = 1},
+                new Creda{Opombe = "Brez opomb"},
             };
 
             foreach (Creda c in crede) {
@@ -32,7 +32,7 @@ namespace web.Data
 
             var ovceArray = new Ovca[]
             {
-            new Ovca{OvcaID="031 654", DatumRojstva=DateTime.Parse("2005-09-01")},
+            new Ovca{OvcaID="031 654", CredaID = crede[0].CredeID, DatumRojstva=DateTime.Parse("2005-09-01")},
 
             };
             foreach (Ovca s in ovceArray)

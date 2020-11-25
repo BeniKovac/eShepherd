@@ -32,7 +32,8 @@ namespace web.Models
         [DisplayFormat(NullDisplayText = "neznan")]
         [StringLength(10)]
         [Display(Name = "ID očeta")] 
-        public string? IdOceta { get; set; }
+        
+        public Oven oce {get; set; }
 
         [DisplayFormat(NullDisplayText = "neznano")]
         [Display(Name = "Število sorojencev")] 

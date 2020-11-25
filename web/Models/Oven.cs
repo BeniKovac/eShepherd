@@ -33,9 +33,9 @@ namespace web.Models
         /* KAKO IMA LAHKO OVEN OVNA?*/
         //[DisplayFormat(NullDisplayText = "neznan")]
         
-        //[Display(Name = "ID očeta")] 
-        //public string? OvenID { get; set; }
-        //public Oven oven { get; set; }
+        [Display(Name = "ID očeta")] 
+        public string? oceID { get; set; }
+        public Oven oven { get; set; }
 
         [DisplayFormat(NullDisplayText = "neznano")]
         [Display(Name = "Število sorojencev")] 
