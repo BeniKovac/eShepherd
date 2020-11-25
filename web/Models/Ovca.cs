@@ -48,7 +48,6 @@ namespace web.Models
         [Display(Name = "Povprečno število jagenjčkov na kotitev")] 
         public int PovprecjeJagenjckov { get; set; }
 
-     
         public ICollection<Kotitev> SeznamKotitev { get; set; }
 
     }
