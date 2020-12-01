@@ -20,7 +20,7 @@ namespace web.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", NullDisplayText = "neznan", ApplyFormatInEditMode = true)]
-        [Display(Name = "Datum rojstva")]        
+        [Display(Name = "Datum ojstva")]        
         public DateTime? DatumRojstva { get; set; }
 
         public string Pasma { get; set; }
