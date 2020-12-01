@@ -1,13 +1,13 @@
 @model IEnumerable<web.Models.Kotitev>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Kotitve";
 }
 
-<h1>Index</h1>
+<h1>Kotitve</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Dodaj kotitev</a>
 </p>
 <table class="table">
     <thead>
@@ -55,9 +55,9 @@
                 @Html.DisplayFor(modelItem => item.Opombe)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.KotitevID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.KotitevID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.KotitevID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.KotitevID">Uredi</a> |
+                <a asp-action="Details" asp-route-id="@item.KotitevID">Podrobnosti</a> |
+                <a asp-action="Delete" asp-route-id="@item.KotitevID">Odstrani</a>
             </td>
         </tr>
 }

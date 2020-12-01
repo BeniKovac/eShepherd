@@ -1,13 +1,13 @@
 @model IEnumerable<web.Models.Jagenjcek>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Jagenjčki";
 }
 
-<h1>Index</h1>
+<h1>Jagenjčki</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Dodaj jagenjčka</a>
 </p>
 <table class="table">
     <thead>
@@ -37,9 +37,9 @@
                 @Html.DisplayFor(modelItem => item.spol)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.skritIdJagenjcka">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.skritIdJagenjcka">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.skritIdJagenjcka">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.skritIdJagenjcka">Uredi</a> |
+                <a asp-action="Details" asp-route-id="@item.skritIdJagenjcka">Podrobnosti</a> |
+                <a asp-action="Delete" asp-route-id="@item.skritIdJagenjcka">Odstrani</a>
             </td>
         </tr>
 }
