@@ -38,7 +38,7 @@ namespace web.Models
         [Display(Name = "Število sorojencev")] 
         public int? SteviloSorojencev { get; set; }
 
-        public string Stanje { get; set; }
+        public string? Stanje { get; set; }
 
         public string? Opombe { get; set; }
 

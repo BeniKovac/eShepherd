@@ -1,0 +1,51 @@
+@model web.Models.Gonitev
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Gonitev</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DatumGonitve)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DatumGonitve)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ovca)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ovca.OvcaID)
+        </dd class>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Oven)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Oven.OvenID)
+        </dd class>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PredvidenaKotitev)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PredvidenaKotitev)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Opombe)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Opombe)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="GonitevID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
