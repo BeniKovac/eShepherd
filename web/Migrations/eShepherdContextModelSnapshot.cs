@@ -520,7 +520,7 @@ namespace web.Migrations
                         .HasForeignKey("mamaID");
 
                     b.HasOne("web.Models.Oven", "oce")
-                        .WithMany()
+                        .WithMany("ovce")
                         .HasForeignKey("oceID");
                 });
 

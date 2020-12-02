@@ -22,7 +22,7 @@ namespace web.Controllers
         // GET: Ovce3
         public async Task<IActionResult> Index()
         {
-            var eShepherdContext = _context.Ovce.Include(o => o.creda).Include(o => o.mama);//.Include(o => o.oce);
+            var eShepherdContext = _context.Ovce.Include(o => o.creda).Include(o => o.mama).Include(o => o.oce);
             return View(await eShepherdContext.ToListAsync());
         }
 
