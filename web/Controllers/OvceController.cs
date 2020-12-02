@@ -37,7 +37,7 @@ namespace web.Controllers
             var ovca = await _context.Ovce
                 .Include(o => o.creda)
                 .Include(o => o.mama)
-                //.Include(o => o.oce)
+                .Include(o => o.oce)
                 .FirstOrDefaultAsync(m => m.OvcaID == id);
             if (ovca == null)
             {
@@ -52,7 +52,7 @@ namespace web.Controllers
         {
             ViewData["CredaID"] = new SelectList(_context.Crede, "CredeID", "CredeID");
             ViewData["mamaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID");
-            //ViewData["oceID"] = new SelectList(_context.Ovni, "OvenID", "OvenID");
+            ViewData["oceID"] = new SelectList(_context.Ovni, "OvenID", "OvenID");
 
             return View();
         }
@@ -72,7 +72,7 @@ namespace web.Controllers
             }
             ViewData["CredaID"] = new SelectList(_context.Crede, "CredeID", "CredeID", ovca.CredaID);
             ViewData["mamaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID", ovca.mamaID);
-            //ViewData["oceID"] = new SelectList(_context.Ovni, "OvenID", "OvenID", oven.oceID);
+            ViewData["oceID"] = new SelectList(_context.Ovni, "OvenID", "OvenID", ovca.oceID);
 
             return View(ovca);
         }
@@ -92,7 +92,7 @@ namespace web.Controllers
             }
             ViewData["CredaID"] = new SelectList(_context.Crede, "CredeID", "CredeID", ovca.CredaID);
             ViewData["mamaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID", ovca.mamaID);
-            //ViewData["oceID"] = new SelectList(_context.Ovni, "OvenID", "OvenID", oven.oceID);
+            ViewData["oceID"] = new SelectList(_context.Ovni, "OvenID", "OvenID", ovca.oceID);
 
             return View(ovca);
         }
@@ -131,7 +131,7 @@ namespace web.Controllers
             }
             ViewData["CredaID"] = new SelectList(_context.Crede, "CredeID", "CredeID", ovca.CredaID);
             ViewData["mamaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID", ovca.mamaID);
-            //ViewData["oceID"] = new SelectList(_context.Ovni, "OvenID", "OvenID", oven.oceID);
+            ViewData["oceID"] = new SelectList(_context.Ovni, "OvenID", "OvenID", ovca.oceID);
 
             return View(ovca);
         }
@@ -147,6 +147,7 @@ namespace web.Controllers
             var ovca = await _context.Ovce
                 .Include(o => o.creda)
                 .Include(o => o.mama)
+                .Include(o => o.oce)
                 .FirstOrDefaultAsync(m => m.OvcaID == id);
             if (ovca == null)
             {

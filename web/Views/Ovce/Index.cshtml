@@ -27,7 +27,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.mama.mamaID)
             </th>
-            
+            <th>
+                @Html.DisplayNameFor(model => model.oce.oceID)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.SteviloSorojencev)
             </th>
@@ -58,11 +60,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DatumRojstva)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pasma)
+            </td>
              <td>
                 @Html.DisplayFor(modelItem => item.mama.mamaID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Pasma)
+                @Html.DisplayFor(modelItem => item.oce.oceID)
             </td>
        
             <td>

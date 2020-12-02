@@ -25,18 +25,19 @@ namespace web.Models
 
         [DisplayFormat(NullDisplayText = "neznan")]
         public string Pasma { get; set; }
+
         [Display(Name = "ID mame")] 
-        public string? mamaOvenID { get; set; }
-        public Ovca mamaOven { get; set; }
+        [DisplayFormat(NullDisplayText = "neznan")]
+
+        public string? mamaID { get; set; }
         
 
 
         /* KAKO IMA LAHKO OVEN OVNA?*/
-        //[DisplayFormat(NullDisplayText = "neznan")]
+        [DisplayFormat(NullDisplayText = "neznan")]
         
-        //[Display(Name = "ID očeta")] 
-        //public string? oceID { get; set; }
-        //public Oven oce { get; set; }
+        [Display(Name = "ID očeta")] 
+        public string? oceID { get; set; }
 
         [DisplayFormat(NullDisplayText = "neznano")]
         [Display(Name = "Število sorojencev")] 
@@ -47,6 +48,7 @@ namespace web.Models
         public string? Opombe { get; set; }
 
         public string Poreklo { get; set; }
+        public ICollection<Ovca> ovce { get; set; }
 
     }
 }

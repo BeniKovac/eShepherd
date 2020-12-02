@@ -14,8 +14,8 @@ namespace web.Models
         [Required]
         public string OvcaID { get; set; }
 
-        [Display(Name = "Trenutna čreda")] 
         public int CredaID { get; set; }
+        [Display(Name = "Trenutna čreda")] 
         public Creda creda { get; set; }
 
         [DataType(DataType.Date)]
@@ -27,8 +27,8 @@ namespace web.Models
 
         [DisplayFormat(NullDisplayText = "neznan")]
         [Display(Name = "ID mame")] 
-        public Ovca mama { get; set; }
         public string? mamaID { get; set; }
+        public Ovca mama { get; set; }
 
         [DisplayFormat(NullDisplayText = "neznan")]
         [StringLength(10)]
