@@ -4,7 +4,6 @@ using System.Linq;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 
-
 namespace web.Data
 {
     public static class DbInitializer
@@ -13,99 +12,70 @@ namespace web.Data
         {
             context.Database.EnsureCreated();
 
-            // Look for any students.
+            // Look for any sheep.
             if (context.Ovce.Any())
             {
                 return;   // DB has been seeded
             }
 
-            var crede = new Creda[]
+            var crede = new Creda[]
+            {
+                new Creda{Opombe = "V štali"},
+                new Creda{Opombe = "Na pašniku"}
+            };
 
+            foreach (Creda c in crede) {
+                context.Crede.Add(c);
+            }
+            context.SaveChanges();
+
+
+            var ovce = new Ovca[]
             {
-                new Creda{Opombe = "Brez opomb"},
+                new Ovca{OvcaID="632", CredaID=crede[0].CredeID, DatumRojstva=DateTime.Parse("20.2.2019"), Pasma="JSR", Stanje="Živa", Opombe="Bella, Pako"},
+                new Ovca{OvcaID="639",  CredaID=crede[0].CredeID, Pasma="JSR", Stanje="Živa", Opombe="Effie, Pako"}, 
+                new Ovca{OvcaID="772", CredaID=crede[0].CredeID, Pasma="JS", DatumRojstva=DateTime.Parse("1.1.2020")}
+               
             };
-
-            foreach (Creda c in crede) {
-                context.Crede.Add(c);
+            foreach (Ovca o in ovce)
+            {
+                context.Ovce.Add(o);
+            }
+            context.SaveChanges();
+            
+            var ovni = new Oven[]
+            {
+                new Oven{OvenID="102", CredaID=crede[0].CredeID, Pasma="Dorper", SteviloSorojencev = 2, Poreklo = "Avstrija"}
+               
+            };
+            foreach (Oven ov in ovni)
+            {
+                context.Ovni.Add(ov);
             }
             context.SaveChanges();
 
-            var ovceArray = new Ovca[]
-            {
-            new Ovca{OvcaID="031 654", CredaID = crede[0].CredeID, DatumRojstva=DateTime.Parse("2005-09-01")},
 
+            var kotitve = new Kotitev[]
+            {
+                new Kotitev{DatumKotitve=DateTime.Parse("12-01-2019"), SteviloMladih=3, OvcaID=ovce[1].OvcaID, OvenID = ovni[0].OvenID, SteviloMrtvih = 0},
+                new Kotitev{DatumKotitve=DateTime.Parse("20-12-2019"), SteviloMladih=2, OvcaID=ovce[3].OvcaID, OvenID = ovni[0].OvenID, SteviloMrtvih = 0},
+                new Kotitev{DatumKotitve=DateTime.Parse("01-12-2020"), SteviloMladih=2, OvcaID=ovce[0].OvcaID, OvenID = ovni[0].OvenID, SteviloMrtvih = 0},
+                
             };
-            foreach (Ovca s in ovceArray)
-            {
-                context.Ovce.Add(s);
-            }
-            context.SaveChanges();
-
-            var kotitveArray = new Kotitev[]
-            {
-            new Kotitev{KotitevID=1050,DatumKotitve=DateTime.Parse("2005-09-01"),SteviloMladih=3},
-
-            };
-            foreach (Kotitev k in kotitveArray)
+            foreach (Kotitev k in kotitve)
             {
                 context.Kotitve.Add(k);
             }
             context.SaveChanges();
 
-            var gonitevArray = new Gonitev[]
+            var gonitve = new Gonitev[]
             {
-            new Gonitev{DatumGonitve=DateTime.Parse("2005-09-01"), OvcaID="632", OvenID="123"},
-            new Gonitev{DatumGonitve=DateTime.Parse("2020-19-11"), OvcaID="639", OvenID="123"}
+                new Gonitev{OvcaID = ovce[0].OvcaID, OvenID = ovni[0].OvenID, DatumGonitve=DateTime.Parse("10-01-2019")},
+                new Gonitev{OvcaID = ovce[1].OvcaID, OvenID = ovni[0].OvenID, DatumGonitve=DateTime.Parse("08-11-2020")}
             };
-            foreach (Gonitev g in gonitevArray)
+            foreach (Gonitev g in gonitve)
             {
                 context.Gonitve.Add(g);
-            }
-            context.SaveChanges();
-
-            var user = new ApplicationUser {
-                FirstName="Bob", 
-                LastName="Dilon", 
-                City="Ljubljana",
-                Email="b@email.com",
-                NormalizedEmail="xxxx@email.com",
-                UserName="Bobby",
-                NormalizedUserName = "bobby@email.com",
-                PhoneNumber="+1234", 
-                EmailConfirmed = true,
-                PhoneNumberConfirmed = true,
-                SecurityStamp = Guid.NewGuid().ToString("D")
-            };
-
-            if (!context.Users.Any(u => u.UserName == user.UserName)) {
-                var password = new PasswordHasher<ApplicationUser>();
-                var hashed = password.HashPassword(user, "Testni123");
-                user.PasswordHash = hashed;
-                context.Users.Add(user);
-            };
-
-            var roles = new IdentityRole[] {
-                new IdentityRole{Id="1", Name="Administrator"},
-                new IdentityRole{Id="2", Name="Manager"}, 
-                new IdentityRole{Id="3", Name="Staff"}
-            };
-
-            foreach (IdentityRole r in roles)
-            {
-                context.Roles.Add(r);
-            }
-
-
-
-            context.SaveChanges();
-
-            var UserRoles = new IdentityUserRole<string>[]
-            {
-                new IdentityUserRole<string>{RoleId=roles[0].Id, UserId=user.Id},
-                new IdentityUserRole<string>{RoleId=roles[1].Id, UserId=user.Id}
-            };
-            foreach (IdentityUserRole<string> r in UserRoles) {
-                context.UserRoles.Add(r);
             }
             context.SaveChanges();
         }

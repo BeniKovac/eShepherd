@@ -22,6 +22,7 @@ namespace web.Models
         [Display(Name = "Število jagenjčkov")] 
         public int SteviloMladih { get; set; }
 
+        [Display(Name = "Oven")]
         public string OvenID { get; set; }
         public Oven Oven { get; set; }
         
