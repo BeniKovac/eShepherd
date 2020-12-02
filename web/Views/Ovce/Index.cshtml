@@ -25,10 +25,10 @@
                 @Html.DisplayNameFor(model => model.Pasma)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdMame)
+                @Html.DisplayNameFor(model => model.mama.mamaID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdOceta)
+                @Html.DisplayNameFor(model => model.oce.oceID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SteviloSorojencev)
@@ -63,12 +63,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Pasma)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdMame)
+             <td>
+                @Html.DisplayFor(modelItem => item.mama.mamaID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdOceta)
+                @Html.DisplayFor(modelItem => item.oce.oceID)
             </td>
+       
             <td>
                 @Html.DisplayFor(modelItem => item.SteviloSorojencev)
             </td>

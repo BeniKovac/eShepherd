@@ -19,24 +19,25 @@ namespace web.Models
         public Creda creda { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", NullDisplayText = "neznan", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", NullDisplayText = "neznan", ApplyFormatInEditMode = true)]
         [Display(Name = "Datum Rojstva")]        
         public DateTime? DatumRojstva { get; set; }
 
         [DisplayFormat(NullDisplayText = "neznan")]
         public string Pasma { get; set; }
+
         [Display(Name = "ID mame")] 
-        public string? OvcaID { get; set; }
-        public Ovca Ovca { get; set; }
+        [DisplayFormat(NullDisplayText = "neznan")]
+
+        public string? mamaID { get; set; }
         
 
 
         /* KAKO IMA LAHKO OVEN OVNA?*/
-        //[DisplayFormat(NullDisplayText = "neznan")]
+        [DisplayFormat(NullDisplayText = "neznan")]
         
         [Display(Name = "ID očeta")] 
         public string? oceID { get; set; }
-        public Oven oven { get; set; }
 
         [DisplayFormat(NullDisplayText = "neznano")]
         [Display(Name = "Število sorojencev")] 
@@ -47,6 +48,7 @@ namespace web.Models
         public string? Opombe { get; set; }
 
         public string Poreklo { get; set; }
+        public ICollection<Ovca> ovce { get; set; }
 
     }
 }

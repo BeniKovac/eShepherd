@@ -14,8 +14,8 @@ namespace web.Models
         [Required]
         public string OvcaID { get; set; }
 
-        [Display(Name = "Trenutna čreda")] 
         public int CredaID { get; set; }
+        [Display(Name = "Trenutna čreda")] 
         public Creda creda { get; set; }
 
         [DataType(DataType.Date)]
@@ -25,17 +25,17 @@ namespace web.Models
 
         public string Pasma { get; set; }
 
-        [StringLength(10)]
         [DisplayFormat(NullDisplayText = "neznan")]
         [Display(Name = "ID mame")] 
-        public string? IdMame { get; set; }
+        public string? mamaID { get; set; }
+        public Ovca mama { get; set; }
 
         [DisplayFormat(NullDisplayText = "neznan")]
         [StringLength(10)]
         [Display(Name = "ID očeta")] 
-        public string? IdOceta { get; set; }
-        public Oven oce {get; set; }
-
+        public Oven oce { get; set; }
+        public string? oceID { get; set; }
+ 
         [DisplayFormat(NullDisplayText = "neznano")]
         [Display(Name = "Število sorojencev")] 
         public int? SteviloSorojencev { get; set; }
@@ -51,6 +51,8 @@ namespace web.Models
         public int PovprecjeJagenjckov { get; set; }
 
         public ICollection<Kotitev> SeznamKotitev { get; set; }
+
+        //public ICollection<Ovca> Otroci { get; set; }
 
     }
 }

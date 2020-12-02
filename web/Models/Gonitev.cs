@@ -9,12 +9,11 @@ namespace web.Models
     {
         
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int GonitevID { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Datum gonitve")] 
         public DateTime DatumGonitve { get; set; }
 
@@ -24,11 +23,21 @@ namespace web.Models
         public string OvenID { get; set; }
         public Oven Oven { get; set; }
         
-        // pristej 150 dni do datuma kotitve
+        // pristej 145 dni do datuma kotitve
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Predviden datum kotitve")] 
-        public DateTime PredvidenaKotitev { get; set; }
+        public DateTime PredvidenaKotitev { 
+                get
+                {
+                    DateTime kotitev = DatumGonitve.AddDays(145);
+                    return kotitev;
+                }
+
+         }
         
         public string? Opombe { get; set; }
+
+        
 
     }
 }

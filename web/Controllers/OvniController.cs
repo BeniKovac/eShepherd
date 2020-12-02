@@ -22,7 +22,7 @@ namespace web.Controllers
         // GET: Ovni
         public async Task<IActionResult> Index()
         {
-            var eShepherdContext = _context.Ovni.Include(o => o.Ovca).Include(o => o.creda);
+            var eShepherdContext = _context.Ovni.Include(o => o.creda);
             return View(await eShepherdContext.ToListAsync());
         }
 
@@ -35,7 +35,6 @@ namespace web.Controllers
             }
 
             var oven = await _context.Ovni
-                .Include(o => o.Ovca)
                 .Include(o => o.creda)
                 .FirstOrDefaultAsync(m => m.OvenID == id);
             if (oven == null)
@@ -49,7 +48,6 @@ namespace web.Controllers
         // GET: Ovni/Create
         public IActionResult Create()
         {
-            ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID");
             ViewData["CredaID"] = new SelectList(_context.Crede, "CredeID", "CredeID");
             return View();
         }
@@ -59,7 +57,7 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OvenID,CredaID,DatumRojstva,Pasma,OvcaID,SteviloSorojencev,Stanje,Opombe,Poreklo")] Oven oven)
+        public async Task<IActionResult> Create([Bind("OvenID,CredaID,mamaID, oceID,DatumRojstva,Pasma,SteviloSorojencev,Stanje,Opombe,Poreklo")] Oven oven)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +65,6 @@ namespace web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID", oven.OvcaID);
             ViewData["CredaID"] = new SelectList(_context.Crede, "CredeID", "CredeID", oven.CredaID);
             return View(oven);
         }
@@ -85,7 +82,6 @@ namespace web.Controllers
             {
                 return NotFound();
             }
-            ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID", oven.OvcaID);
             ViewData["CredaID"] = new SelectList(_context.Crede, "CredeID", "CredeID", oven.CredaID);
             return View(oven);
         }
@@ -95,7 +91,7 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("OvenID,CredaID,DatumRojstva,Pasma,OvcaID,SteviloSorojencev,Stanje,Opombe,Poreklo")] Oven oven)
+        public async Task<IActionResult> Edit(string id, [Bind("OvenID,CredaID,mamaID, oceID,DatumRojstva,Pasma,OvcaID,SteviloSorojencev,Stanje,Opombe,Poreklo")] Oven oven)
         {
             if (id != oven.OvenID)
             {
@@ -122,7 +118,6 @@ namespace web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID", oven.OvcaID);
             ViewData["CredaID"] = new SelectList(_context.Crede, "CredeID", "CredeID", oven.CredaID);
             return View(oven);
         }
@@ -136,7 +131,6 @@ namespace web.Controllers
             }
 
             var oven = await _context.Ovni
-                .Include(o => o.Ovca)
                 .Include(o => o.creda)
                 .FirstOrDefaultAsync(m => m.OvenID == id);
             if (oven == null)
