@@ -26,8 +26,8 @@ namespace web.Models
         [DisplayFormat(NullDisplayText = "neznan")]
         public string Pasma { get; set; }
         [Display(Name = "ID mame")] 
-        public string? OvcaID { get; set; }
-        public Ovca Ovca { get; set; }
+        public string? mamaOvenID { get; set; }
+        public Ovca mamaOven { get; set; }
         
 
 

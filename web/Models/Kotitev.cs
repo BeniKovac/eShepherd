@@ -10,7 +10,6 @@ namespace web.Models
         
         [Key]
         
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int KotitevID { get; set; }
 
         [Required]

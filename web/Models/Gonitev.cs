@@ -9,7 +9,6 @@ namespace web.Models
     {
         
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int GonitevID { get; set; }
 
         [Required]

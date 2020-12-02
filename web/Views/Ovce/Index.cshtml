@@ -25,11 +25,9 @@
                 @Html.DisplayNameFor(model => model.Pasma)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdMame)
+                @Html.DisplayNameFor(model => model.mama.mamaID)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdOceta)
-            </th>
+            
             <th>
                 @Html.DisplayNameFor(model => model.SteviloSorojencev)
             </th>
@@ -60,15 +58,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DatumRojstva)
             </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.mama.mamaID)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Pasma)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdMame)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdOceta)
-            </td>
+       
             <td>
                 @Html.DisplayFor(modelItem => item.SteviloSorojencev)
             </td>

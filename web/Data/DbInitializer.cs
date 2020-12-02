@@ -58,7 +58,7 @@ namespace web.Data
             var kotitve = new Kotitev[]
             {
                 new Kotitev{DatumKotitve=DateTime.Parse("12-01-2019"), SteviloMladih=3, OvcaID=ovce[1].OvcaID, OvenID = ovni[0].OvenID, SteviloMrtvih = 0},
-                new Kotitev{DatumKotitve=DateTime.Parse("20-12-2019"), SteviloMladih=2, OvcaID=ovce[3].OvcaID, OvenID = ovni[0].OvenID, SteviloMrtvih = 0},
+                new Kotitev{DatumKotitve=DateTime.Parse("20-12-2019"), SteviloMladih=2, OvcaID=ovce[2].OvcaID, OvenID = ovni[0].OvenID, SteviloMrtvih = 0},
                 new Kotitev{DatumKotitve=DateTime.Parse("01-12-2020"), SteviloMladih=2, OvcaID=ovce[0].OvcaID, OvenID = ovni[0].OvenID, SteviloMrtvih = 0},
                 
             };
