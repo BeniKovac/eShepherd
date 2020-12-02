@@ -20,7 +20,7 @@ namespace web.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", NullDisplayText = "neznan", ApplyFormatInEditMode = true)]
-        [Display(Name = "Datum ojstva")]        
+        [Display(Name = "Datum rojstva")]        
         public DateTime? DatumRojstva { get; set; }
 
         public string Pasma { get; set; }
@@ -34,6 +34,7 @@ namespace web.Models
         [StringLength(10)]
         [Display(Name = "ID očeta")] 
         public string? IdOceta { get; set; }
+        public Oven oce {get; set; }
 
         [DisplayFormat(NullDisplayText = "neznano")]
         [Display(Name = "Število sorojencev")] 
@@ -49,7 +50,6 @@ namespace web.Models
         [Display(Name = "Povprečno število jagenjčkov na kotitev")] 
         public int PovprecjeJagenjckov { get; set; }
 
-     
         public ICollection<Kotitev> SeznamKotitev { get; set; }
 
     }
