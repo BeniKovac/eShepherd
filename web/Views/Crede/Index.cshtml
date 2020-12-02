@@ -1,13 +1,13 @@
 @model IEnumerable<web.Models.Creda>
 
 @{
-    ViewData["Title"] = "Črede";
+    ViewData["Title"] = "Čreda";
 }
 
-<h1>Črede</h1>
+<h1>Čreda</h1>
 
 <p>
-    <a asp-action="Create">Dodaj čredo</a>
+    <a asp-action="Create">Dodaj novo čredo</a>
 </p>
 <table class="table">
     <thead>
@@ -28,15 +28,18 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.CredeID)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.SteviloOvc)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Opombe)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CredeID">Uredi čredo</a> |
+                <a asp-action="Edit" asp-route-id="@item.CredeID">Uredi</a> |
                 <a asp-action="Details" asp-route-id="@item.CredeID">Podrobnosti</a> |
-                <a asp-action="Delete" asp-route-id="@item.CredeID">Odstrani čredo</a>
+                <a asp-action="Delete" asp-route-id="@item.CredeID">Odstrani</a>
             </td>
         </tr>
 }

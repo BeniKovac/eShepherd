@@ -15,6 +15,7 @@ namespace web.Models
         public string OvenID { get; set; }
 
         public int CredaID { get; set; }
+        [Display(Name = "Trenutna čreda")] 
         public Creda creda { get; set; }
 
         [DataType(DataType.Date)]

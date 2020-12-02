@@ -54,7 +54,8 @@ namespace web.Data
 
             var gonitevArray = new Gonitev[]
             {
-            new Gonitev{GonitevID=1050,DatumGonitve=DateTime.Parse("2005-09-01")},
+            new Gonitev{DatumGonitve=DateTime.Parse("2005-09-01"), OvcaID="632", OvenID="123"},
+            new Gonitev{DatumGonitve=DateTime.Parse("2020-19-11"), OvcaID="639", OvenID="123"}
             };
             foreach (Gonitev g in gonitevArray)
             {

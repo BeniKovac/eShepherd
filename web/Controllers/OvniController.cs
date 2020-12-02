@@ -10,23 +10,23 @@ using web.Models;
 
 namespace web.Controllers
 {
-    public class OvceController : Controller
+    public class OvniController : Controller
     {
         private readonly eShepherdContext _context;
 
-        public OvceController(eShepherdContext context)
+        public OvniController(eShepherdContext context)
         {
             _context = context;
         }
 
-        // GET: Ovce
+        // GET: Ovni
         public async Task<IActionResult> Index()
         {
-            var eShepherdContext = _context.Ovce.Include(o => o.creda);
+            var eShepherdContext = _context.Ovni.Include(o => o.Ovca).Include(o => o.creda);
             return View(await eShepherdContext.ToListAsync());
         }
 
-        // GET: Ovce/Details/5
+        // GET: Ovni/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -34,42 +34,45 @@ namespace web.Controllers
                 return NotFound();
             }
 
-            var ovca = await _context.Ovce
+            var oven = await _context.Ovni
+                .Include(o => o.Ovca)
                 .Include(o => o.creda)
-                .FirstOrDefaultAsync(m => m.OvcaID == id);
-            if (ovca == null)
+                .FirstOrDefaultAsync(m => m.OvenID == id);
+            if (oven == null)
             {
                 return NotFound();
             }
 
-            return View(ovca);
+            return View(oven);
         }
 
-        // GET: Ovce/Create
+        // GET: Ovni/Create
         public IActionResult Create()
         {
+            ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID");
             ViewData["CredaID"] = new SelectList(_context.Crede, "CredeID", "CredeID");
             return View();
         }
 
-        // POST: Ovce/Create
+        // POST: Ovni/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OvcaID,CredaID,DatumRojstva,Pasma,IdMame,IdOceta,SteviloSorojencev,Stanje,Opombe,SteviloKotitev,PovprecjeJagenjckov")] Ovca ovca)
+        public async Task<IActionResult> Create([Bind("OvenID,CredaID,DatumRojstva,Pasma,OvcaID,SteviloSorojencev,Stanje,Opombe,Poreklo")] Oven oven)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(ovca);
+                _context.Add(oven);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CredaID"] = new SelectList(_context.Crede, "CredeID", "CredeID", ovca.CredaID);
-            return View(ovca);
+            ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID", oven.OvcaID);
+            ViewData["CredaID"] = new SelectList(_context.Crede, "CredeID", "CredeID", oven.CredaID);
+            return View(oven);
         }
 
-        // GET: Ovce/Edit/5
+        // GET: Ovni/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -77,23 +80,24 @@ namespace web.Controllers
                 return NotFound();
             }
 
-            var ovca = await _context.Ovce.FindAsync(id);
-            if (ovca == null)
+            var oven = await _context.Ovni.FindAsync(id);
+            if (oven == null)
             {
                 return NotFound();
             }
-            ViewData["CredaID"] = new SelectList(_context.Crede, "CredeID", "CredeID", ovca.CredaID);
-            return View(ovca);
+            ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID", oven.OvcaID);
+            ViewData["CredaID"] = new SelectList(_context.Crede, "CredeID", "CredeID", oven.CredaID);
+            return View(oven);
         }
 
-        // POST: Ovce/Edit/5
+        // POST: Ovni/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("OvcaID,CredaID,DatumRojstva,Pasma,IdMame,IdOceta,SteviloSorojencev,Stanje,Opombe,SteviloKotitev,PovprecjeJagenjckov")] Ovca ovca)
+        public async Task<IActionResult> Edit(string id, [Bind("OvenID,CredaID,DatumRojstva,Pasma,OvcaID,SteviloSorojencev,Stanje,Opombe,Poreklo")] Oven oven)
         {
-            if (id != ovca.OvcaID)
+            if (id != oven.OvenID)
             {
                 return NotFound();
             }
@@ -102,12 +106,12 @@ namespace web.Controllers
             {
                 try
                 {
-                    _context.Update(ovca);
+                    _context.Update(oven);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!OvcaExists(ovca.OvcaID))
+                    if (!OvenExists(oven.OvenID))
                     {
                         return NotFound();
                     }
@@ -118,11 +122,12 @@ namespace web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CredaID"] = new SelectList(_context.Crede, "CredeID", "CredeID", ovca.CredaID);
-            return View(ovca);
+            ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID", oven.OvcaID);
+            ViewData["CredaID"] = new SelectList(_context.Crede, "CredeID", "CredeID", oven.CredaID);
+            return View(oven);
         }
 
-        // GET: Ovce/Delete/5
+        // GET: Ovni/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -130,31 +135,32 @@ namespace web.Controllers
                 return NotFound();
             }
 
-            var ovca = await _context.Ovce
+            var oven = await _context.Ovni
+                .Include(o => o.Ovca)
                 .Include(o => o.creda)
-                .FirstOrDefaultAsync(m => m.OvcaID == id);
-            if (ovca == null)
+                .FirstOrDefaultAsync(m => m.OvenID == id);
+            if (oven == null)
             {
                 return NotFound();
             }
 
-            return View(ovca);
+            return View(oven);
         }
 
-        // POST: Ovce/Delete/5
+        // POST: Ovni/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var ovca = await _context.Ovce.FindAsync(id);
-            _context.Ovce.Remove(ovca);
+            var oven = await _context.Ovni.FindAsync(id);
+            _context.Ovni.Remove(oven);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool OvcaExists(string id)
+        private bool OvenExists(string id)
         {
-            return _context.Ovce.Any(e => e.OvcaID == id);
+            return _context.Ovni.Any(e => e.OvenID == id);
         }
     }
 }

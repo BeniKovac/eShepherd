@@ -1,13 +1,14 @@
-@model web.Models.Ovca
+@model web.Models.Oven
 
 @{
-    ViewData["Title"] = "Podrobnosti";
+    ViewData["Title"] = "Odstrani ovna";
 }
 
-<h1>Podrobnosti</h1>
+<h1>Odstrani</h1>
 
+<h3>Ali ste prepričani, da želite odstraniti ovna?</h3>
 <div>
-    <h4>Ovca</h4>
+    <h4>Oven</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -15,7 +16,7 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.creda.CredeID)
-        </dd>
+        </dd class>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DatumRojstva)
         </dt>
@@ -29,17 +30,11 @@
             @Html.DisplayFor(model => model.Pasma)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdMame)
+            @Html.DisplayNameFor(model => model.Ovca)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdMame)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdOceta)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdOceta)
-        </dd>
+            @Html.DisplayFor(model => model.Ovca.OvcaID)
+        </dd class>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.SteviloSorojencev)
         </dt>
@@ -59,20 +54,16 @@
             @Html.DisplayFor(model => model.Opombe)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SteviloKotitev)
+            @Html.DisplayNameFor(model => model.Poreklo)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SteviloKotitev)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PovprecjeJagenjckov)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PovprecjeJagenjckov)
+            @Html.DisplayFor(model => model.Poreklo)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.OvcaID">Uredi</a> |
-    <a asp-action="Index">Nazaj na seznam</a>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="OvenID" />
+        <input type="submit" value="Odstrani" class="btn btn-danger" /> |
+        <a asp-action="Index">Nazaj na seznam</a>
+    </form>
 </div>

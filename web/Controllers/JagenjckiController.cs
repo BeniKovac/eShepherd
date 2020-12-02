@@ -7,12 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using web.Data;
 using web.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 
 namespace web.Controllers
 {
-    [Authorize]
     public class JagenjckiController : Controller
     {
         private readonly eShepherdContext _context;
@@ -25,7 +22,8 @@ namespace web.Controllers
         // GET: Jagenjcki
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Jagenjcki.ToListAsync());
+            var eShepherdContext = _context.Jagenjcki.Include(j => j.kotitev);
+            return View(await eShepherdContext.ToListAsync());
         }
 
         // GET: Jagenjcki/Details/5
@@ -37,7 +35,8 @@ namespace web.Controllers
             }
 
             var jagenjcek = await _context.Jagenjcki
-                .FirstOrDefaultAsync(m => m.IdJagenjcka == id);
+                .Include(j => j.kotitev)
+                .FirstOrDefaultAsync(m => m.skritIdJagenjcka == id);
             if (jagenjcek == null)
             {
                 return NotFound();
@@ -49,6 +48,7 @@ namespace web.Controllers
         // GET: Jagenjcki/Create
         public IActionResult Create()
         {
+            ViewData["KotitevID"] = new SelectList(_context.Kotitve, "KotitevID", "KotitevID");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdJagenjcka,spol")] Jagenjcek jagenjcek)
+        public async Task<IActionResult> Create([Bind("skritIdJagenjcka,IdJagenjcka,KotitevID,spol")] Jagenjcek jagenjcek)
         {
             if (ModelState.IsValid)
             {
@@ -65,6 +65,7 @@ namespace web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["KotitevID"] = new SelectList(_context.Kotitve, "KotitevID", "KotitevID", jagenjcek.KotitevID);
             return View(jagenjcek);
         }
 
@@ -81,6 +82,7 @@ namespace web.Controllers
             {
                 return NotFound();
             }
+            ViewData["KotitevID"] = new SelectList(_context.Kotitve, "KotitevID", "KotitevID", jagenjcek.KotitevID);
             return View(jagenjcek);
         }
 
@@ -89,9 +91,9 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdJagenjcka,spol")] Jagenjcek jagenjcek)
+        public async Task<IActionResult> Edit(int id, [Bind("skritIdJagenjcka,IdJagenjcka,KotitevID,spol")] Jagenjcek jagenjcek)
         {
-            if (id != jagenjcek.IdJagenjcka)
+            if (id != jagenjcek.skritIdJagenjcka)
             {
                 return NotFound();
             }
@@ -105,7 +107,7 @@ namespace web.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!JagenjcekExists(jagenjcek.IdJagenjcka))
+                    if (!JagenjcekExists(jagenjcek.skritIdJagenjcka))
                     {
                         return NotFound();
                     }
@@ -116,6 +118,7 @@ namespace web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["KotitevID"] = new SelectList(_context.Kotitve, "KotitevID", "KotitevID", jagenjcek.KotitevID);
             return View(jagenjcek);
         }
 
@@ -128,7 +131,8 @@ namespace web.Controllers
             }
 
             var jagenjcek = await _context.Jagenjcki
-                .FirstOrDefaultAsync(m => m.IdJagenjcka == id);
+                .Include(j => j.kotitev)
+                .FirstOrDefaultAsync(m => m.skritIdJagenjcka == id);
             if (jagenjcek == null)
             {
                 return NotFound();
@@ -150,7 +154,7 @@ namespace web.Controllers
 
         private bool JagenjcekExists(int id)
         {
-            return _context.Jagenjcki.Any(e => e.IdJagenjcka == id);
+            return _context.Jagenjcki.Any(e => e.skritIdJagenjcka == id);
         }
     }
 }

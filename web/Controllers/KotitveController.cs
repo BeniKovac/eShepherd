@@ -7,15 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using web.Data;
 using web.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 
 namespace web.Controllers
 {
-    [Authorize]
     public class KotitveController : Controller
     {
-    
         private readonly eShepherdContext _context;
 
         public KotitveController(eShepherdContext context)
@@ -26,7 +22,8 @@ namespace web.Controllers
         // GET: Kotitve
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Kotitve.ToListAsync());
+            var eShepherdContext = _context.Kotitve.Include(k => k.Ovca).Include(k => k.Oven);
+            return View(await eShepherdContext.ToListAsync());
         }
 
         // GET: Kotitve/Details/5
@@ -38,6 +35,8 @@ namespace web.Controllers
             }
 
             var kotitev = await _context.Kotitve
+                .Include(k => k.Ovca)
+                .Include(k => k.Oven)
                 .FirstOrDefaultAsync(m => m.KotitevID == id);
             if (kotitev == null)
             {
@@ -50,6 +49,8 @@ namespace web.Controllers
         // GET: Kotitve/Create
         public IActionResult Create()
         {
+            ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID");
+            ViewData["OvenID"] = new SelectList(_context.Ovni, "OvenID", "OvenID");
             return View();
         }
 
@@ -58,7 +59,7 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("KotitevID,DatumKotitve,SteviloMladih,SteviloMrtvih,Opombe")] Kotitev kotitev)
+        public async Task<IActionResult> Create([Bind("KotitevID,DatumKotitve,SteviloMladih,OvenID,OvcaID,SteviloMrtvih,Opombe")] Kotitev kotitev)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +67,8 @@ namespace web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID", kotitev.OvcaID);
+            ViewData["OvenID"] = new SelectList(_context.Ovni, "OvenID", "OvenID", kotitev.OvenID);
             return View(kotitev);
         }
 
@@ -82,6 +85,8 @@ namespace web.Controllers
             {
                 return NotFound();
             }
+            ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID", kotitev.OvcaID);
+            ViewData["OvenID"] = new SelectList(_context.Ovni, "OvenID", "OvenID", kotitev.OvenID);
             return View(kotitev);
         }
 
@@ -90,7 +95,7 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("KotitevID,DatumKotitve,SteviloMladih,SteviloMrtvih,Opombe")] Kotitev kotitev)
+        public async Task<IActionResult> Edit(int id, [Bind("KotitevID,DatumKotitve,SteviloMladih,OvenID,OvcaID,SteviloMrtvih,Opombe")] Kotitev kotitev)
         {
             if (id != kotitev.KotitevID)
             {
@@ -117,6 +122,8 @@ namespace web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID", kotitev.OvcaID);
+            ViewData["OvenID"] = new SelectList(_context.Ovni, "OvenID", "OvenID", kotitev.OvenID);
             return View(kotitev);
         }
 
@@ -129,6 +136,8 @@ namespace web.Controllers
             }
 
             var kotitev = await _context.Kotitve
+                .Include(k => k.Ovca)
+                .Include(k => k.Oven)
                 .FirstOrDefaultAsync(m => m.KotitevID == id);
             if (kotitev == null)
             {

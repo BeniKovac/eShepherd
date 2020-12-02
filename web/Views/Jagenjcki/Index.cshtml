@@ -6,12 +6,17 @@
 
 <h1>Jagenjčki</h1>
 
-
+<p>
+    <a asp-action="Create">Dodaj jagenjčka</a>
+</p>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.IdJagenjcka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.kotitev)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.spol)
@@ -23,11 +28,18 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.IdJagenjcka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kotitev.KotitevID)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.spol)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdJagenjcka">Uredi jagenjčka</a> |
-                <a asp-action="Details" asp-route-id="@item.IdJagenjcka">Podrobnosti</a> |
+                <a asp-action="Edit" asp-route-id="@item.skritIdJagenjcka">Uredi</a> |
+                <a asp-action="Details" asp-route-id="@item.skritIdJagenjcka">Podrobnosti</a> |
+                <a asp-action="Delete" asp-route-id="@item.skritIdJagenjcka">Odstrani</a>
             </td>
         </tr>
 }

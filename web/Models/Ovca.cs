@@ -14,12 +14,13 @@ namespace web.Models
         [Required]
         public string OvcaID { get; set; }
 
+        [Display(Name = "Trenutna čreda")] 
         public int CredaID { get; set; }
         public Creda creda { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", NullDisplayText = "neznan", ApplyFormatInEditMode = true)]
-        [Display(Name = "Datum Rojstva")]        
+        [Display(Name = "Datum rojstva")]        
         public DateTime? DatumRojstva { get; set; }
 
         public string Pasma { get; set; }
@@ -32,14 +33,14 @@ namespace web.Models
         [DisplayFormat(NullDisplayText = "neznan")]
         [StringLength(10)]
         [Display(Name = "ID očeta")] 
-        
+        public string? IdOceta { get; set; }
         public Oven oce {get; set; }
 
         [DisplayFormat(NullDisplayText = "neznano")]
         [Display(Name = "Število sorojencev")] 
         public int? SteviloSorojencev { get; set; }
 
-        public string Stanje { get; set; }
+        public string? Stanje { get; set; }
 
         public string? Opombe { get; set; }
 

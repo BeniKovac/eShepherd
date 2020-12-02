@@ -1,15 +1,27 @@
 @model web.Models.Jagenjcek
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Podrobnosti";
 }
 
-<h1>Details</h1>
+<h1>Podrobnosti</h1>
 
 <div>
-    <h4>Jagenjcek</h4>
+    <h4>Jagenjček</h4>
     <hr />
     <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdJagenjcka)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdJagenjcka)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.kotitev)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.kotitev.KotitevID)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.spol)
         </dt>
@@ -19,6 +31,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.IdJagenjcka">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.skritIdJagenjcka">Uredi</a> |
+    <a asp-action="Index">Nazaj na seznam</a>
 </div>

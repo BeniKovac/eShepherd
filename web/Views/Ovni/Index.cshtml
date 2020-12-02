@@ -1,19 +1,19 @@
-@model IEnumerable<web.Models.Ovca>
+@model IEnumerable<web.Models.Oven>
 
 @{
-    ViewData["Title"] = "Ovce";
+    ViewData["Title"] = "Ovni";
 }
 
-<h1>Ovce</h1>
+<h1>Ovni</h1>
 
 <p>
-    <a asp-action="Create">Dodaj ovco</a>
+    <a asp-action="Create">Dodaj ovna</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.OvcaID)
+                @Html.DisplayNameFor(model => model.OvenID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.creda)
@@ -25,10 +25,7 @@
                 @Html.DisplayNameFor(model => model.Pasma)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdMame)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdOceta)
+                @Html.DisplayNameFor(model => model.Ovca)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SteviloSorojencev)
@@ -40,10 +37,7 @@
                 @Html.DisplayNameFor(model => model.Opombe)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SteviloKotitev)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PovprecjeJagenjckov)
+                @Html.DisplayNameFor(model => model.Poreklo)
             </th>
             <th></th>
         </tr>
@@ -51,8 +45,8 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-             <td>
-                @Html.DisplayFor(modelItem => item.OvcaID)
+            <td>
+                @Html.DisplayFor(modelItem => item.OvenID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.creda.CredeID)
@@ -64,10 +58,7 @@
                 @Html.DisplayFor(modelItem => item.Pasma)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdMame)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdOceta)
+                @Html.DisplayFor(modelItem => item.Ovca.OvcaID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SteviloSorojencev)
@@ -79,15 +70,12 @@
                 @Html.DisplayFor(modelItem => item.Opombe)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SteviloKotitev)
+                @Html.DisplayFor(modelItem => item.Poreklo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PovprecjeJagenjckov)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.OvcaID">Uredi</a> |
-                <a asp-action="Details" asp-route-id="@item.OvcaID">Podrobnosti</a> |
-                <a asp-action="Delete" asp-route-id="@item.OvcaID">Odstrani</a>
+                <a asp-action="Edit" asp-route-id="@item.OvenID">Uredi</a> |
+                <a asp-action="Details" asp-route-id="@item.OvenID">Podrobnosti</a> |
+                <a asp-action="Delete" asp-route-id="@item.OvenID">Odstrani</a>
             </td>
         </tr>
 }
