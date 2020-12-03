@@ -20,12 +20,20 @@ namespace web.Controllers
         }
 
         // GET: Jagenjcki
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
                 ViewData["IDSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ID_desc" : "";
                 ViewData["KotitevIDSortParm"] = sortOrder == "KotitevID" ? "kotitevid_desc" : "KotitevID";
+                ViewData["CurrentFilter"] = searchString;
                 var jagenjcki = from j in _context.Jagenjcki
                                 select j;
+
+                    if (!String.IsNullOrEmpty(searchString))
+                    {
+                        jagenjcki = jagenjcki.Where(j => j.IdJagenjcka.Contains(searchString)
+                                            || j.KotitevID.Contains(searchString));
+                    }
+
                 switch (sortOrder)
                 {
                     case "ID_desc":
