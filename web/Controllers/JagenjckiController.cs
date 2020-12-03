@@ -20,10 +20,25 @@ namespace web.Controllers
         }
 
         // GET: Jagenjcki
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index(
+                                string sortOrder,
+                                string currentFilter,
+                                string searchString,
+                                int? pageNumber)
         {
+                ViewData["CurrentSort"] = sortOrder;
                 ViewData["IDSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ID_desc" : "";
                 ViewData["KotitevIDSortParm"] = sortOrder == "KotitevID" ? "kotitevid_desc" : "KotitevID";
+
+                if (searchString != null)
+                {
+                    pageNumber = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
+
                 ViewData["CurrentFilter"] = searchString;
                 var jagenjcki = from j in _context.Jagenjcki
                                 select j;
@@ -49,7 +64,8 @@ namespace web.Controllers
                         jagenjcki = jagenjcki.OrderBy(j => j.IdJagenjcka);
                         break;
                 }
-                return View(await jagenjcki.AsNoTracking().ToListAsync());
+                int pageSize = 3;
+                return View(await PaginatedList<Jagenjcek>.CreateAsync(jagenjcki.AsNoTracking(), pageNumber ?? 1, pageSize));
             }
 
         // GET: Jagenjcki/Details/5
