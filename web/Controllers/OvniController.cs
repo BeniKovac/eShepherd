@@ -20,10 +20,37 @@ namespace web.Controllers
         }
 
         // GET: Ovni
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            var eShepherdContext = _context.Ovni.Include(o => o.creda);
-            return View(await eShepherdContext.ToListAsync());
+            ViewData["IDSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ID_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Datum" ? "datum_desc" : "Datum";
+            ViewData["CurrentFilter"] = searchString;   
+           // var ovce = _context.Ovce.Include(o => o.creda).Include(o => o.mama).Include(o => o.oce);
+            var ovni = from o in _context.Ovni.Include(o => o.creda)
+                .Include(o => o.vseKotitve)
+                .Include(o => o.vseGonitve)
+                 select o;
+           if (!String.IsNullOrEmpty(searchString))
+          {
+               ovni = ovni.Where(s => s.OvenID.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "ID_desc":
+                    ovni = ovni.OrderByDescending(o => o.OvenID);
+                    break;
+                case "Datum":
+                    ovni =  ovni.OrderBy(o => o.DatumRojstva);
+                    break;
+                 case "datum_desc":
+                    ovni = ovni.OrderByDescending(o => o.DatumRojstva);
+                    break;
+                default:
+                    ovni = ovni.OrderBy(o => o.OvenID);
+                    break;
+            }
+            return View(await ovni.ToListAsync());
+
         }
 
         // GET: Ovni/Details/5
@@ -36,6 +63,8 @@ namespace web.Controllers
 
             var oven = await _context.Ovni
                 .Include(o => o.creda)
+                .Include(o => o.vseKotitve)
+                .Include(o => o.vseGonitve)
                 .FirstOrDefaultAsync(m => m.OvenID == id);
             if (oven == null)
             {
@@ -123,7 +152,7 @@ namespace web.Controllers
         }
 
         // GET: Ovni/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(string id,  bool? saveChangesError = false)
         {
             if (id == null)
             {
@@ -137,6 +166,12 @@ namespace web.Controllers
             {
                 return NotFound();
             }
+                if (saveChangesError.GetValueOrDefault())
+            {
+                ViewData["ErrorMessage"] =
+                    "Delete failed. Try again, and if the problem persists " +
+                    "see your system administrator.";
+            }
 
             return View(oven);
         }
@@ -147,9 +182,19 @@ namespace web.Controllers
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var oven = await _context.Ovni.FindAsync(id);
-            _context.Ovni.Remove(oven);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            if (oven == null) {
+                return RedirectToAction(nameof(Index));
+            }
+            try {
+                _context.Ovni.Remove(oven);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateException /* ex */) {
+
+            return RedirectToAction(nameof(Index), new { id = id, saveChangesError = true });
+            }
         }
 
         private bool OvenExists(string id)

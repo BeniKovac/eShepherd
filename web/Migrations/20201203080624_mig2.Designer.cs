@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using web.Data;
 
 namespace web.Migrations
 {
     [DbContext(typeof(eShepherdContext))]
-    partial class eShepherdContextModelSnapshot : ModelSnapshot
+    [Migration("20201203080624_mig2")]
+    partial class mig2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -479,7 +481,7 @@ namespace web.Migrations
                         .HasForeignKey("OvcaID");
 
                     b.HasOne("web.Models.Oven", "Oven")
-                        .WithMany("vseGonitve")
+                        .WithMany()
                         .HasForeignKey("OvenID");
                 });
 
@@ -503,7 +505,7 @@ namespace web.Migrations
                         .HasForeignKey("OvcaID");
 
                     b.HasOne("web.Models.Oven", "Oven")
-                        .WithMany("vseKotitve")
+                        .WithMany("seznamKotitev")
                         .HasForeignKey("OvenID");
                 });
 
