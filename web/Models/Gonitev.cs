@@ -9,7 +9,7 @@ namespace web.Models
     {
         
         [Key]
-        public int GonitevID { get; set; }
+        public String GonitevID { get; set; }
 
         [Required]
         [DataType(DataType.Date)]

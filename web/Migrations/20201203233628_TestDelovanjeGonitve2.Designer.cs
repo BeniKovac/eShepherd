@@ -10,8 +10,8 @@ using web.Data;
 namespace web.Migrations
 {
     [DbContext(typeof(eShepherdContext))]
-    [Migration("20201203214357_PaginatedList")]
-    partial class PaginatedList
+    [Migration("20201203233628_TestDelovanjeGonitve2")]
+    partial class TestDelovanjeGonitve2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -250,10 +250,8 @@ namespace web.Migrations
 
             modelBuilder.Entity("web.Models.Gonitev", b =>
                 {
-                    b.Property<int>("GonitevID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("GonitevID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("DatumGonitve")
                         .HasColumnType("datetime2");

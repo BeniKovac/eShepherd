@@ -153,7 +153,7 @@ namespace web.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!JagenjcekExists(jagenjcek.skritIdJagenjcka))
+                    if (!JagenjcekExists(jagenjcek.IdJagenjcka))
                     {
                         return NotFound();
                     }
@@ -193,7 +193,7 @@ namespace web.Controllers
         // POST: Jagenjcki/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(String id)
         {
             var jagenjcek = await _context.Jagenjcki.FindAsync(id);
             _context.Jagenjcki.Remove(jagenjcek);
@@ -201,9 +201,9 @@ namespace web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool JagenjcekExists(int id)
+        private bool JagenjcekExists(String id)
         {
-            return _context.Jagenjcki.Any(e => e.skritIdJagenjcka == id);
+            return _context.Jagenjcki.Any(e => e.IdJagenjcka == id);
         }
     }
 }

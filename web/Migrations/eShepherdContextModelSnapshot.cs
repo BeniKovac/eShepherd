@@ -248,10 +248,8 @@ namespace web.Migrations
 
             modelBuilder.Entity("web.Models.Gonitev", b =>
                 {
-                    b.Property<int>("GonitevID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("GonitevID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("DatumGonitve")
                         .HasColumnType("datetime2");
