@@ -9,14 +9,27 @@
 <p>
     <a asp-action="Create">Dodaj jagenjčka</a>
 </p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+           Najdi jagenjčka po ID: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+
+            <input type="submit" value="Išči" class="btn btn-primary" /> |
+            <a asp-action="Index">Nazaj na seznam</a>
+        </p>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IdJagenjcka)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["IDSortParm"]">@Html.DisplayNameFor(model => model.IdJagenjcka)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.kotitev)
+                @Html.DisplayNameFor(model => model.skritIdJagenjcka)
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["KotitevIDSortParm"]">@Html.DisplayNameFor(model => model.KotitevID)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.spol)
@@ -30,6 +43,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.IdJagenjcka)
             </td>
+            <th>
+                @Html.DisplayNameFor(model => model.skritIdJagenjcka)
+            </th>
             <td>
                 @Html.DisplayFor(modelItem => item.kotitev.KotitevID)
             </td>

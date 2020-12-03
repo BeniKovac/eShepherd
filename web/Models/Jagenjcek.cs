@@ -13,7 +13,7 @@ namespace web.Models
 
         [Required]
         [Display(Name = "ID jagenjčka")] 
-        public int IdJagenjcka { get; set; }
+        public String IdJagenjcka { get; set; }
         
         public int KotitevID { get; set; }
         public Kotitev kotitev { get; set; }

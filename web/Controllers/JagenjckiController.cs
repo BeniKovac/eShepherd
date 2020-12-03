@@ -20,14 +20,32 @@ namespace web.Controllers
         }
 
         // GET: Jagenjcki
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            var eShepherdContext = _context.Jagenjcki.Include(j => j.kotitev);
-            return View(await eShepherdContext.ToListAsync());
-        }
+                ViewData["IDSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ID_desc" : "";
+                ViewData["KotitevIDSortParm"] = sortOrder == "KotitevID" ? "kotitevid_desc" : "KotitevID";
+                var jagenjcki = from j in _context.Jagenjcki
+                                select j;
+                switch (sortOrder)
+                {
+                    case "ID_desc":
+                        jagenjcki = jagenjcki.OrderByDescending(j => j.IdJagenjcka);
+                        break;
+                    case "kotitevid_desc":
+                        jagenjcki = jagenjcki.OrderBy(j => j.KotitevID);
+                        break;
+                    case "KotitevID":
+                        jagenjcki = jagenjcki.OrderBy(j => j.KotitevID);
+                        break;
+                    default:
+                        jagenjcki = jagenjcki.OrderBy(j => j.IdJagenjcka);
+                        break;
+                }
+                return View(await jagenjcki.AsNoTracking().ToListAsync());
+            }
 
         // GET: Jagenjcki/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(String? id)
         {
             if (id == null)
             {
@@ -35,8 +53,12 @@ namespace web.Controllers
             }
 
             var jagenjcek = await _context.Jagenjcki
+                .Include(j => j.skritIdJagenjcka)
+                .Include(j => j.IdJagenjcka)
                 .Include(j => j.kotitev)
-                .FirstOrDefaultAsync(m => m.skritIdJagenjcka == id);
+                .Include(j => j.spol)
+                .FirstOrDefaultAsync(m => m.IdJagenjcka == id);
+
             if (jagenjcek == null)
             {
                 return NotFound();
@@ -123,7 +145,7 @@ namespace web.Controllers
         }
 
         // GET: Jagenjcki/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(String id)
         {
             if (id == null)
             {
@@ -131,8 +153,11 @@ namespace web.Controllers
             }
 
             var jagenjcek = await _context.Jagenjcki
+                .Include(j => j.IdJagenjcka)
+                .Include(j => j.skritIdJagenjcka)
                 .Include(j => j.kotitev)
-                .FirstOrDefaultAsync(m => m.skritIdJagenjcka == id);
+                .Include(j => j.spol)
+                .FirstOrDefaultAsync(m => m.IdJagenjcka == id);
             if (jagenjcek == null)
             {
                 return NotFound();
