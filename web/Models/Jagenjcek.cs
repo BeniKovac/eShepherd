@@ -15,7 +15,7 @@ namespace web.Models
         [Display(Name = "ID jagenjčka")] 
         public String IdJagenjcka { get; set; }
         
-        public int KotitevID { get; set; }
+        public String KotitevID { get; set; }
         public Kotitev kotitev { get; set; }
 
         // prikaz ID mame in datum kotitve?
