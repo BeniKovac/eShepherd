@@ -29,6 +29,7 @@ namespace web.Controllers
                                     string searchString,
                                     int? pageNumber)
         {
+
             ViewData["CurrentSort"] = sortOrder;
             ViewData["IDSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ID_desc" : "";
             ViewData["DateSortParm"] = sortOrder == "Datum" ? "datum_desc" : "Datum";
@@ -71,6 +72,7 @@ namespace web.Controllers
              int pageSize = 15;
             return View(await PaginatedList<Ovca>.CreateAsync(ovce.AsNoTracking(), pageNumber ?? 1, pageSize));
             
+
         }
 
         // GET: Ovce3/Details/5

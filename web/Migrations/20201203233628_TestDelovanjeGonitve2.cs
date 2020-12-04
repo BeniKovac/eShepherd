@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace web.Migrations
 {
-    public partial class updatedGonitevKotitev : Migration
+    public partial class TestDelovanjeGonitve2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -170,6 +170,32 @@ namespace web.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Oven",
+                columns: table => new
+                {
+                    OvenID = table.Column<string>(maxLength: 10, nullable: false),
+                    CredaID = table.Column<int>(nullable: false),
+                    DatumRojstva = table.Column<DateTime>(nullable: true),
+                    Pasma = table.Column<string>(nullable: true),
+                    mamaID = table.Column<string>(nullable: true),
+                    oceID = table.Column<string>(nullable: true),
+                    SteviloSorojencev = table.Column<int>(nullable: true),
+                    Stanje = table.Column<string>(nullable: true),
+                    Opombe = table.Column<string>(nullable: true),
+                    Poreklo = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Oven", x => x.OvenID);
+                    table.ForeignKey(
+                        name: "FK_Oven_Crede_CredaID",
+                        column: x => x.CredaID,
+                        principalTable: "Crede",
+                        principalColumn: "CredeID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Ovca",
                 columns: table => new
                 {
@@ -177,8 +203,8 @@ namespace web.Migrations
                     CredaID = table.Column<int>(nullable: false),
                     DatumRojstva = table.Column<DateTime>(nullable: true),
                     Pasma = table.Column<string>(nullable: true),
-                    IdMame = table.Column<string>(maxLength: 10, nullable: true),
-                    IdOceta = table.Column<string>(maxLength: 10, nullable: true),
+                    mamaID = table.Column<string>(nullable: true),
+                    oceID = table.Column<string>(nullable: true),
                     SteviloSorojencev = table.Column<int>(nullable: true),
                     Stanje = table.Column<string>(nullable: true),
                     Opombe = table.Column<string>(nullable: true),
@@ -194,36 +220,17 @@ namespace web.Migrations
                         principalTable: "Crede",
                         principalColumn: "CredeID",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Oven",
-                columns: table => new
-                {
-                    OvenID = table.Column<string>(maxLength: 10, nullable: false),
-                    CredaID = table.Column<int>(nullable: false),
-                    DatumRojstva = table.Column<DateTime>(nullable: true),
-                    Pasma = table.Column<string>(nullable: true),
-                    OvcaID = table.Column<string>(nullable: true),
-                    SteviloSorojencev = table.Column<int>(nullable: true),
-                    Stanje = table.Column<string>(nullable: true),
-                    Opombe = table.Column<string>(nullable: true),
-                    Poreklo = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Oven", x => x.OvenID);
                     table.ForeignKey(
-                        name: "FK_Oven_Crede_CredaID",
-                        column: x => x.CredaID,
-                        principalTable: "Crede",
-                        principalColumn: "CredeID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Oven_Ovca_OvcaID",
-                        column: x => x.OvcaID,
+                        name: "FK_Ovca_Ovca_mamaID",
+                        column: x => x.mamaID,
                         principalTable: "Ovca",
                         principalColumn: "OvcaID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Ovca_Oven_oceID",
+                        column: x => x.oceID,
+                        principalTable: "Oven",
+                        principalColumn: "OvenID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -231,8 +238,7 @@ namespace web.Migrations
                 name: "Gonitev",
                 columns: table => new
                 {
-                    GonitevID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GonitevID = table.Column<string>(nullable: false),
                     DatumGonitve = table.Column<DateTime>(nullable: false),
                     OvcaID = table.Column<string>(nullable: true),
                     OvenID = table.Column<string>(nullable: true),
@@ -290,8 +296,9 @@ namespace web.Migrations
                 columns: table => new
                 {
                     skritIdJagenjcka = table.Column<int>(nullable: false),
-                    IdJagenjcka = table.Column<int>(nullable: false),
-                    KotitevID = table.Column<int>(nullable: false),
+                    IdJagenjcka = table.Column<string>(nullable: false),
+                    KotitevID = table.Column<string>(nullable: true),
+                    KotitevID1 = table.Column<int>(nullable: true),
                     spol = table.Column<string>(nullable: true),
                     CredaCredeID = table.Column<int>(nullable: true)
                 },
@@ -305,11 +312,11 @@ namespace web.Migrations
                         principalColumn: "CredeID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Jagenjcek_Kotitev_KotitevID",
-                        column: x => x.KotitevID,
+                        name: "FK_Jagenjcek_Kotitev_KotitevID1",
+                        column: x => x.KotitevID1,
                         principalTable: "Kotitev",
                         principalColumn: "KotitevID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -367,9 +374,9 @@ namespace web.Migrations
                 column: "CredaCredeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Jagenjcek_KotitevID",
+                name: "IX_Jagenjcek_KotitevID1",
                 table: "Jagenjcek",
-                column: "KotitevID");
+                column: "KotitevID1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Kotitev_OvcaID",
@@ -387,14 +394,19 @@ namespace web.Migrations
                 column: "CredaID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Ovca_mamaID",
+                table: "Ovca",
+                column: "mamaID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ovca_oceID",
+                table: "Ovca",
+                column: "oceID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Oven_CredaID",
                 table: "Oven",
                 column: "CredaID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Oven_OvcaID",
-                table: "Oven",
-                column: "OvcaID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -430,10 +442,10 @@ namespace web.Migrations
                 name: "Kotitev");
 
             migrationBuilder.DropTable(
-                name: "Oven");
+                name: "Ovca");
 
             migrationBuilder.DropTable(
-                name: "Ovca");
+                name: "Oven");
 
             migrationBuilder.DropTable(
                 name: "Crede");

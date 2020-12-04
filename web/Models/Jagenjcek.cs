@@ -8,14 +8,13 @@ namespace web.Models
     public class Jagenjcek
         {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int skritIdJagenjcka { get; set; }
 
         [Required]
         [Display(Name = "ID jagenjčka")] 
-        public int IdJagenjcka { get; set; }
+        public String IdJagenjcka { get; set; }
         
-        public int KotitevID { get; set; }
+        public String KotitevID { get; set; }
         public Kotitev kotitev { get; set; }
 
         // prikaz ID mame in datum kotitve?
