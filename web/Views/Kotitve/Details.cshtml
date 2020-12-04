@@ -47,6 +47,28 @@
             @Html.DisplayFor(model => model.Opombe)
         </dd>
     </dl>
+     <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.jagenjcki)
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table">
+                <tr>
+                    <th>ID jagenjčka</th>
+                    <th>Spol</th>
+                </tr>
+                @foreach (var item in Model.jagenjcki)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdJagenjcka)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.spol)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.KotitevID">Uredi</a> |

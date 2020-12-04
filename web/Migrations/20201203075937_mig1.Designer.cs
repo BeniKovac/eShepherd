@@ -10,8 +10,8 @@ using web.Data;
 namespace web.Migrations
 {
     [DbContext(typeof(eShepherdContext))]
-    [Migration("20201202195029_Test123")]
-    partial class Test123
+    [Migration("20201203075937_mig1")]
+    partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -505,7 +505,7 @@ namespace web.Migrations
                         .HasForeignKey("OvcaID");
 
                     b.HasOne("web.Models.Oven", "Oven")
-                        .WithMany()
+                        .WithMany("seznamKotitev")
                         .HasForeignKey("OvenID");
                 });
 

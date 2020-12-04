@@ -9,6 +9,7 @@ namespace web.Models
     {
         
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Display(Name = "ID ovna")] 
         [StringLength(10)]
         [Required]
@@ -19,36 +20,36 @@ namespace web.Models
         public Creda creda { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", NullDisplayText = "neznan", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", NullDisplayText = "/", ApplyFormatInEditMode = true)]
         [Display(Name = "Datum Rojstva")]        
         public DateTime? DatumRojstva { get; set; }
 
-        [DisplayFormat(NullDisplayText = "neznan")]
         public string Pasma { get; set; }
-
+        [DisplayFormat(NullDisplayText = "/")]
         [Display(Name = "ID mame")] 
-        [DisplayFormat(NullDisplayText = "neznan")]
-
         public string? mamaID { get; set; }
         
 
-
-        /* KAKO IMA LAHKO OVEN OVNA?*/
-        [DisplayFormat(NullDisplayText = "neznan")]
-        
+        [DisplayFormat(NullDisplayText = "/")]        
         [Display(Name = "ID očeta")] 
         public string? oceID { get; set; }
 
-        [DisplayFormat(NullDisplayText = "neznano")]
+        [DisplayFormat(NullDisplayText = "/")]
         [Display(Name = "Število sorojencev")] 
         public int? SteviloSorojencev { get; set; }
 
-        public string Stanje { get; set; }
+
+         [DisplayFormat(NullDisplayText = "/")]        
+         public string Stanje { get; set; }
 
         public string? Opombe { get; set; }
 
+        [DisplayFormat(NullDisplayText = "/")]
         public string Poreklo { get; set; }
         public ICollection<Ovca> ovce { get; set; }
+
+        public ICollection<Kotitev> vseKotitve { get; set; }
+        public ICollection<Gonitev> vseGonitve { get; set; }
 
     }
 }

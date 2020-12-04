@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using web.Data;
 
 namespace web.Migrations
 {
     [DbContext(typeof(eShepherdContext))]
-    partial class eShepherdContextModelSnapshot : ModelSnapshot
+    [Migration("20201203072824_updatedOvenandOvca")]
+    partial class updatedOvenandOvca
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -248,8 +250,10 @@ namespace web.Migrations
 
             modelBuilder.Entity("web.Models.Gonitev", b =>
                 {
-                    b.Property<string>("GonitevID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("GonitevID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DatumGonitve")
                         .HasColumnType("datetime2");
@@ -280,14 +284,10 @@ namespace web.Migrations
                     b.Property<int?>("CredaCredeID")
                         .HasColumnType("int");
 
-                    b.Property<string>("IdJagenjcka")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("IdJagenjcka")
+                        .HasColumnType("int");
 
-                    b.Property<string>("KotitevID")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("KotitevID1")
+                    b.Property<int>("KotitevID")
                         .HasColumnType("int");
 
                     b.Property<string>("spol")
@@ -297,7 +297,7 @@ namespace web.Migrations
 
                     b.HasIndex("CredaCredeID");
 
-                    b.HasIndex("KotitevID1");
+                    b.HasIndex("KotitevID");
 
                     b.ToTable("Jagenjcek");
                 });
@@ -477,11 +477,11 @@ namespace web.Migrations
             modelBuilder.Entity("web.Models.Gonitev", b =>
                 {
                     b.HasOne("web.Models.Ovca", "Ovca")
-                        .WithMany("SeznamGonitev")
+                        .WithMany()
                         .HasForeignKey("OvcaID");
 
                     b.HasOne("web.Models.Oven", "Oven")
-                        .WithMany("vseGonitve")
+                        .WithMany()
                         .HasForeignKey("OvenID");
                 });
 
@@ -492,12 +492,10 @@ namespace web.Migrations
                         .HasForeignKey("CredaCredeID");
 
                     b.HasOne("web.Models.Kotitev", "kotitev")
-
-                        .WithMany("jagenjcki")
+                        .WithMany()
                         .HasForeignKey("KotitevID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
                 });
 
             modelBuilder.Entity("web.Models.Kotitev", b =>
@@ -507,7 +505,7 @@ namespace web.Migrations
                         .HasForeignKey("OvcaID");
 
                     b.HasOne("web.Models.Oven", "Oven")
-                        .WithMany("vseKotitve")
+                        .WithMany("seznamKotitev")
                         .HasForeignKey("OvenID");
                 });
 

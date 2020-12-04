@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using web.Data;
 using web.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace web.Controllers
 {
+    [Authorize]
     public class KotitveController : Controller
     {
         private readonly eShepherdContext _context;
@@ -20,10 +23,47 @@ namespace web.Controllers
         }
 
         // GET: Kotitve
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(
+                                    string sortOrder,
+                                    string currentFilter,
+                                    string searchString,
+                                    int? pageNumber)
         {
-            var eShepherdContext = _context.Kotitve.Include(k => k.Ovca).Include(k => k.Oven);
-            return View(await eShepherdContext.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["IDSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ID_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Datum" ? "datum_asc" : "Datum";
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewData["CurrentFilter"] = searchString; 
+            var kotitve = from k in _context.Kotitve
+                 select k;
+           if (!String.IsNullOrEmpty(searchString))
+          {
+               kotitve = kotitve.Where(s => s.Ovca.OvcaID.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "ID_desc":
+                    kotitve = kotitve.OrderByDescending(k => k.OvcaID);
+                    break;
+                case "Datum":
+                    kotitve = kotitve.OrderBy(k => k.DatumKotitve);
+                    break;
+                 case "datum_asc":
+                    kotitve = kotitve.OrderByDescending(k => k.DatumKotitve);
+                    break;
+                default:
+                    kotitve = kotitve.OrderBy(k => k.DatumKotitve);
+                    break;
+            }
+            int pageSize = 15;
+            return View(await PaginatedList<Kotitev>.CreateAsync(kotitve.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Kotitve/Details/5
@@ -37,6 +77,7 @@ namespace web.Controllers
             var kotitev = await _context.Kotitve
                 .Include(k => k.Ovca)
                 .Include(k => k.Oven)
+                .Include(k => k.jagenjcki)
                 .FirstOrDefaultAsync(m => m.KotitevID == id);
             if (kotitev == null)
             {
@@ -72,6 +113,11 @@ namespace web.Controllers
             return View(kotitev);
         }
 
+        public IActionResult CreateJagenjcka()
+        {
+            ViewData["KotitevID"] = new SelectList(_context.Kotitve, "KotitevID", "KotitevID");
+            return View();
+        }
         // GET: Kotitve/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

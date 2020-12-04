@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using web.Data;
 
 namespace web.Migrations
 {
     [DbContext(typeof(eShepherdContext))]
-    partial class eShepherdContextModelSnapshot : ModelSnapshot
+    [Migration("20201203233628_TestDelovanjeGonitve2")]
+    partial class TestDelovanjeGonitve2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -477,11 +479,11 @@ namespace web.Migrations
             modelBuilder.Entity("web.Models.Gonitev", b =>
                 {
                     b.HasOne("web.Models.Ovca", "Ovca")
-                        .WithMany("SeznamGonitev")
+                        .WithMany()
                         .HasForeignKey("OvcaID");
 
                     b.HasOne("web.Models.Oven", "Oven")
-                        .WithMany("vseGonitve")
+                        .WithMany()
                         .HasForeignKey("OvenID");
                 });
 
@@ -492,12 +494,8 @@ namespace web.Migrations
                         .HasForeignKey("CredaCredeID");
 
                     b.HasOne("web.Models.Kotitev", "kotitev")
-
-                        .WithMany("jagenjcki")
-                        .HasForeignKey("KotitevID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
+                        .WithMany()
+                        .HasForeignKey("KotitevID1");
                 });
 
             modelBuilder.Entity("web.Models.Kotitev", b =>
@@ -507,7 +505,7 @@ namespace web.Migrations
                         .HasForeignKey("OvcaID");
 
                     b.HasOne("web.Models.Oven", "Oven")
-                        .WithMany("vseKotitve")
+                        .WithMany()
                         .HasForeignKey("OvenID");
                 });
 

@@ -1,18 +1,18 @@
-@model IEnumerable<web.Models.Oven>
+@model IEnumerable<web.Models.Ovca>
 
 @{
-    ViewData["Title"] = "Ovni";
+    ViewData["Title"] = "Ovce";
 }
 
-<h1>Ovni</h1>
+<h1>Ovce</h1>
 
 <p>
-    <a asp-action="Create">Dodaj ovna</a>
+    <a asp-action="Create">Dodaj ovco</a>
 </p>
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p>
-           Najdi ovna po ID: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+           Najdi ovco po ID: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
            
             <input type="submit" value="Išči" class="btn btn-primary" /> |
             <a asp-action="Index">Nazaj na seznam</a>
@@ -23,22 +23,22 @@
     <thead>
         <tr>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["IDSortParm"]">@Html.DisplayNameFor(model => model.OvenID)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["IDSortParm"]">@Html.DisplayNameFor(model => model.OvcaID)</a>
             </th>
             <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">@Html.DisplayNameFor(model => model.DatumRojstva)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.creda)
+                @Html.DisplayNameFor(model => model.CredaID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Pasma)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.mamaID)
+                @Html.DisplayNameFor(model => model.mama.mamaID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.oceID)
+                @Html.DisplayNameFor(model => model.oce.oceID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SteviloSorojencev)
@@ -50,7 +50,10 @@
                 @Html.DisplayNameFor(model => model.Opombe)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Poreklo)
+                @Html.DisplayNameFor(model => model.SteviloKotitev)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PovprecjeJagenjckov)
             </th>
             <th></th>
         </tr>
@@ -58,8 +61,8 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OvenID)
+             <td>
+                @Html.DisplayFor(modelItem => item.OvcaID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DatumRojstva)
@@ -70,12 +73,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Pasma)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.mamaID)
+             <td>
+                @Html.DisplayFor(modelItem => item.mama.mamaID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.oceID)
+                @Html.DisplayFor(modelItem => item.oce.oceID)
             </td>
+       
             <td>
                 @Html.DisplayFor(modelItem => item.SteviloSorojencev)
             </td>
@@ -86,12 +90,15 @@
                 @Html.DisplayFor(modelItem => item.Opombe)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Poreklo)
+                @Html.DisplayFor(modelItem => item.SteviloKotitev)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.OvenID">Uredi</a> |
-                <a asp-action="Details" asp-route-id="@item.OvenID">Podrobnosti</a> |
-                <a asp-action="Delete" asp-route-id="@item.OvenID">Odstrani</a>
+                @Html.DisplayFor(modelItem => item.PovprecjeJagenjckov)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.OvcaID">Uredi</a> |
+                <a asp-action="Details" asp-route-id="@item.OvcaID">Podrobnosti</a> |
+                <a asp-action="Delete" asp-route-id="@item.OvcaID">Odstrani</a>
             </td>
         </tr>
 }

@@ -20,6 +20,7 @@ namespace web.Data
 
             var crede = new Creda[]
             {
+                new Creda{Opombe = "/"},
                 new Creda{Opombe = "V štali"},
                 new Creda{Opombe = "Na pašniku"}
             };
@@ -32,9 +33,13 @@ namespace web.Data
 
             var ovce = new Ovca[]
             {
-                new Ovca{OvcaID="632", CredaID=crede[0].CredeID, DatumRojstva=DateTime.Parse("20.2.2019"), Pasma="JSR", Stanje="Živa", Opombe="Bella, Pako"},
-                new Ovca{OvcaID="639",  CredaID=crede[0].CredeID, Pasma="JSR", Stanje="Živa", Opombe="Effie, Pako"}, 
-                new Ovca{OvcaID="772", CredaID=crede[0].CredeID, Pasma="JS", DatumRojstva=DateTime.Parse("1.1.2020")}
+                new Ovca{OvcaID="/", CredaID=crede[0].CredeID},
+                new Ovca{OvcaID="632", CredaID=crede[1].CredeID, DatumRojstva=DateTime.Parse("20.2.2014"), Pasma="JSR", Stanje="Živa", Opombe="Bella, Pako"},
+                new Ovca{OvcaID="639",  CredaID=crede[1].CredeID, Pasma="JSR", Stanje="Živa", Opombe="Effie, Pako"}, 
+                new Ovca{OvcaID="772", CredaID=crede[1].CredeID, Pasma="JS", DatumRojstva=DateTime.Parse("6.7.2017")},
+                new Ovca{OvcaID="677", CredaID=crede[2].CredeID, Pasma="JS", DatumRojstva=DateTime.Parse("19.1.2018")},
+                new Ovca{OvcaID="680", CredaID=crede[2].CredeID, Pasma="JS", DatumRojstva=DateTime.Parse("12.1.2020")},
+                new Ovca{OvcaID="377", CredaID=crede[2].CredeID, Pasma="JS", DatumRojstva=DateTime.Parse("4.2.2020")}
                
             };
             foreach (Ovca o in ovce)
@@ -45,7 +50,9 @@ namespace web.Data
             
             var ovni = new Oven[]
             {
-                new Oven{OvenID="102", CredaID=crede[0].CredeID, Pasma="Dorper", SteviloSorojencev = 2, Poreklo = "Avstrija"}
+                new Oven{OvenID="/", CredaID=crede[0].CredeID},
+                new Oven{OvenID="102", CredaID=crede[1].CredeID, Pasma="Dorper", SteviloSorojencev = 2, Poreklo = "Avstrija"},
+                new Oven{OvenID="666", CredaID=crede[2].CredeID, Pasma="Dorper", SteviloSorojencev = 2, Poreklo = "Slovenija"}
                
             };
             foreach (Oven ov in ovni)
@@ -57,9 +64,10 @@ namespace web.Data
 
             var kotitve = new Kotitev[]
             {
-                new Kotitev{DatumKotitve=DateTime.Parse("12-01-2019"), SteviloMladih=3, OvcaID=ovce[1].OvcaID, OvenID = ovni[0].OvenID, SteviloMrtvih = 0},
-                new Kotitev{DatumKotitve=DateTime.Parse("20-12-2019"), SteviloMladih=2, OvcaID=ovce[2].OvcaID, OvenID = ovni[0].OvenID, SteviloMrtvih = 0},
-                new Kotitev{DatumKotitve=DateTime.Parse("01-12-2020"), SteviloMladih=2, OvcaID=ovce[0].OvcaID, OvenID = ovni[0].OvenID, SteviloMrtvih = 0},
+                new Kotitev{DatumKotitve=DateTime.Parse("12-01-2019"), SteviloMladih=3, OvcaID=ovce[1].OvcaID, OvenID = ovni[1].OvenID, SteviloMrtvih = 0},
+                new Kotitev{DatumKotitve=DateTime.Parse("20-12-2019"), SteviloMladih=2, OvcaID=ovce[2].OvcaID, OvenID = ovni[1].OvenID, SteviloMrtvih = 0},
+                new Kotitev{DatumKotitve=DateTime.Parse("01-12-2020"), SteviloMladih=2, OvcaID=ovce[5].OvcaID, OvenID = ovni[2].OvenID, SteviloMrtvih = 0},
+                new Kotitev{DatumKotitve=DateTime.Parse("03-12-2020"), SteviloMladih=2, OvcaID=ovce[4].OvcaID, OvenID = ovni[2].OvenID, SteviloMrtvih = 0},
                 
             };
             foreach (Kotitev k in kotitve)
@@ -70,8 +78,9 @@ namespace web.Data
 
             var gonitve = new Gonitev[]
             {
-                new Gonitev{OvcaID = ovce[0].OvcaID, OvenID = ovni[0].OvenID, DatumGonitve=DateTime.Parse("10-01-2019")},
-                new Gonitev{OvcaID = ovce[1].OvcaID, OvenID = ovni[0].OvenID, DatumGonitve=DateTime.Parse("08-11-2020")}
+                new Gonitev{OvcaID = ovce[1].OvcaID, OvenID = ovni[1].OvenID, DatumGonitve=DateTime.Parse("10-01-2019")},
+                new Gonitev{OvcaID = ovce[2].OvcaID, OvenID = ovni[1].OvenID, DatumGonitve=DateTime.Parse("08-11-2020")},
+                new Gonitev{OvcaID = ovce[3].OvcaID, OvenID = ovni[2].OvenID, DatumGonitve=DateTime.Parse("08-11-2020")},
             };
             foreach (Gonitev g in gonitve)
             {
