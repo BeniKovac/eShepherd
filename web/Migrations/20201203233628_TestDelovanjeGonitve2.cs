@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace web.Migrations
 {
-    public partial class Test123 : Migration
+    public partial class TestDelovanjeGonitve2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -238,8 +238,7 @@ namespace web.Migrations
                 name: "Gonitev",
                 columns: table => new
                 {
-                    GonitevID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GonitevID = table.Column<string>(nullable: false),
                     DatumGonitve = table.Column<DateTime>(nullable: false),
                     OvcaID = table.Column<string>(nullable: true),
                     OvenID = table.Column<string>(nullable: true),
@@ -297,8 +296,9 @@ namespace web.Migrations
                 columns: table => new
                 {
                     skritIdJagenjcka = table.Column<int>(nullable: false),
-                    IdJagenjcka = table.Column<int>(nullable: false),
-                    KotitevID = table.Column<int>(nullable: false),
+                    IdJagenjcka = table.Column<string>(nullable: false),
+                    KotitevID = table.Column<string>(nullable: true),
+                    KotitevID1 = table.Column<int>(nullable: true),
                     spol = table.Column<string>(nullable: true),
                     CredaCredeID = table.Column<int>(nullable: true)
                 },
@@ -312,11 +312,11 @@ namespace web.Migrations
                         principalColumn: "CredeID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Jagenjcek_Kotitev_KotitevID",
-                        column: x => x.KotitevID,
+                        name: "FK_Jagenjcek_Kotitev_KotitevID1",
+                        column: x => x.KotitevID1,
                         principalTable: "Kotitev",
                         principalColumn: "KotitevID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -374,9 +374,9 @@ namespace web.Migrations
                 column: "CredaCredeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Jagenjcek_KotitevID",
+                name: "IX_Jagenjcek_KotitevID1",
                 table: "Jagenjcek",
-                column: "KotitevID");
+                column: "KotitevID1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Kotitev_OvcaID",

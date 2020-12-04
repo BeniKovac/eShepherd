@@ -10,8 +10,8 @@ using web.Data;
 namespace web.Migrations
 {
     [DbContext(typeof(eShepherdContext))]
-    [Migration("20201202195029_Test123")]
-    partial class Test123
+    [Migration("20201203233628_TestDelovanjeGonitve2")]
+    partial class TestDelovanjeGonitve2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -250,10 +250,8 @@ namespace web.Migrations
 
             modelBuilder.Entity("web.Models.Gonitev", b =>
                 {
-                    b.Property<int>("GonitevID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("GonitevID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("DatumGonitve")
                         .HasColumnType("datetime2");
@@ -284,10 +282,14 @@ namespace web.Migrations
                     b.Property<int?>("CredaCredeID")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdJagenjcka")
-                        .HasColumnType("int");
+                    b.Property<string>("IdJagenjcka")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("KotitevID")
+                    b.Property<string>("KotitevID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("KotitevID1")
                         .HasColumnType("int");
 
                     b.Property<string>("spol")
@@ -297,7 +299,7 @@ namespace web.Migrations
 
                     b.HasIndex("CredaCredeID");
 
-                    b.HasIndex("KotitevID");
+                    b.HasIndex("KotitevID1");
 
                     b.ToTable("Jagenjcek");
                 });
@@ -493,9 +495,7 @@ namespace web.Migrations
 
                     b.HasOne("web.Models.Kotitev", "kotitev")
                         .WithMany()
-                        .HasForeignKey("KotitevID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("KotitevID1");
                 });
 
             modelBuilder.Entity("web.Models.Kotitev", b =>

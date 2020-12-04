@@ -20,14 +20,56 @@ namespace web.Controllers
         }
 
         // GET: Jagenjcki
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(
+                                string sortOrder,
+                                string currentFilter,
+                                string searchString,
+                                int? pageNumber)
         {
-            var eShepherdContext = _context.Jagenjcki.Include(j => j.kotitev);
-            return View(await eShepherdContext.ToListAsync());
-        }
+                ViewData["CurrentSort"] = sortOrder;
+                ViewData["IDSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ID_desc" : "";
+                ViewData["KotitevIDSortParm"] = sortOrder == "KotitevID" ? "kotitevid_desc" : "KotitevID";
+
+                if (searchString != null)
+                {
+                    pageNumber = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
+
+                ViewData["CurrentFilter"] = searchString;
+                var jagenjcki = from j in _context.Jagenjcki
+                                select j;
+
+                    if (!String.IsNullOrEmpty(searchString))
+                    {
+                        jagenjcki = jagenjcki.Where(j => j.IdJagenjcka.Contains(searchString)
+                                            || j.KotitevID.Contains(searchString));
+                    }
+
+                switch (sortOrder)
+                {
+                    case "ID_desc":
+                        jagenjcki = jagenjcki.OrderByDescending(j => j.IdJagenjcka);
+                        break;
+                    case "kotitevid_desc":
+                        jagenjcki = jagenjcki.OrderBy(j => j.KotitevID);
+                        break;
+                    case "KotitevID":
+                        jagenjcki = jagenjcki.OrderBy(j => j.KotitevID);
+                        break;
+                    default:
+                        jagenjcki = jagenjcki.OrderBy(j => j.IdJagenjcka);
+                        break;
+                }
+                int pageSize = 3;
+                return View(await PaginatedList<Jagenjcek>.CreateAsync(jagenjcki.AsNoTracking(), pageNumber ?? 1, pageSize));
+            }
 
         // GET: Jagenjcki/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(String? id)
         {
             if (id == null)
             {
@@ -35,8 +77,12 @@ namespace web.Controllers
             }
 
             var jagenjcek = await _context.Jagenjcki
+                .Include(j => j.skritIdJagenjcka)
+                .Include(j => j.IdJagenjcka)
                 .Include(j => j.kotitev)
-                .FirstOrDefaultAsync(m => m.skritIdJagenjcka == id);
+                .Include(j => j.spol)
+                .FirstOrDefaultAsync(m => m.IdJagenjcka == id);
+
             if (jagenjcek == null)
             {
                 return NotFound();
@@ -107,7 +153,7 @@ namespace web.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!JagenjcekExists(jagenjcek.skritIdJagenjcka))
+                    if (!JagenjcekExists(jagenjcek.IdJagenjcka))
                     {
                         return NotFound();
                     }
@@ -123,7 +169,7 @@ namespace web.Controllers
         }
 
         // GET: Jagenjcki/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(String id)
         {
             if (id == null)
             {
@@ -131,8 +177,11 @@ namespace web.Controllers
             }
 
             var jagenjcek = await _context.Jagenjcki
+                .Include(j => j.IdJagenjcka)
+                .Include(j => j.skritIdJagenjcka)
                 .Include(j => j.kotitev)
-                .FirstOrDefaultAsync(m => m.skritIdJagenjcka == id);
+                .Include(j => j.spol)
+                .FirstOrDefaultAsync(m => m.IdJagenjcka == id);
             if (jagenjcek == null)
             {
                 return NotFound();
@@ -144,7 +193,7 @@ namespace web.Controllers
         // POST: Jagenjcki/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(String id)
         {
             var jagenjcek = await _context.Jagenjcki.FindAsync(id);
             _context.Jagenjcki.Remove(jagenjcek);
@@ -152,9 +201,9 @@ namespace web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool JagenjcekExists(int id)
+        private bool JagenjcekExists(String id)
         {
-            return _context.Jagenjcki.Any(e => e.skritIdJagenjcka == id);
+            return _context.Jagenjcki.Any(e => e.IdJagenjcka == id);
         }
     }
 }
