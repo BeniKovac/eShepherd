@@ -37,6 +37,9 @@ namespace web.Models
 
         public string? Opombe { get; set; }
 
+        [Display(Name = "Jagenjčki")]
+        public ICollection<Jagenjcek> jagenjcki { get; set; }
+
         
 
     }

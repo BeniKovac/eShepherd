@@ -75,8 +75,9 @@ namespace web.Controllers
             }
 
             var kotitev = await _context.Kotitve
-                .Include(k => k.OvcaID)
-                .Include(k => k.OvenID)
+                .Include(k => k.Ovca)
+                .Include(k => k.Oven)
+                .Include(k => k.jagenjcki)
                 .FirstOrDefaultAsync(m => m.KotitevID == id);
             if (kotitev == null)
             {
@@ -112,6 +113,11 @@ namespace web.Controllers
             return View(kotitev);
         }
 
+        public IActionResult CreateJagenjcka()
+        {
+            ViewData["KotitevID"] = new SelectList(_context.Kotitve, "KotitevID", "KotitevID");
+            return View();
+        }
         // GET: Kotitve/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
