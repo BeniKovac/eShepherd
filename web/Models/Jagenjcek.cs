@@ -8,7 +8,6 @@ namespace web.Models
     public class Jagenjcek
         {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int skritIdJagenjcka { get; set; }
 
         [Required]
