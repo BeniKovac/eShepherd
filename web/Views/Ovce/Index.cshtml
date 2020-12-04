@@ -1,4 +1,4 @@
-@model IEnumerable<web.Models.Ovca>
+@model PaginatedList<web.Models.Ovca>
 
 @{
     ViewData["Title"] = "Ovce";
@@ -9,42 +9,52 @@
 <p>
     <a asp-action="Create">Dodaj ovco</a>
 </p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+           Najdi ovco po ID: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+           
+            <input type="submit" value="Išči" class="btn btn-primary" /> |
+            <a asp-action="Index">Nazaj na seznam</a>
+        </p>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.OvcaID)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["IDSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">ID ovce</a>            
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.creda)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Datum rojstva</a>            
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DatumRojstva)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pasma)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.mama.mamaID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.oce.oceID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SteviloSorojencev)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Stanje)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Opombe)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SteviloKotitev)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PovprecjeJagenjckov)
-            </th>
+           <th>
+               Trenutna čreda
+           </th>
+           <th>
+               Pasma
+           </th>
+           <th>
+               ID mame
+           </th>
+           <th>
+               ID očeta
+           </th>
+           <th>
+               Število sorojencev
+           </th>
+           <th>
+               Stanje
+           </th>
+           <th>
+               Opombe
+           </th>
+           <th>
+              Število dosedanjih kotitev 
+           </th>
+           <th>
+               Povprečno število jagenjčkov na kotitev
+           </th>
             <th></th>
         </tr>
     </thead>
@@ -52,13 +62,15 @@
 @foreach (var item in Model) {
         <tr>
              <td>
+                 <b>
                 @Html.DisplayFor(modelItem => item.OvcaID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.creda.CredeID)
+                </b>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DatumRojstva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.creda.CredeID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Pasma)
@@ -94,3 +106,23 @@
 }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Prejšnja stran
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Naslednja stran
+</a>

@@ -48,10 +48,11 @@ namespace web.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
+            [Display(Name = "Geslo")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Zapomni si me.")]
             public bool RememberMe { get; set; }
         }
 

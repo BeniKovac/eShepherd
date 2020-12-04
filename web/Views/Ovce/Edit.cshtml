@@ -11,6 +11,11 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
+             <div class="form-group">
+                <label asp-for="OvcaID" class="control-label"></label>
+                <input asp-for="OvcaID" class="form-control" />
+                <span asp-validation-for="OvcaID" class="text-danger"></span>
+            </div>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="OvcaID" />
             <div class="form-group">
@@ -52,16 +57,6 @@
                 <label asp-for="Opombe" class="control-label"></label>
                 <input asp-for="Opombe" class="form-control" />
                 <span asp-validation-for="Opombe" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SteviloKotitev" class="control-label"></label>
-                <input asp-for="SteviloKotitev" class="form-control" />
-                <span asp-validation-for="SteviloKotitev" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PovprecjeJagenjckov" class="control-label"></label>
-                <input asp-for="PovprecjeJagenjckov" class="form-control" />
-                <span asp-validation-for="PovprecjeJagenjckov" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Shrani" class="btn btn-primary" />
