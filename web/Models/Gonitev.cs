@@ -9,7 +9,7 @@ namespace web.Models
     {
         
         [Key]
-        public String GonitevID { get; set; }
+        public int GonitevID { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -18,10 +18,10 @@ namespace web.Models
         public DateTime DatumGonitve { get; set; }
 
         public string OvcaID { get; set; }
-        public Ovca Ovca { get; set; }
+        public Ovca ovca { get; set; }
 
         public string OvenID { get; set; }
-        public Oven Oven { get; set; }
+        public Oven oven { get; set; }
         
         // pristej 145 dni do datuma kotitve
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]

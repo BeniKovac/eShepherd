@@ -45,13 +45,13 @@ namespace web.Controllers
 
                     if (!String.IsNullOrEmpty(searchString))
                     {
-                        gonitve = gonitve.Where(g => g.GonitevID.Contains(searchString));
+                        gonitve = gonitve.Where(g => g.OvcaID.Contains(searchString));
                     }
 
                 switch (sortOrder)
                 {
                     case "ID_desc":
-                        gonitve = gonitve.OrderByDescending(g => g.GonitevID);
+                        gonitve = gonitve.OrderByDescending(g => g.ovca.OvcaID);
                         break;
                     case "GonitevDatum":
                         gonitve = gonitve.OrderBy(g => g.DatumGonitve);
@@ -60,7 +60,7 @@ namespace web.Controllers
                         gonitve = gonitve.OrderByDescending(g => g.DatumGonitve);
                         break;
                     default:
-                        gonitve = gonitve.OrderBy(g => g.GonitevID);
+                        gonitve = gonitve.OrderBy(g => g.ovca.OvcaID);
                         break;
                 }
                 int pageSize = 3;
@@ -68,7 +68,7 @@ namespace web.Controllers
             }
 
         // GET: Gonitve/Details/5
-        public async Task<IActionResult> Details(String? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -77,8 +77,8 @@ namespace web.Controllers
 
             var gonitev = await _context.Gonitve
                 .Include(g => g.DatumGonitve)
-                .Include(g => g.Ovca)
-                .Include(g => g.Oven)
+                .Include(g => g.ovca)
+                .Include(g => g.oven)
                 .Include(g => g.Opombe)
                 .FirstOrDefaultAsync(m => m.GonitevID == id);
             if (gonitev == null)
@@ -138,7 +138,7 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(String id, [Bind("GonitevID,DatumGonitve,OvcaID,OvenID,PredvidenaKotitev,Opombe")] Gonitev gonitev)
+        public async Task<IActionResult> Edit(int id, [Bind("GonitevID,DatumGonitve,OvcaID,OvenID,PredvidenaKotitev,Opombe")] Gonitev gonitev)
         {
             if (id != gonitev.GonitevID)
             {
@@ -171,7 +171,7 @@ namespace web.Controllers
         }
 
         // GET: Gonitve/Delete/5
-        public async Task<IActionResult> Delete(String id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null)
             {
@@ -179,8 +179,8 @@ namespace web.Controllers
             }
 
             var gonitev = await _context.Gonitve
-                .Include(g => g.Ovca)
-                .Include(g => g.Oven)
+                .Include(g => g.ovca)
+                .Include(g => g.oven)
                 .FirstOrDefaultAsync(m => m.GonitevID == id);
             if (gonitev == null)
             {
@@ -201,7 +201,7 @@ namespace web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool GonitevExists(String id)
+        private bool GonitevExists(int id)
         {
             return _context.Gonitve.Any(e => e.GonitevID == id);
         }

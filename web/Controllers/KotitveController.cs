@@ -9,6 +9,7 @@ using web.Data;
 using web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using web.Models.eShepherdViewModels;
 
 namespace web.Controllers
 {
@@ -27,7 +28,7 @@ namespace web.Controllers
                                     string sortOrder,
                                     string currentFilter,
                                     string searchString,
-                                    int? pageNumber)
+                                    int? pageNumber, int? id)
         {
             ViewData["CurrentSort"] = sortOrder;
             ViewData["IDSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ID_desc" : "";
@@ -41,7 +42,9 @@ namespace web.Controllers
                 searchString = currentFilter;
             }
             ViewData["CurrentFilter"] = searchString; 
-            var kotitve = from k in _context.Kotitve
+            var kotitve = from k in _context.Kotitve.Include(k => k.Ovca)
+                                                    .Include(k => k.Oven)
+                                                    .Include(k => k.jagenjcki).AsNoTracking()
                  select k;
            if (!String.IsNullOrEmpty(searchString))
           {
@@ -62,7 +65,33 @@ namespace web.Controllers
                     kotitve = kotitve.OrderBy(k => k.DatumKotitve);
                     break;
             }
-            int pageSize = 15;
+//konc copy pasta
+/*
+                var viewModel = new KotitveIndexData();
+                viewModel.Kotitve = await _context.Kotitve
+                    .Include(k => k.jagenjcki)
+                        .ThenInclude(k => k.IdJagenjcka)
+                    .AsNoTracking()
+                    .ToListAsync();
+                
+                if (id != null)
+                {
+                    ViewData["kotitevID"] = id.Value;
+                    Kotitev kotitev = viewModel.Kotitve.Where(
+                        k => k.kotitevID == id.Value).Single();
+                }
+
+                if (jagenjcekID != null)
+                {
+                    ViewData["JagenjcekID"] = jagenjcekID;
+                    viewModel.Jagenjcki = viewModel.Jagenjcki.Where(
+                        x => x.IdJagenjcka == jagenjcekID).Single();
+                }
+
+            return View(viewModel);
+*/
+//konc copy pasta
+            int pageSize = 3;
             return View(await PaginatedList<Kotitev>.CreateAsync(kotitve.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
@@ -78,7 +107,7 @@ namespace web.Controllers
                 .Include(k => k.Ovca)
                 .Include(k => k.Oven)
                 .Include(k => k.jagenjcki)
-                .FirstOrDefaultAsync(m => m.KotitevID == id);
+                .FirstOrDefaultAsync(m => m.kotitevID == id);
             if (kotitev == null)
             {
                 return NotFound();
@@ -100,7 +129,7 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("KotitevID,DatumKotitve,SteviloMladih,OvenID,OvcaID,SteviloMrtvih,Opombe")] Kotitev kotitev)
+        public async Task<IActionResult> Create([Bind("kotitevID,DatumKotitve,SteviloMladih,OvenID,OvcaID,SteviloMrtvih,Opombe")] Kotitev kotitev)
         {
             if (ModelState.IsValid)
             {
@@ -115,7 +144,7 @@ namespace web.Controllers
 
         public IActionResult CreateJagenjcka()
         {
-            ViewData["KotitevID"] = new SelectList(_context.Kotitve, "KotitevID", "KotitevID");
+            ViewData["kotitevID"] = new SelectList(_context.Kotitve, "kotitevID", "kotitevID");
             return View();
         }
         // GET: Kotitve/Edit/5
@@ -141,9 +170,9 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("KotitevID,DatumKotitve,SteviloMladih,OvenID,OvcaID,SteviloMrtvih,Opombe")] Kotitev kotitev)
+        public async Task<IActionResult> Edit(int id, [Bind("kotitevID,DatumKotitve,SteviloMladih,OvenID,OvcaID,SteviloMrtvih,Opombe")] Kotitev kotitev)
         {
-            if (id != kotitev.KotitevID)
+            if (id != kotitev.kotitevID)
             {
                 return NotFound();
             }
@@ -157,7 +186,7 @@ namespace web.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!KotitevExists(kotitev.KotitevID))
+                    if (!KotitevExists(kotitev.kotitevID))
                     {
                         return NotFound();
                     }
@@ -184,7 +213,7 @@ namespace web.Controllers
             var kotitev = await _context.Kotitve
                 .Include(k => k.Ovca)
                 .Include(k => k.Oven)
-                .FirstOrDefaultAsync(m => m.KotitevID == id);
+                .FirstOrDefaultAsync(m => m.kotitevID == id);
             if (kotitev == null)
             {
                 return NotFound();
@@ -206,7 +235,7 @@ namespace web.Controllers
 
         private bool KotitevExists(int id)
         {
-            return _context.Kotitve.Any(e => e.KotitevID == id);
+            return _context.Kotitve.Any(e => e.kotitevID == id);
         }
     }
 }

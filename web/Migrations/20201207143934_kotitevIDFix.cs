@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace web.Migrations
 {
-    public partial class TestDelovanjeGonitve2 : Migration
+    public partial class kotitevIDFix : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -238,7 +238,8 @@ namespace web.Migrations
                 name: "Gonitev",
                 columns: table => new
                 {
-                    GonitevID = table.Column<string>(nullable: false),
+                    GonitevID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     DatumGonitve = table.Column<DateTime>(nullable: false),
                     OvcaID = table.Column<string>(nullable: true),
                     OvenID = table.Column<string>(nullable: true),
@@ -265,18 +266,18 @@ namespace web.Migrations
                 name: "Kotitev",
                 columns: table => new
                 {
-                    KotitevID = table.Column<int>(nullable: false)
+                    kotitevID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DatumKotitve = table.Column<DateTime>(nullable: false),
                     SteviloMladih = table.Column<int>(nullable: false),
-                    OvenID = table.Column<string>(nullable: true),
                     OvcaID = table.Column<string>(nullable: true),
+                    OvenID = table.Column<string>(nullable: true),
                     SteviloMrtvih = table.Column<int>(nullable: true),
                     Opombe = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Kotitev", x => x.KotitevID);
+                    table.PrimaryKey("PK_Kotitev", x => x.kotitevID);
                     table.ForeignKey(
                         name: "FK_Kotitev_Ovca_OvcaID",
                         column: x => x.OvcaID,
@@ -295,10 +296,10 @@ namespace web.Migrations
                 name: "Jagenjcek",
                 columns: table => new
                 {
-                    skritIdJagenjcka = table.Column<int>(nullable: false),
+                    skritIdJagenjcka = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     IdJagenjcka = table.Column<string>(nullable: false),
-                    KotitevID = table.Column<string>(nullable: true),
-                    KotitevID1 = table.Column<int>(nullable: true),
+                    kotitevID = table.Column<int>(nullable: false),
                     spol = table.Column<string>(nullable: true),
                     CredaCredeID = table.Column<int>(nullable: true)
                 },
@@ -312,11 +313,11 @@ namespace web.Migrations
                         principalColumn: "CredeID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Jagenjcek_Kotitev_KotitevID1",
-                        column: x => x.KotitevID1,
+                        name: "FK_Jagenjcek_Kotitev_kotitevID",
+                        column: x => x.kotitevID,
                         principalTable: "Kotitev",
-                        principalColumn: "KotitevID",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "kotitevID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -374,9 +375,9 @@ namespace web.Migrations
                 column: "CredaCredeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Jagenjcek_KotitevID1",
+                name: "IX_Jagenjcek_kotitevID",
                 table: "Jagenjcek",
-                column: "KotitevID1");
+                column: "kotitevID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Kotitev_OvcaID",
