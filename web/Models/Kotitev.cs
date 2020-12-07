@@ -10,7 +10,7 @@ namespace web.Models
         
         [Key]
         
-        public int KotitevID { get; set; }
+        public int kotitevID { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -38,6 +38,7 @@ namespace web.Models
         public string? Opombe { get; set; }
 
         [Display(Name = "Jagenjčki")]
+
         public ICollection<Jagenjcek> jagenjcki { get; set; }
 
         

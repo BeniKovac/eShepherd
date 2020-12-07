@@ -28,7 +28,7 @@ namespace web.Controllers
         {
                 ViewData["CurrentSort"] = sortOrder;
                 ViewData["IDSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ID_desc" : "";
-                ViewData["KotitevIDSortParm"] = sortOrder == "KotitevID" ? "kotitevid_desc" : "KotitevID";
+                ViewData["kotitevIDSortParm"] = sortOrder == "kotitevID" ? "kotitevID_desc" : "kotitevID";
 
                 if (searchString != null)
                 {
@@ -40,13 +40,12 @@ namespace web.Controllers
                 }
 
                 ViewData["CurrentFilter"] = searchString;
-                var jagenjcki = from j in _context.Jagenjcki
-                                select j;
+                var jagenjcki = from j in _context.Jagenjcki.Include(j => j.kotitev).AsNoTracking() select j;
 
                     if (!String.IsNullOrEmpty(searchString))
                     {
                         jagenjcki = jagenjcki.Where(j => j.IdJagenjcka.Contains(searchString)
-                                            || j.KotitevID.Contains(searchString));
+                                            || j.kotitevID.ToString().Contains(searchString));
                     }
 
                 switch (sortOrder)
@@ -54,11 +53,11 @@ namespace web.Controllers
                     case "ID_desc":
                         jagenjcki = jagenjcki.OrderByDescending(j => j.IdJagenjcka);
                         break;
-                    case "kotitevid_desc":
-                        jagenjcki = jagenjcki.OrderBy(j => j.KotitevID);
+                    case "kotitevID_desc":
+                        jagenjcki = jagenjcki.OrderBy(j => j.kotitevID);
                         break;
-                    case "KotitevID":
-                        jagenjcki = jagenjcki.OrderBy(j => j.KotitevID);
+                    case "kotitevID":
+                        jagenjcki = jagenjcki.OrderBy(j => j.kotitevID);
                         break;
                     default:
                         jagenjcki = jagenjcki.OrderBy(j => j.IdJagenjcka);
@@ -94,7 +93,7 @@ namespace web.Controllers
         // GET: Jagenjcki/Create
         public IActionResult Create()
         {
-            ViewData["KotitevID"] = new SelectList(_context.Kotitve, "KotitevID", "KotitevID");
+            ViewData["kotitevID"] = new SelectList(_context.Kotitve, "kotitevID", "kotitevID");
             return View();
         }
 
@@ -103,7 +102,7 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("skritIdJagenjcka,IdJagenjcka,KotitevID,spol")] Jagenjcek jagenjcek)
+        public async Task<IActionResult> Create([Bind("skritIdJagenjcka,IdJagenjcka,kotitevID,spol")] Jagenjcek jagenjcek)
         {
             if (ModelState.IsValid)
             {
@@ -111,7 +110,7 @@ namespace web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["KotitevID"] = new SelectList(_context.Kotitve, "KotitevID", "KotitevID", jagenjcek.KotitevID);
+            ViewData["kotitevID"] = new SelectList(_context.Kotitve, "kotitevID", "kotitevID", jagenjcek.kotitevID);
             return View(jagenjcek);
         }
 
@@ -128,7 +127,7 @@ namespace web.Controllers
             {
                 return NotFound();
             }
-            ViewData["KotitevID"] = new SelectList(_context.Kotitve, "KotitevID", "KotitevID", jagenjcek.KotitevID);
+            ViewData["kotitevID"] = new SelectList(_context.Kotitve, "kotitevID", "kotitevID", jagenjcek.kotitevID);
             return View(jagenjcek);
         }
 
@@ -137,7 +136,7 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("skritIdJagenjcka,IdJagenjcka,KotitevID,spol")] Jagenjcek jagenjcek)
+        public async Task<IActionResult> Edit(int id, [Bind("skritIdJagenjcka,IdJagenjcka,kotitevID,spol")] Jagenjcek jagenjcek)
         {
             if (id != jagenjcek.skritIdJagenjcka)
             {
@@ -164,7 +163,7 @@ namespace web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["KotitevID"] = new SelectList(_context.Kotitve, "KotitevID", "KotitevID", jagenjcek.KotitevID);
+            ViewData["kotitevID"] = new SelectList(_context.Kotitve, "kotitevID", "kotitevID", jagenjcek.kotitevID);
             return View(jagenjcek);
         }
 

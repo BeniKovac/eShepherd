@@ -24,10 +24,10 @@ namespace web.Controllers
         {
             IQueryable<JagenjckiGroup> data = 
                 from jagenjcek in _context.Jagenjcki
-                group jagenjcek by jagenjcek.KotitevID into Idgroup
+                group jagenjcek by jagenjcek.kotitevID.ToString() into Idgroup
                 select new JagenjckiGroup()
                 {
-                    KotitevID = Idgroup.Key,
+                    kotitevID = Idgroup.Key,
                     JagenjckiCount = Idgroup.Count()
                 };
             return View(await data.AsNoTracking().ToListAsync());

@@ -25,15 +25,20 @@
                  <a asp-action="Index" asp-route-sortOrder="@ViewData["IDSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">IdJagenjcka</a>
             </th>
             <th>
-                skritIdJagenjcka
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["kotitevIDSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">kotitevID</a>
             </th>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["KotitevIDSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">KotitevID</a>
+                Spol
             </th>
             <th>
-                spol
+                Datum Rojstva
             </th>
-            <th></th>
+            <th>
+                mamaID
+            </th>
+            <th>
+                oceID
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -42,14 +47,20 @@
             <td>
                 @Html.DisplayFor(modelItem => item.IdJagenjcka)
             </td>
-            <th>
-                @Html.DisplayFor(modelItem => item.skritIdJagenjcka)
-            </th>
             <td>
-                @Html.DisplayFor(modelItem => item.kotitev.KotitevID)
+                @Html.DisplayFor(modelItem => item.kotitevID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.spol)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kotitev.DatumKotitve)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kotitev.OvcaID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kotitev.OvenID)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.skritIdJagenjcka">Uredi</a> |

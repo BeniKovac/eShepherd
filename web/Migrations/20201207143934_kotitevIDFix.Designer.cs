@@ -10,8 +10,8 @@ using web.Data;
 namespace web.Migrations
 {
     [DbContext(typeof(eShepherdContext))]
-    [Migration("20201203075937_mig1")]
-    partial class mig1
+    [Migration("20201207143934_kotitevIDFix")]
+    partial class kotitevIDFix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -279,15 +279,18 @@ namespace web.Migrations
             modelBuilder.Entity("web.Models.Jagenjcek", b =>
                 {
                     b.Property<int>("skritIdJagenjcka")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("CredaCredeID")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdJagenjcka")
-                        .HasColumnType("int");
+                    b.Property<string>("IdJagenjcka")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("KotitevID")
+                    b.Property<int>("kotitevID")
                         .HasColumnType("int");
 
                     b.Property<string>("spol")
@@ -297,14 +300,14 @@ namespace web.Migrations
 
                     b.HasIndex("CredaCredeID");
 
-                    b.HasIndex("KotitevID");
+                    b.HasIndex("kotitevID");
 
                     b.ToTable("Jagenjcek");
                 });
 
             modelBuilder.Entity("web.Models.Kotitev", b =>
                 {
-                    b.Property<int>("KotitevID")
+                    b.Property<int>("kotitevID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -327,7 +330,7 @@ namespace web.Migrations
                     b.Property<int?>("SteviloMrtvih")
                         .HasColumnType("int");
 
-                    b.HasKey("KotitevID");
+                    b.HasKey("kotitevID");
 
                     b.HasIndex("OvcaID");
 
@@ -476,12 +479,12 @@ namespace web.Migrations
 
             modelBuilder.Entity("web.Models.Gonitev", b =>
                 {
-                    b.HasOne("web.Models.Ovca", "Ovca")
-                        .WithMany()
+                    b.HasOne("web.Models.Ovca", "ovca")
+                        .WithMany("SeznamGonitev")
                         .HasForeignKey("OvcaID");
 
-                    b.HasOne("web.Models.Oven", "Oven")
-                        .WithMany()
+                    b.HasOne("web.Models.Oven", "oven")
+                        .WithMany("vseGonitve")
                         .HasForeignKey("OvenID");
                 });
 
@@ -492,8 +495,8 @@ namespace web.Migrations
                         .HasForeignKey("CredaCredeID");
 
                     b.HasOne("web.Models.Kotitev", "kotitev")
-                        .WithMany()
-                        .HasForeignKey("KotitevID")
+                        .WithMany("jagenjcki")
+                        .HasForeignKey("kotitevID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -505,7 +508,7 @@ namespace web.Migrations
                         .HasForeignKey("OvcaID");
 
                     b.HasOne("web.Models.Oven", "Oven")
-                        .WithMany("seznamKotitev")
+                        .WithMany("vseKotitve")
                         .HasForeignKey("OvenID");
                 });
 
