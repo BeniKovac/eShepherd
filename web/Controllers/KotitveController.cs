@@ -28,7 +28,7 @@ namespace web.Controllers
                                     string sortOrder,
                                     string currentFilter,
                                     string searchString,
-                                    int? pageNumber, int? id)
+                                    int? pageNumber, int? kotitevID)
         {
             ViewData["CurrentSort"] = sortOrder;
             ViewData["IDSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ID_desc" : "";
@@ -66,11 +66,6 @@ namespace web.Controllers
                     break;
             }
 
-            var kotitev = await _context.Kotitve
-                .Include(k => k.Ovca)
-                .Include(k => k.Oven)
-                .Include(k => k.jagenjcki)
-                .FirstOrDefaultAsync(m => m.kotitevID == 1);
 //konc copy pasta
 /*
                 var viewModel = new KotitveIndexData();
@@ -100,7 +95,14 @@ namespace web.Controllers
             int pageSize = 3;
             var novModel = new KotitveIndexData();
             novModel.Kotitve = await PaginatedList<Kotitev>.CreateAsync(kotitve.AsNoTracking(), pageNumber ?? 1, pageSize);
-            novModel.Jagenjcki = kotitev.jagenjcki;
+        if(kotitevID != null){
+            var kotitev = await _context.Kotitve
+                .Include(k => k.Ovca)
+                .Include(k => k.Oven)
+                .Include(k => k.jagenjcki)
+                .FirstOrDefaultAsync(m => m.kotitevID == kotitevID);
+                novModel.Jagenjcki = kotitev.jagenjcki;
+        }
             return View(novModel);
         }
 
