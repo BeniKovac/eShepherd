@@ -7,7 +7,7 @@ namespace web.Models.eShepherdViewModels
 {
     public class KotitveIndexData
     {
-        public IEnumerable<Kotitev> Kotitve { get; set; }
+        public PaginatedList<Kotitev> Kotitve { get; set; }
         public IEnumerable<Jagenjcek> Jagenjcki { get; set; }
     }
 }

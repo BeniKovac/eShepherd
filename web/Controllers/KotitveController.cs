@@ -92,7 +92,9 @@ namespace web.Controllers
 */
 //konc copy pasta
             int pageSize = 3;
-            return View(await PaginatedList<Kotitev>.CreateAsync(kotitve.AsNoTracking(), pageNumber ?? 1, pageSize));
+            var novModel = new KotitveIndexData();
+            novModel.Kotitve = await PaginatedList<Kotitev>.CreateAsync(kotitve.AsNoTracking(), pageNumber ?? 1, pageSize);
+            return View(novModel);
         }
 
         // GET: Kotitve/Details/5
