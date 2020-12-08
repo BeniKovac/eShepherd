@@ -92,3 +92,22 @@
    class="btn btn-default @nextDisabled">
     Naslednja stran
 </a>
+@if(Model.Jagenjcki != null){
+<table class="table">
+                <tr>
+                    <th>ID jagenjčka</th>
+                    <th>Spol</th>
+                </tr>
+                @foreach (var item in Model.Jagenjcki)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdJagenjcka)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.spol)
+                        </td>
+                    </tr>
+                }
+            </table>
+}
