@@ -65,6 +65,12 @@ namespace web.Controllers
                     kotitve = kotitve.OrderBy(k => k.DatumKotitve);
                     break;
             }
+
+            var kotitev = await _context.Kotitve
+                .Include(k => k.Ovca)
+                .Include(k => k.Oven)
+                .Include(k => k.jagenjcki)
+                .FirstOrDefaultAsync(m => m.kotitevID == 1);
 //konc copy pasta
 /*
                 var viewModel = new KotitveIndexData();
@@ -94,6 +100,7 @@ namespace web.Controllers
             int pageSize = 3;
             var novModel = new KotitveIndexData();
             novModel.Kotitve = await PaginatedList<Kotitev>.CreateAsync(kotitve.AsNoTracking(), pageNumber ?? 1, pageSize);
+            novModel.Jagenjcki = kotitev.jagenjcki;
             return View(novModel);
         }
 
