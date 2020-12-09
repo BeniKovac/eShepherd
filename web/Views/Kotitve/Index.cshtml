@@ -23,6 +23,9 @@
     <thead>
         <tr>
             <th>
+                Št. kotitve
+            </th>
+            <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Datum kotitve</a>            
             </th>
             <th>
@@ -46,6 +49,8 @@
     <tbody>
 @foreach (var item in Model.Kotitve) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.kotitevID)
             <td>
                 @Html.DisplayFor(modelItem => item.DatumKotitve)
             </td>

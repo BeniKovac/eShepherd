@@ -12,8 +12,16 @@ namespace web.Models
         [Display(Name = "ID črede")] 
         public int CredeID { get; set; }
 
+        [Display(Name = "Seznam ovac, ki so v čredi")] 
+        public ICollection<Ovca> SeznamOvac { get; set; }
         [Display(Name = "Število ovac v čredi")] 
-        public int SteviloOvc { get; set; }
+        // treba pogledat, kako narest ce je seznam prazen - da se ni nobene ovce not
+        public int SteviloOvc { 
+            get
+        {
+                return SeznamOvac.Count;
+        } 
+        }
         public string? Opombe { get; set; }
 
         
@@ -21,7 +29,6 @@ namespace web.Models
         //public string OvenID { get; set; }
         //public Oven oven { get; set; }
 
-        public ICollection<Ovca> SeznamOvac { get; set; }
         
         public ICollection<Jagenjcek> SeznamJagenjckov { get; set; }
 

@@ -23,10 +23,25 @@ namespace web.Models.eShepherdViewModels
         }
 
         // GET: Crede
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? credaID)
         {
-            
-            return View(await _context.Crede.ToListAsync());
+            var viewModel = new CredeIndexData();
+            viewModel.Crede = await _context.Crede
+                            .Include(c => c.SeznamOvac)
+                            .ToListAsync();
+                if (credaID != null)
+                {
+                    ViewData["CredeID"] = credaID.Value;
+                    Creda creda = viewModel.Crede.Where(
+                        c => c.CredeID == credaID.Value).Single();
+                        viewModel.Ovce = creda.SeznamOvac;
+                }
+             
+
+
+            return View(viewModel);
+   
+         
         }
 
         // GET: Crede/Details/5
@@ -38,7 +53,8 @@ namespace web.Models.eShepherdViewModels
             }
 
             var creda = await _context.Crede
-                .FirstOrDefaultAsync(m => m.CredeID == id);
+            .Include(k => k.SeznamOvac)
+            .FirstOrDefaultAsync(m => m.CredeID == id);
             if (creda == null)
             {
                 return NotFound();
