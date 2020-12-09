@@ -7,7 +7,9 @@ namespace web.Models
 {
     public class Ovca
     {
-        
+        public Ovca() {
+            SeznamKotitev = new List<Kotitev>();
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Display(Name = "ID ovce")] 
@@ -77,8 +79,8 @@ namespace web.Models
                 }
             }
 
-        public ICollection<Kotitev> SeznamKotitev { get; set; }
-        public ICollection<Gonitev> SeznamGonitev { get; set; }
+        public ICollection<Kotitev>? SeznamKotitev { get; set; }
+        public ICollection<Gonitev>? SeznamGonitev { get; set; }
 
 
     }
