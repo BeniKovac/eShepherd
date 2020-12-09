@@ -4,5 +4,60 @@
 
 <div class="text-center">
     <h1 class="display-4">Dobrodošli v aplikaciji eShepherd</h1>
-    <p>Z eShepherdom je življenje lažje:D</p>
+    <p>Aplikacija je namenjena rejcem ovac za lažje vodenje evidence.</p>
+
+<div class="card-deck">
+    <div class="card">
+        <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNM6l5optbud1YnpBY4RvTCs3DydapEBtadQ&usqp=CAU" alt="Slika kotitve">
+        <div class="card-block">
+            <h4 class="card-title">Kotitve</h4>
+            <a asp-controller="Kotitve" asp-action="Create">Dodaj kotitev</a>
+
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNM6l5optbud1YnpBY4RvTCs3DydapEBtadQ&usqp=CAU" alt="Slika gonitve">
+        <div class="card-block">
+            <h4 class="card-title">Gonitve</h4>
+            <a asp-controller="Gonitve" asp-action="Create">Dodaj gonitev</a>
+
+        </div>
+    </div>
 </div>
+
+<div class="card-deck">
+    <div class="card">
+        <img class="card-img-top" {
+            width: 50%;
+            height: 50%;
+            object-fit: cover;
+        } src="https://i.pinimg.com/originals/26/a8/55/26a8550af8dc0208b3a4942be937f3f8.jpg" alt="Slika ovce">
+        <div class="card-block">
+            <h4 class="card-title">Ovce</h4>
+            <a asp-controller="Ovce" asp-action="Create">Dodaj ovco</a>
+
+        </div>
+    </div>
+
+    <div class="card">
+        <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNM6l5optbud1YnpBY4RvTCs3DydapEBtadQ&usqp=CAU" alt="Slika crede">
+        <div class="card-block">
+            <h4 class="card-title">Črede</h4>
+            <a asp-controller="Crede" asp-action="Create">Dodaj čredo</a>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNM6l5optbud1YnpBY4RvTCs3DydapEBtadQ&usqp=CAU" alt="Slika ovna">
+        <div class="card-block">
+            <h4 class="card-title">Ovni</h4>
+            <a asp-controller="Ovni" asp-action="Create">Dodaj ovna</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

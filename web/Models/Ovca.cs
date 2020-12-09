@@ -53,11 +53,28 @@ namespace web.Models
         [DisplayFormat(NullDisplayText = "0")]
 
         [Display(Name = "Število dosedanjih kotitev")] 
-        public int SteviloKotitev { get; set; }
+        public int SteviloKotitev { 
+            get
+        {
+            return SeznamKotitev.Count;
+        } }
 
         [DisplayFormat(NullDisplayText = "0")]
         [Display(Name = "Povprečno število jagenjčkov na kotitev")] 
-        public int PovprecjeJagenjckov { get; set; }
+        public int PovprecjeJagenjckov { 
+            get
+                {
+                    if (SteviloKotitev == 0) {
+                        return 0;
+                    }
+                    int jagenjcki = 0;
+                    foreach (var kotitev in SeznamKotitev) {
+                        jagenjcki += kotitev.SteviloMladih;
+                    }
+                    return jagenjcki / SteviloKotitev;
+                    
+                }
+            }
 
         public ICollection<Kotitev> SeznamKotitev { get; set; }
         public ICollection<Gonitev> SeznamGonitev { get; set; }
