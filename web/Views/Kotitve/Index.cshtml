@@ -73,7 +73,9 @@
                 <a asp-action="Edit" asp-route-id="@item.kotitevID">Uredi</a> |
                 <a asp-action="Details" asp-route-id="@item.kotitevID">Podrobnosti</a> |
                 <a asp-action="Delete" asp-route-id="@item.kotitevID">Odstrani</a> | 
-                <a asp-action="Index" asp-route-kotitevID="@item.kotitevID">Izberi</a> 
+                <a asp-action="Index" asp-route-kotitevID="@item.kotitevID"
+                   asp-route-pageNumber="@(Model.Kotitve.PageIndex)">Izberi
+                </a> 
             </td>
         </tr>
 }
@@ -106,6 +108,7 @@
                 </tr>
                 @foreach (var item in Model.Jagenjcki)
                 {
+
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.IdJagenjcka)

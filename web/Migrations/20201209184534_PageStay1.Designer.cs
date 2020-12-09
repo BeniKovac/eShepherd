@@ -10,8 +10,8 @@ using web.Data;
 namespace web.Migrations
 {
     [DbContext(typeof(eShepherdContext))]
-    [Migration("20201207143934_kotitevIDFix")]
-    partial class kotitevIDFix
+    [Migration("20201209184534_PageStay1")]
+    partial class PageStay1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
