@@ -46,7 +46,7 @@ namespace web.Controllers_Api
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutGonitev(string id, Gonitev gonitev)
+        public async Task<IActionResult> PutGonitev(int id, Gonitev gonitev)
         {
             if (id != gonitev.GonitevID)
             {
@@ -116,7 +116,7 @@ namespace web.Controllers_Api
             return gonitev;
         }
 
-        private bool GonitevExists(string id)
+        private bool GonitevExists(int id)
         {
             return _context.Gonitve.Any(e => e.GonitevID == id);
         }
