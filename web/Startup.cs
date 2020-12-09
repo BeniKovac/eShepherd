@@ -30,7 +30,7 @@ namespace web
             services.AddControllersWithViews();
 
             services.AddDbContext<eShepherdContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("AzureContext")));
+            options.UseSqlServer(Configuration.GetConnectionString("eShepherdContext")));
                 services.AddIdentity<ApplicationUser, IdentityRole>(options => 
                 options.Stores.MaxLengthForKeys = 128)
                 .AddEntityFrameworkStores<eShepherdContext>().AddDefaultUI().AddDefaultTokenProviders();
