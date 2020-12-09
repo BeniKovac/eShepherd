@@ -23,38 +23,9 @@ namespace web.Models.eShepherdViewModels
         }
 
         // GET: Crede
-        public async Task<IActionResult> Index(int? credaID, string? ovcaID)
+        public async Task<IActionResult> Index()
         {
-            var viewModel = new CredeIndexData();
-            viewModel.Crede = await _context.Crede
-                            .Include(c => c.SeznamOvac)
-                                .ThenInclude(c => c.OvcaID)
-                            .ToListAsync();
-                if (credaID != null)
-                {
-                    ViewData["CredeID"] = credaID.Value;
-                    Creda creda = viewModel.Crede.Where(
-                        c => c.CredeID == credaID.Value).Single();
-                }
-                if (ovcaID != null)
-                {
-                    ViewData["OvcaID"] = ovcaID;
-                    viewModel.Ovce = viewModel.Ovce.Where(
-                        x => x.OvcaID == ovcaID);
-                }
-
-
-    return View(viewModel);
-           /* if (ovcaID != null) {
-                 viewModel.Ovce = await _context.Ovce
-                .Include(i => i.OvcaID)
-                .OrderBy(i => i.OvcaID)
-                .FirstOrDefaultAsync(m => m.OvcaID == ovcaID);
-                // .ToListAsync();
-            }
-
-*/
-
+            
             return View(await _context.Crede.ToListAsync());
         }
 
