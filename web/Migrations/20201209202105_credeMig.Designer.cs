@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using web.Data;
 
 namespace web.Migrations
 {
     [DbContext(typeof(eShepherdContext))]
-    partial class eShepherdContextModelSnapshot : ModelSnapshot
+    [Migration("20201209202105_credeMig")]
+    partial class credeMig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -504,7 +506,7 @@ namespace web.Migrations
             modelBuilder.Entity("web.Models.Ovca", b =>
                 {
                     b.HasOne("web.Models.Creda", "creda")
-                        .WithMany()
+                        .WithMany("SeznamOvac")
                         .HasForeignKey("CredaID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

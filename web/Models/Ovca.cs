@@ -55,9 +55,10 @@ namespace web.Models
         [Display(Name = "Število dosedanjih kotitev")] 
         public int SteviloKotitev { 
             get
-        {
-            return SeznamKotitev.Count;
-        } }
+                {
+                    return SeznamKotitev.Count;
+                } 
+        }
 
         [DisplayFormat(NullDisplayText = "0")]
         [Display(Name = "Povprečno število jagenjčkov na kotitev")] 

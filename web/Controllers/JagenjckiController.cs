@@ -68,7 +68,7 @@ namespace web.Controllers
             }
 
         // GET: Jagenjcki/Details/5
-        public async Task<IActionResult> Details(String? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -76,11 +76,8 @@ namespace web.Controllers
             }
 
             var jagenjcek = await _context.Jagenjcki
-                .Include(j => j.skritIdJagenjcka)
-                .Include(j => j.IdJagenjcka)
                 .Include(j => j.kotitev)
-                .Include(j => j.spol)
-                .FirstOrDefaultAsync(m => m.IdJagenjcka == id);
+                .FirstOrDefaultAsync(m => m.skritIdJagenjcka == id);
 
             if (jagenjcek == null)
             {
