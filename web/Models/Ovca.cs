@@ -82,7 +82,7 @@ namespace web.Models
             }
 
         public ICollection<Kotitev>? SeznamKotitev { get; set; }
-        public ICollection<Gonitev> SeznamGonitev { get; set; }
+        public ICollection<Gonitev>? SeznamGonitev { get; set; }
 
 
     }
