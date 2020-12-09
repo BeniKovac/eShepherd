@@ -33,7 +33,7 @@ namespace web.Controllers
             ViewData["CurrentSort"] = sortOrder;
             ViewData["IDSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ID_desc" : "";
             ViewData["DateSortParm"] = sortOrder == "Datum" ? "datum_asc" : "Datum";
-            if (searchString != null)
+            if (pageNumber == null)
             {
                 pageNumber = 1;
             }
@@ -66,35 +66,10 @@ namespace web.Controllers
                     break;
             }
 
-//konc copy pasta
-/*
-                var viewModel = new KotitveIndexData();
-                viewModel.Kotitve = await _context.Kotitve
-                    .Include(k => k.jagenjcki)
-                        .ThenInclude(k => k.IdJagenjcka)
-                    .AsNoTracking()
-                    .ToListAsync();
-                
-                if (id != null)
-                {
-                    ViewData["kotitevID"] = id.Value;
-                    Kotitev kotitev = viewModel.Kotitve.Where(
-                        k => k.kotitevID == id.Value).Single();
-                }
-
-                if (jagenjcekID != null)
-                {
-                    ViewData["JagenjcekID"] = jagenjcekID;
-                    viewModel.Jagenjcki = viewModel.Jagenjcki.Where(
-                        x => x.IdJagenjcka == jagenjcekID).Single();
-                }
-
-            return View(viewModel);
-*/
-//konc copy pasta
             int pageSize = 3;
             var novModel = new KotitveIndexData();
             novModel.Kotitve = await PaginatedList<Kotitev>.CreateAsync(kotitve.AsNoTracking(), pageNumber ?? 1, pageSize);
+        
         if(kotitevID != null){
             var kotitev = await _context.Kotitve
                 .Include(k => k.Ovca)
