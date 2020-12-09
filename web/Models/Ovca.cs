@@ -7,7 +7,9 @@ namespace web.Models
 {
     public class Ovca
     {
-        public Ovca() {
+        public Ovca()
+        {
+
             SeznamKotitev = new List<Kotitev>();
         }
         [Key]

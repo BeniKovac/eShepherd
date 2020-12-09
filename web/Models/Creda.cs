@@ -17,7 +17,7 @@ namespace web.Models
         public int CredeID { get; set; }
 
         [Display(Name = "Seznam ovac, ki so v čredi")] 
-        public ICollection<Ovca>? SeznamOvac = new List<Ovca>();
+        public ICollection<Ovca>? SeznamOvac { get; set; }
 
         [Display(Name = "Število ovac v čredi")] 
         // treba pogledat, kako narest ce je seznam prazen - da se ni nobene ovce not
