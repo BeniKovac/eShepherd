@@ -48,7 +48,7 @@ namespace web.Controllers_Api
         [HttpPut("{id}")]
         public async Task<IActionResult> PutKotitev(int id, Kotitev kotitev)
         {
-            if (id != kotitev.KotitevID)
+            if (id != kotitev.kotitevID)
             {
                 return BadRequest();
             }
@@ -83,7 +83,7 @@ namespace web.Controllers_Api
             _context.Kotitve.Add(kotitev);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetKotitev", new { id = kotitev.KotitevID }, kotitev);
+            return CreatedAtAction("GetKotitev", new { id = kotitev.kotitevID }, kotitev);
         }
 
         // DELETE: api/KotitveApi/5
@@ -104,7 +104,7 @@ namespace web.Controllers_Api
 
         private bool KotitevExists(int id)
         {
-            return _context.Kotitve.Any(e => e.KotitevID == id);
+            return _context.Kotitve.Any(e => e.kotitevID == id);
         }
     }
 }
