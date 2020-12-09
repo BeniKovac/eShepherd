@@ -79,10 +79,8 @@ namespace web.Controllers
             }
 
             var gonitev = await _context.Gonitve
-                .Include(g => g.DatumGonitve)
                 .Include(g => g.ovca)
                 .Include(g => g.oven)
-                .Include(g => g.Opombe)
                 .FirstOrDefaultAsync(m => m.GonitevID == id);
             if (gonitev == null)
             {
@@ -119,7 +117,7 @@ namespace web.Controllers
         }
 
         // GET: Gonitve/Edit/5
-        public async Task<IActionResult> Edit(String? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {

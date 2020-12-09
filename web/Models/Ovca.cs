@@ -8,6 +8,10 @@ namespace web.Models
     public class Ovca
     {
         
+        public Ovca()
+        {
+            SeznamKotitev = new List<Kotitev>();
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Display(Name = "ID ovce")] 
@@ -55,9 +59,10 @@ namespace web.Models
         [Display(Name = "Število dosedanjih kotitev")] 
         public int SteviloKotitev { 
             get
-        {
-            return SeznamKotitev.Count;
-        } }
+                {
+                    return SeznamKotitev.Count;
+                } 
+        }
 
         [DisplayFormat(NullDisplayText = "0")]
         [Display(Name = "Povprečno število jagenjčkov na kotitev")] 
@@ -76,8 +81,8 @@ namespace web.Models
                 }
             }
 
-        public ICollection<Kotitev> SeznamKotitev { get; set; }
-        public ICollection<Gonitev> SeznamGonitev { get; set; }
+        public ICollection<Kotitev>? SeznamKotitev { get; set; }
+        public ICollection<Gonitev>? SeznamGonitev { get; set; }
 
 
     }
