@@ -1,4 +1,4 @@
-@model IEnumerable<web.Models.Creda>
+@model web.Models.eShepherdViewModels.CredeIndexData
 
 @{
     ViewData["Title"] = "Čreda";
@@ -13,19 +13,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CredeID)
+               Številka črede
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SteviloOvc)
+                Število ovc v čredi
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Opombe)
+                Opombe
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Crede) {
         <tr>
             <td><b>
                 @Html.DisplayFor(modelItem => item.CredeID)
@@ -39,11 +39,28 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CredeID">Uredi</a> |
                 <a asp-action="Details" asp-route-id="@item.CredeID">Podrobnosti</a> |
-                <a asp-action="Delete" asp-route-id="@item.CredeID">Odstrani</a>
-                
+                <a asp-action="Delete" asp-route-id="@item.CredeID">Odstrani</a> |
+                <a asp-action="Index" asp-route-credaID="@item.CredeID">Prikaži ovce</a>
 
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+@if(Model.Ovce != null){
+    <table class="table">
+        <tr>
+            <th>ID ovce</th>
+        </tr>
+        @foreach (var item in Model.Ovce)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OvcaID)
+                </td>
+                
+            </tr>
+        }
+    </table>
+}
