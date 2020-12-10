@@ -79,6 +79,7 @@ namespace web.Controllers
                 .Include(k => k.SeznamGonitev)
                 .FirstOrDefaultAsync(m => m.OvcaID == ovcaID.ToString());
                 novModel.Kotitve = ovca.SeznamKotitev;
+                novModel.Gonitve = ovca.SeznamGonitev;
         }
             return View(novModel);
         }
