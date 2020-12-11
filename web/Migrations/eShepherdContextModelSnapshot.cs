@@ -504,7 +504,7 @@ namespace web.Migrations
             modelBuilder.Entity("web.Models.Ovca", b =>
                 {
                     b.HasOne("web.Models.Creda", "creda")
-                        .WithMany()
+                        .WithMany("SeznamOvac")
                         .HasForeignKey("CredaID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
