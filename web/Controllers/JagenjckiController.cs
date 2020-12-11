@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using web.Data;
 using web.Models;
-using web.Models.eShepherdViewModels;
 
 namespace web.Controllers
 {
@@ -89,15 +88,9 @@ namespace web.Controllers
         }
 
         // GET: Jagenjcki/Create
-        public IActionResult Create()
+
+        public IActionResult Create(int kotitevID)
         {
-            int IdKotitve=-1;
-            foreach(Kotitev kot in _context.Kotitve){
-                if(kot.kotitevID > IdKotitve)
-                    IdKotitve=kot.kotitevID;
-            }
-            ViewData["kotitevID"] = IdKotitve+1;
-            //ViewData["kotitevID"] = new SelectList(_context.Kotitve, "kotitevID", "kotitevID");
             return View();
         }
 
@@ -106,7 +99,7 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("skritIdJagenjcka,IdJagenjcka,kotitevID,spol")] Jagenjcek jagenjcek)
+        public async Task<IActionResult> Create([Bind("skritIdJagenjcka,IdJagenjcka,kotitevID,spol")] Jagenjcek jagenjcek, int kotitevID)
         {
             if (ModelState.IsValid)
             {
@@ -114,13 +107,9 @@ namespace web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            int IdKotitve=-1;
-            foreach(Kotitev kot in _context.Kotitve){
-                if(kot.kotitevID > IdKotitve)
-                    IdKotitve=kot.kotitevID;
-            }
-            ViewData["kotitevID"] = IdKotitve+1;
-            //ViewData["kotitevID"] = new SelectList(_context.Kotitve, "kotitevID", "kotitevID", jagenjcek.kotitevID);
+
+            jagenjcek.kotitevID=kotitevID;
+
             return View(jagenjcek);
         }
 

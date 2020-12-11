@@ -30,11 +30,6 @@
                 <input asp-for="SteviloMladih" class="form-control" />
                 <span asp-validation-for="SteviloMladih" class="text-danger"></span>
             </div>
-            <div>
-                <p> S klikom na + dodaj jagenjčka: <b>
-                    <a asp-controller="Jagenjcki" asp-action="Create">Dodaj jagenjčka</a>
-                </b></p>
-            </div>
             <div class="form-group">
                 <label asp-for="SteviloMrtvih" class="control-label"></label>
                 <input asp-for="SteviloMrtvih" class="form-control" />
@@ -47,7 +42,16 @@
             </div>
             
             <div class="form-group">
-                <input type="submit" value="Dodaj" class="btn btn-primary" />
+                <input type="submit" id="buttonDodaj" value="Dodaj" class="btn btn-primary" />
+            </div>
+            <div>
+                <p> S klikom na + dodaj jagenjčke zadnje ustvarjeni kotitvi: <b>
+                    @{
+                        var lastID = @ViewBag.LastKotitevID;
+                    }
+                    <a asp-controller="Jagenjcki" asp-action="Create" asp-route-kotitevID="@lastID">Dodaj jagenjčka
+                    </a>
+                </b></p>
             </div>
         </form>
     </div>
