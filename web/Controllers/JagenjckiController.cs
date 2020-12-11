@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using web.Data;
 using web.Models;
+using web.Models.eShepherdViewModels;
 
 namespace web.Controllers
 {
@@ -90,7 +91,13 @@ namespace web.Controllers
         // GET: Jagenjcki/Create
         public IActionResult Create()
         {
-            ViewData["kotitevID"] = new SelectList(_context.Kotitve, "kotitevID", "kotitevID");
+            int IdKotitve=-1;
+            foreach(Kotitev kot in _context.Kotitve){
+                if(kot.kotitevID > IdKotitve)
+                    IdKotitve=kot.kotitevID;
+            }
+            ViewData["kotitevID"] = IdKotitve+1;
+            //ViewData["kotitevID"] = new SelectList(_context.Kotitve, "kotitevID", "kotitevID");
             return View();
         }
 
@@ -107,7 +114,13 @@ namespace web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["kotitevID"] = new SelectList(_context.Kotitve, "kotitevID", "kotitevID", jagenjcek.kotitevID);
+            int IdKotitve=-1;
+            foreach(Kotitev kot in _context.Kotitve){
+                if(kot.kotitevID > IdKotitve)
+                    IdKotitve=kot.kotitevID;
+            }
+            ViewData["kotitevID"] = IdKotitve+1;
+            //ViewData["kotitevID"] = new SelectList(_context.Kotitve, "kotitevID", "kotitevID", jagenjcek.kotitevID);
             return View(jagenjcek);
         }
 
