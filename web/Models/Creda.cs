@@ -18,12 +18,15 @@ namespace web.Models
 
         [Display(Name = "Seznam ovac, ki so v čredi")] 
         public ICollection<Ovca>? SeznamOvac { get; set; }
-
+    
         [Display(Name = "Število ovac v čredi")] 
         // treba pogledat, kako narest ce je seznam prazen - da se ni nobene ovce not
         public int SteviloOvc { 
             get
             { 
+                if (SeznamOvac == null) {
+                    return 0;
+                }
                 return SeznamOvac.Count;
             } 
         }
