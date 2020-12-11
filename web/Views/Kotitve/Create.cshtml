@@ -42,14 +42,14 @@
             </div>
             
             <div class="form-group">
-                <input type="submit" id="buttonDodaj" value="Dodaj" class="btn btn-primary" />
-            </div>
+                <input type="submit" id="buttonDodaj" value="Dodaj" class="btn btn-primary"/>
+           </div>
             <div>
                 <p> S klikom na + dodaj jagenjčke zadnje ustvarjeni kotitvi: <b>
                     @{
                         var lastID = @ViewBag.LastKotitevID;
                     }
-                    <a asp-controller="Jagenjcki" asp-action="Create" asp-route-kotitevID="@lastID">Dodaj jagenjčka
+                    <a  asp-controller="Jagenjcki" asp-action="Create" asp-route-kotitevID="@lastID">Dodaj jagenjčka
                     </a>
                 </b></p>
             </div>

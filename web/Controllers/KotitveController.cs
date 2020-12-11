@@ -66,6 +66,14 @@ namespace web.Controllers
                     break;
             }
 
+            int maxID = -1;
+            foreach(Kotitev kot in _context.Kotitve){
+                if(kot.kotitevID > maxID){
+                    maxID = kot.kotitevID;
+                }
+            }
+            ViewBag.LastKotitevID = maxID;
+
             int pageSize = 3;
             var novModel = new KotitveIndexData();
             novModel.Kotitve = await PaginatedList<Kotitev>.CreateAsync(kotitve.AsNoTracking(), pageNumber ?? 1, pageSize);
@@ -107,7 +115,7 @@ namespace web.Controllers
         {
             ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID");
             ViewData["OvenID"] = new SelectList(_context.Ovni, "OvenID", "OvenID");
-
+            
             int maxID = -1;
             foreach(Kotitev kot in _context.Kotitve){
                 if(kot.kotitevID > maxID){
@@ -115,7 +123,7 @@ namespace web.Controllers
                 }
             }
             ViewBag.LastKotitevID = maxID;
-            
+
             return View();
         }
 

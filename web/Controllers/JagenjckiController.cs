@@ -63,6 +63,15 @@ namespace web.Controllers
                         jagenjcki = jagenjcki.OrderBy(j => j.IdJagenjcka);
                         break;
                 }
+
+                int maxID = -1;
+            foreach(Kotitev kot in _context.Kotitve){
+                if(kot.kotitevID > maxID){
+                    maxID = kot.kotitevID;
+                }
+            }
+            ViewBag.LastKotitevID = maxID;
+            
                 int pageSize = 3;
                 return View(await PaginatedList<Jagenjcek>.CreateAsync(jagenjcki.AsNoTracking(), pageNumber ?? 1, pageSize));
             }
@@ -107,8 +116,6 @@ namespace web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
-            jagenjcek.kotitevID=kotitevID;
 
             return View(jagenjcek);
         }
