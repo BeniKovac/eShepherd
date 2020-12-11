@@ -3,56 +3,60 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Dobrodošli v aplikaciji eShepherd</h1>
+    <h1 class="display-3">Dobrodošli v aplikaciji eShepherd</h1>
     <p>Aplikacija je namenjena rejcem ovac za lažje vodenje evidence.</p>
 
 <div class="card-deck">
     <div class="card">
         <div class="card-block">
-            <h4 class="card-title"><a asp-controller="Kotitve" asp-action="Create">Dodaj kotitev</a></h4>
-            
+            <h4 class="card-title" style = "color:white" >
+               <b> <a asp-controller="Kotitve" asp-action="Create" style="color:black">Dodaj kotitev</a></b>
+            </h4>
         </div>
-        <a href="@Url.Action("Create", "Kotitve")">
-            <img src="@Url.Content("~/Images/kotitev.png")" alt="" style="max-height: 200px; max-width: 200px;" />
+        <a href="@Url.Action("Create", "Kotitve") ">
+            <img src="https://turtlesport191137813.files.wordpress.com/2020/12/kotitev.png" alt="" style="max-height: 200px; max-width: 200px;" />
         </a>
     </div>
     <div class="card">
         <div class="card-block">
-            <h4 class="card-title"> <a asp-controller="Gonitve" asp-action="Create">Dodaj gonitev</a></h4>
-           
+             <h4 class="card-title" style = "color:white" >
+               <b> <a asp-controller="Gonitve" asp-action="Create" style="color:black">Dodaj gonitev</a></b>
+            </h4>
         </div>
         <a href="@Url.Action("Create", "Gonitve")">
-            <img src="https://thumbs.dreamstime.com/b/two-funny-cartoon-sheep-love-14799691.jpg" alt="" style="max-height: 200px; max-width: 200px;" />
+            <img src="https://turtlesport191137813.files.wordpress.com/2020/12/gonitev-1.png" alt="" style="max-height: 200px; max-width: 200px;" />
         </a>
     </div>
 
     <div class="card">
         <div class="card-block">
-            <h4 class="card-title"><a asp-controller="Ovce" asp-action="Create">Dodaj ovco</a></h4>
-            
-
+           <h4 class="card-title" style = "color:white" >
+               <b> <a asp-controller="Ovce" asp-action="Create" style="color:black">Dodaj ovco</a></b>
+            </h4>
         </div>
         <a href="@Url.Action("Create", "Ovce")">
-            <img src="ovca.png" alt="" style="max-height: 200px; max-width: 200px;" />
+            <img src="https://turtlesport191137813.files.wordpress.com/2020/12/ovca.png" alt="" style="max-height: 200px; max-width: 200px;" />
         </a>
     </div>
 
     <div class="card">
         <div class="card-block">
-            <h4 class="card-title"><a asp-controller="Crede" asp-action="Create">Dodaj čredo</a></h4>
-            
+             <h4 class="card-title" style = "color:white" >
+               <b> <a asp-controller="Crede" asp-action="Create" style="color:black">Dodaj čredo</a></b>
+            </h4>
         </div>
        <a href="@Url.Action("Create", "Crede")">
-            <img src="https://i.pinimg.com/originals/c8/48/6e/c8486ec4226a2c0ab90a3ad9d5bfef89.jpg" alt="" style="max-height: 200px; max-width: 200px;" />
+            <img src="https://turtlesport191137813.files.wordpress.com/2020/12/creda.png" alt="" style="max-height: 200px; max-width: 200px;" />
         </a>
     </div>
     <div class="card">
         <div class="card-block">
-            <h4 class="card-title"><a asp-controller="Ovni" asp-action="Create">Dodaj ovna</a></h4>
-            
+             <h4 class="card-title" style = "color:white" >
+               <b> <a asp-controller="Ovni" asp-action="Create" style="color:black">Dodaj ovna</a></b>
+            </h4>
         </div>
         <a href="@Url.Action("Create", "Ovni")">
-            <img src="https://i.pinimg.com/originals/b3/87/b0/b387b086c775312b6e4f972d48f77f0d.jpg" alt="" style="max-height: 200px; max-width: 200px;" />
+            <img src="https://turtlesport191137813.files.wordpress.com/2020/12/oven.png" alt="" style="max-height: 200px; max-width: 200px;" />
         </a>
     </div>
 </div>
