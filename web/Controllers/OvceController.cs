@@ -9,7 +9,7 @@ using web.Data;
 using web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-
+using web.Models.eShepherdViewModels;
 namespace web.Controllers
 {
     [Authorize]
@@ -27,7 +27,7 @@ namespace web.Controllers
                                     string sortOrder,
                                     string currentFilter,
                                     string searchString,
-                                    int? pageNumber)
+                                    int? pageNumber, int? ovcaID)
         {
 
             ViewData["CurrentSort"] = sortOrder;
@@ -69,10 +69,19 @@ namespace web.Controllers
                     break;
             }
 
-             int pageSize = 15;
-            return View(await PaginatedList<Ovca>.CreateAsync(ovce.AsNoTracking(), pageNumber ?? 1, pageSize));
-            
-
+            int pageSize = 3;
+            var novModel = new OvceIndexData();
+            novModel.Ovce = await PaginatedList<Ovca>.CreateAsync(ovce.AsNoTracking(), pageNumber ?? 1, pageSize);
+        
+        if(ovcaID != null){
+            var ovca = await _context.Ovce
+                .Include(k => k.SeznamKotitev)
+                .Include(k => k.SeznamGonitev)
+                .FirstOrDefaultAsync(m => m.OvcaID == ovcaID.ToString());
+                novModel.Kotitve = ovca.SeznamKotitev;
+                novModel.Gonitve = ovca.SeznamGonitev;
+        }
+            return View(novModel);
         }
 
         // GET: Ovce3/Details/5

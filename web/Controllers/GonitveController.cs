@@ -172,7 +172,7 @@ namespace web.Controllers
         }
 
         // GET: Gonitve/Delete/5
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {

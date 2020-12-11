@@ -1,4 +1,4 @@
-@model PaginatedList<web.Models.Ovca>
+@model web.Models.eShepherdViewModels.OvceIndexData
 
 @{
     ViewData["Title"] = "Ovce";
@@ -59,7 +59,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Ovce) {
         <tr>
              <td>
                  <b>
@@ -101,6 +101,8 @@
                 <a asp-action="Edit" asp-route-id="@item.OvcaID">Uredi</a> |
                 <a asp-action="Details" asp-route-id="@item.OvcaID">Podrobnosti</a> |
                 <a asp-action="Delete" asp-route-id="@item.OvcaID">Odstrani</a>
+                <a asp-action="Index" asp-route-ovcaID="@item.OvcaID"
+                   asp-route-pageNumber="@(Model.Ovce.PageIndex)">Izberi</a>
             </td>
         </tr>
 }
@@ -108,21 +110,61 @@
 </table>
 
 @{
-    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    var prevDisabled = !Model.Ovce.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Ovce.HasNextPage ? "disabled" : "";
 }
 
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-pageNumber="@(Model.Ovce.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-default @prevDisabled">
     Prejšnja stran
 </a>
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-pageNumber="@(Model.Ovce.PageIndex + 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-default @nextDisabled">
     Naslednja stran
 </a>
+@if(Model.Kotitve != null){
+<table class="table">
+                <tr>
+                    <th>ID Kotitve</th>
+                    <th>Datum kotitve</th>
+                </tr>
+                @foreach (var item in Model.Kotitve)
+                {
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.kotitevID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DatumKotitve)
+                        </td>
+                    </tr>
+                }
+            </table>
+}
+@if(Model.Gonitve != null){
+<table class="table">
+                <tr>
+                    <th>ID Gonitve</th>
+                    <th>Datum gonitve</th>
+                </tr>
+                @foreach (var item in Model.Gonitve)
+                {
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GonitevID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DatumGonitve)
+                        </td>
+                    </tr>
+                }
+            </table>
+}
