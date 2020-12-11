@@ -63,6 +63,15 @@ namespace web.Controllers
                         jagenjcki = jagenjcki.OrderBy(j => j.IdJagenjcka);
                         break;
                 }
+
+                int maxID = -1;
+            foreach(Kotitev kot in _context.Kotitve){
+                if(kot.kotitevID > maxID){
+                    maxID = kot.kotitevID;
+                }
+            }
+            ViewBag.LastKotitevID = maxID;
+            
                 int pageSize = 3;
                 return View(await PaginatedList<Jagenjcek>.CreateAsync(jagenjcki.AsNoTracking(), pageNumber ?? 1, pageSize));
             }
@@ -88,9 +97,9 @@ namespace web.Controllers
         }
 
         // GET: Jagenjcki/Create
-        public IActionResult Create()
+
+        public IActionResult Create(int kotitevID)
         {
-            ViewData["kotitevID"] = new SelectList(_context.Kotitve, "kotitevID", "kotitevID");
             return View();
         }
 
@@ -99,7 +108,7 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("skritIdJagenjcka,IdJagenjcka,kotitevID,spol")] Jagenjcek jagenjcek)
+        public async Task<IActionResult> Create([Bind("skritIdJagenjcka,IdJagenjcka,kotitevID,spol")] Jagenjcek jagenjcek, int kotitevID)
         {
             if (ModelState.IsValid)
             {
@@ -107,7 +116,7 @@ namespace web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["kotitevID"] = new SelectList(_context.Kotitve, "kotitevID", "kotitevID", jagenjcek.kotitevID);
+
             return View(jagenjcek);
         }
 

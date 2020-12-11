@@ -5,8 +5,12 @@
 
 <h1>Jagenjčki</h1>
 
+    @{
+        var lastID = @ViewBag.LastKotitevID;
+    }
+
 <p>
-    <a asp-action="Create">Dodaj jagenjčka</a>
+    <a asp-action="Create" asp-route-kotitevID="@lastID">Dodaj jagenjčka</a>
 </p>
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">

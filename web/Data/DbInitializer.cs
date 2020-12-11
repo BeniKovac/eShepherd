@@ -86,6 +86,7 @@ namespace web.Data
             {
                 context.Gonitve.Add(g);
             }
+
             context.SaveChanges();
         }
     }
