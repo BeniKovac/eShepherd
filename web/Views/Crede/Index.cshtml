@@ -1,29 +1,35 @@
-@model IEnumerable<web.Models.Creda>
+@model web.Models.eShepherdViewModels.CredeIndexData
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Čreda";
 }
 
-<h1>Index</h1>
+<h1>Čreda</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Dodaj novo čredo</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.SteviloOvc)
+               Številka črede
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Opombe)
+                Število ovc v čredi
+            </th>
+            <th>
+                Opombe
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Crede) {
         <tr>
+            <td><b>
+                @Html.DisplayFor(modelItem => item.CredeID)
+            </b></td>
             <td>
                 @Html.DisplayFor(modelItem => item.SteviloOvc)
             </td>
@@ -31,11 +37,30 @@
                 @Html.DisplayFor(modelItem => item.Opombe)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CredeID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CredeID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CredeID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.CredeID">Uredi</a> |
+                <a asp-action="Details" asp-route-id="@item.CredeID">Podrobnosti</a> |
+                <a asp-action="Delete" asp-route-id="@item.CredeID">Odstrani</a> |
+                <a asp-action="Index" asp-route-credaID="@item.CredeID">Prikaži ovce</a>
+
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+@if(Model.Ovce != null){
+    <table class="table">
+        <tr>
+            <th>ID ovce</th>
+        </tr>
+        @foreach (var item in Model.Ovce)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OvcaID)
+                </td>
+                
+            </tr>
+        }
+    </table>
+}

@@ -1,10 +1,10 @@
 @model web.Models.Ovca
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Dodaj ovco";
 }
 
-<h1>Create</h1>
+<h1>Dodaj</h1>
 
 <h4>Ovca</h4>
 <hr />
@@ -18,6 +18,10 @@
                 <span asp-validation-for="OvcaID" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="CredaID" class="control-label"></label>
+                <select asp-for="CredaID" class ="form-control" asp-items="ViewBag.CredaID"></select>
+            </div>
+            <div class="form-group">
                 <label asp-for="DatumRojstva" class="control-label"></label>
                 <input asp-for="DatumRojstva" class="form-control" />
                 <span asp-validation-for="DatumRojstva" class="text-danger"></span>
@@ -28,15 +32,14 @@
                 <span asp-validation-for="Pasma" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IdMame" class="control-label"></label>
-                <input asp-for="IdMame" class="form-control" />
-                <span asp-validation-for="IdMame" class="text-danger"></span>
+                <label asp-for="mamaID" class="control-label"></label>
+                <select asp-for="mamaID" class ="form-control" asp-items="ViewBag.mamaID"></select>
             </div>
             <div class="form-group">
-                <label asp-for="IdOceta" class="control-label"></label>
-                <input asp-for="IdOceta" class="form-control" />
-                <span asp-validation-for="IdOceta" class="text-danger"></span>
+                <label asp-for="oceID" class="control-label"></label>
+                <select asp-for="oceID" class ="form-control" asp-items="ViewBag.oceID"></select>
             </div>
+        
             <div class="form-group">
                 <label asp-for="SteviloSorojencev" class="control-label"></label>
                 <input asp-for="SteviloSorojencev" class="form-control" />
@@ -53,23 +56,13 @@
                 <span asp-validation-for="Opombe" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SteviloKotitev" class="control-label"></label>
-                <input asp-for="SteviloKotitev" class="form-control" />
-                <span asp-validation-for="SteviloKotitev" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PovprecjeJagenjckov" class="control-label"></label>
-                <input asp-for="PovprecjeJagenjckov" class="form-control" />
-                <span asp-validation-for="PovprecjeJagenjckov" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Nazaj na seznam</a>
 </div>
 

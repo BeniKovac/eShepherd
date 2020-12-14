@@ -1,0 +1,30 @@
+@model IEnumerable<web.Models.eShepherdViewModels.JagenjckiGroup>
+
+@{
+    ViewData["Title"] = "Statistika kotitev";
+}
+
+<h2>Statistika kotitev</h2>
+
+<table>
+    <tr>
+        <th>
+            kotitevID
+        </th>
+        <th>
+            Jagenjcki
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.kotitevID)
+            </td>
+            <td>
+                @item.JagenjckiCount
+            </td>
+        </tr>
+    }
+</table>

@@ -1,10 +1,10 @@
 @model web.Models.Kotitev
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Uredi kotitev";
 }
 
-<h1>Edit</h1>
+<h1>Uredi</h1>
 
 <h4>Kotitev</h4>
 <hr />
@@ -12,7 +12,7 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="KotitevID" />
+            <input type="hidden" asp-for="kotitevID" />
             <div class="form-group">
                 <label asp-for="DatumKotitve" class="control-label"></label>
                 <input asp-for="DatumKotitve" class="form-control" />
@@ -22,6 +22,16 @@
                 <label asp-for="SteviloMladih" class="control-label"></label>
                 <input asp-for="SteviloMladih" class="form-control" />
                 <span asp-validation-for="SteviloMladih" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OvenID" class="control-label"></label>
+                <select asp-for="OvenID" class="form-control" asp-items="ViewBag.OvenID"></select>
+                <span asp-validation-for="OvenID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OvcaID" class="control-label"></label>
+                <select asp-for="OvcaID" class="form-control" asp-items="ViewBag.OvcaID"></select>
+                <span asp-validation-for="OvcaID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SteviloMrtvih" class="control-label"></label>
@@ -34,13 +44,13 @@
                 <span asp-validation-for="Opombe" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Shrani" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Nazaj na seznam</a>
 </div>
 

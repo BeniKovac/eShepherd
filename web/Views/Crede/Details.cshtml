@@ -1,13 +1,13 @@
 @model web.Models.Creda
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Podrobnosti";
 }
 
-<h1>Details</h1>
+<h1>Podrobnosti</h1>
 
 <div>
-    <h4>Creda</h4>
+    <h4>Čreda</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -23,8 +23,26 @@
             @Html.DisplayFor(model => model.Opombe)
         </dd>
     </dl>
+    <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SeznamOvac)
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table">
+                <tr>
+                    <th>ID ovce</th>
+                </tr>
+                @foreach (var item in Model.SeznamOvac)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OvcaID)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.CredeID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.CredeID">Uredi</a> |
+    <a asp-action="Index">Nazaj na seznam</a>
 </div>

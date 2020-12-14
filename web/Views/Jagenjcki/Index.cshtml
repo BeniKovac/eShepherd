@@ -1,35 +1,97 @@
-@model IEnumerable<web.Models.Jagenjcek>
-
+@model PaginatedList<web.Models.Jagenjcek>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Jagenjčki";
 }
 
-<h1>Index</h1>
+<h1>Jagenjčki</h1>
+
+    @{
+        var lastID = @ViewBag.LastKotitevID;
+    }
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" asp-route-kotitevID="@lastID">Dodaj jagenjčka</a>
 </p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+           Najdi jagenjčka po ID: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+
+            <input type="submit" value="Išči" class="btn btn-primary" /> |
+            <a asp-action="Index">Nazaj na seznam</a>
+        </p>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.spol)
+                 <a asp-action="Index" asp-route-sortOrder="@ViewData["IDSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">IdJagenjcka</a>
             </th>
-            <th></th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["kotitevIDSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">kotitevID</a>
+            </th>
+            <th>
+                Spol
+            </th>
+            <th>
+                Datum Rojstva
+            </th>
+            <th>
+                mamaID
+            </th>
+            <th>
+                oceID
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.IdJagenjcka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kotitevID)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.spol)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdJagenjcka">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdJagenjcka">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdJagenjcka">Delete</a>
+                @Html.DisplayFor(modelItem => item.kotitev.DatumKotitve)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kotitev.OvcaID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kotitev.OvenID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.skritIdJagenjcka">Uredi</a> |
+                <a asp-action="Details" asp-route-id="@item.skritIdJagenjcka">Podrobnosti</a> |
+                <a asp-action="Delete" asp-route-id="@item.skritIdJagenjcka">Odstrani</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Prejšnja stran
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Naslednja stran
+</a>

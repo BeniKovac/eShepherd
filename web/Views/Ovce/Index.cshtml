@@ -1,62 +1,87 @@
-@model IEnumerable<web.Models.Ovca>
+@model web.Models.eShepherdViewModels.OvceIndexData
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Ovce";
 }
 
-<h1>Index</h1>
+<h1>Ovce</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Dodaj ovco</a>
 </p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+           Najdi ovco po ID: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+           
+            <input type="submit" value="Išči" class="btn btn-primary" /> |
+            <a asp-action="Index">Nazaj na seznam</a>
+        </p>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.DatumRojstva)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["IDSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">ID ovce</a>            
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pasma)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Datum rojstva</a>            
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdMame)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdOceta)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SteviloSorojencev)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Stanje)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Opombe)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SteviloKotitev)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PovprecjeJagenjckov)
-            </th>
+           <th>
+               Trenutna čreda
+           </th>
+           <th>
+               Pasma
+           </th>
+           <th>
+               ID mame
+           </th>
+           <th>
+               ID očeta
+           </th>
+           <th>
+               Število sorojencev
+           </th>
+           <th>
+               Stanje
+           </th>
+           <th>
+               Opombe
+           </th>
+           <th>
+              Število dosedanjih kotitev 
+           </th>
+           <th>
+               Povprečno število jagenjčkov na kotitev
+           </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Ovce) {
         <tr>
+             <td>
+                 <b>
+                @Html.DisplayFor(modelItem => item.OvcaID)
+                </b>
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DatumRojstva)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.creda.CredeID)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Pasma)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdMame)
+             <td>
+                @Html.DisplayFor(modelItem => item.mama.mamaID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdOceta)
+                @Html.DisplayFor(modelItem => item.oce.oceID)
             </td>
+       
             <td>
                 @Html.DisplayFor(modelItem => item.SteviloSorojencev)
             </td>
@@ -73,11 +98,73 @@
                 @Html.DisplayFor(modelItem => item.PovprecjeJagenjckov)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.OvcaID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.OvcaID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.OvcaID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.OvcaID">Uredi</a> |
+                <a asp-action="Details" asp-route-id="@item.OvcaID">Podrobnosti</a> |
+                <a asp-action="Delete" asp-route-id="@item.OvcaID">Odstrani</a>
+                <a asp-action="Index" asp-route-ovcaID="@item.OvcaID"
+                   asp-route-pageNumber="@(Model.Ovce.PageIndex)">Izberi</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.Ovce.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Ovce.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.Ovce.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Prejšnja stran
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.Ovce.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Naslednja stran
+</a>
+@if(Model.Kotitve != null){
+<table class="table">
+                <tr>
+                    <th>ID Kotitve</th>
+                    <th>Datum kotitve</th>
+                </tr>
+                @foreach (var item in Model.Kotitve)
+                {
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.kotitevID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DatumKotitve)
+                        </td>
+                    </tr>
+                }
+            </table>
+}
+@if(Model.Gonitve != null){
+<table class="table">
+                <tr>
+                    <th>ID Gonitve</th>
+                    <th>Datum gonitve</th>
+                </tr>
+                @foreach (var item in Model.Gonitve)
+                {
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GonitevID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DatumGonitve)
+                        </td>
+                    </tr>
+                }
+            </table>
+}

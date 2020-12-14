@@ -8,9 +8,19 @@ namespace web.Models
     public class Jagenjcek
         {
         [Key]
-        public int IdJagenjcka { get; set; }
+        public int skritIdJagenjcka { get; set; }
 
-        public Kotitev IdKotitve { get; set; }
+        [Required]
+        [Display(Name = "ID jagenjčka")] 
+        public String IdJagenjcka { get; set; }
+        
+        public int kotitevID { get; set; }
+        public Kotitev kotitev { get; set; }
+
+        // prikaz ID mame in datum kotitve?
+
+
+        [Display(Name = "Spol")] 
         public string spol { get; set; }
 
     }

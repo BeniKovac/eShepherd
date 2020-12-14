@@ -8,9 +8,10 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
 using web.Data;
-using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using web.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace web
 {
@@ -27,7 +28,14 @@ namespace web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<eShepherdContext>(options => options.UseSqlServer(Configuration.GetConnectionString("eShepherdContext")));
+
+            services.AddDbContext<eShepherdContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("AzureContext")));
+                services.AddIdentity<ApplicationUser, IdentityRole>(options => 
+                options.Stores.MaxLengthForKeys = 128)
+                .AddEntityFrameworkStores<eShepherdContext>().AddDefaultUI().AddDefaultTokenProviders();
+
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +55,8 @@ namespace web
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -55,6 +64,13 @@ namespace web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("./v1/swagger.json", "My API V1");
             });
         }
     }

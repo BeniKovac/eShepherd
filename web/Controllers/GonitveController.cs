@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using web.Data;
 using web.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace web.Controllers
 {
+     [Authorize]
     public class GonitveController : Controller
     {
         private readonly eShepherdContext _context;
@@ -20,10 +23,52 @@ namespace web.Controllers
         }
 
         // GET: Gonitve
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(
+                                string sortOrder,
+                                string currentFilter,
+                                string searchString,
+                                int? pageNumber)
         {
-            return View(await _context.Gonitve.ToListAsync());
-        }
+                ViewData["CurrentSort"] = sortOrder;
+                ViewData["IDSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ID_desc" : "";
+                ViewData["GonitevDatumSortParm"] = sortOrder == "GonitevDatum" ? "gonitevdatum_desc" : "GonitevDatum";
+
+                if (searchString != null)
+                {
+                    pageNumber = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
+
+                ViewData["CurrentFilter"] = searchString;
+                var gonitve = from g in _context.Gonitve
+                                select g;
+
+                    if (!String.IsNullOrEmpty(searchString))
+                    {
+                        gonitve = gonitve.Where(g => g.OvcaID.Contains(searchString));
+                    }
+
+                switch (sortOrder)
+                {
+                    case "ID_desc":
+                        gonitve = gonitve.OrderByDescending(g => g.ovca.OvcaID);
+                        break;
+                    case "GonitevDatum":
+                        gonitve = gonitve.OrderBy(g => g.DatumGonitve);
+                        break;
+                    case "gonitevdatum_desc":
+                        gonitve = gonitve.OrderByDescending(g => g.DatumGonitve);
+                        break;
+                    default:
+                        gonitve = gonitve.OrderBy(g => g.ovca.OvcaID);
+                        break;
+                }
+                int pageSize = 3;
+                return View(await PaginatedList<Gonitev>.CreateAsync(gonitve.AsNoTracking(), pageNumber ?? 1, pageSize));
+            }
 
         // GET: Gonitve/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -34,6 +79,8 @@ namespace web.Controllers
             }
 
             var gonitev = await _context.Gonitve
+                .Include(g => g.ovca)
+                .Include(g => g.oven)
                 .FirstOrDefaultAsync(m => m.GonitevID == id);
             if (gonitev == null)
             {
@@ -46,6 +93,8 @@ namespace web.Controllers
         // GET: Gonitve/Create
         public IActionResult Create()
         {
+            ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID");
+            ViewData["OvenID"] = new SelectList(_context.Ovni, "OvenID", "OvenID");
             return View();
         }
 
@@ -54,7 +103,7 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("GonitevID,DatumGonitve,PredvidenaKotitev,Opombe")] Gonitev gonitev)
+        public async Task<IActionResult> Create([Bind("GonitevID,DatumGonitve,OvcaID,OvenID,PredvidenaKotitev,Opombe")] Gonitev gonitev)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +111,8 @@ namespace web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID", gonitev.OvcaID);
+            ViewData["OvenID"] = new SelectList(_context.Ovni, "OvenID", "OvenID", gonitev.OvenID);
             return View(gonitev);
         }
 
@@ -78,6 +129,8 @@ namespace web.Controllers
             {
                 return NotFound();
             }
+            ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID", gonitev.OvcaID);
+            ViewData["OvenID"] = new SelectList(_context.Ovni, "OvenID", "OvenID", gonitev.OvenID);
             return View(gonitev);
         }
 
@@ -86,7 +139,7 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("GonitevID,DatumGonitve,PredvidenaKotitev,Opombe")] Gonitev gonitev)
+        public async Task<IActionResult> Edit(int id, [Bind("GonitevID,DatumGonitve,OvcaID,OvenID,PredvidenaKotitev,Opombe")] Gonitev gonitev)
         {
             if (id != gonitev.GonitevID)
             {
@@ -113,6 +166,8 @@ namespace web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID", gonitev.OvcaID);
+            ViewData["OvenID"] = new SelectList(_context.Ovni, "OvenID", "OvenID", gonitev.OvenID);
             return View(gonitev);
         }
 
@@ -125,6 +180,8 @@ namespace web.Controllers
             }
 
             var gonitev = await _context.Gonitve
+                .Include(g => g.ovca)
+                .Include(g => g.oven)
                 .FirstOrDefaultAsync(m => m.GonitevID == id);
             if (gonitev == null)
             {
@@ -137,7 +194,7 @@ namespace web.Controllers
         // POST: Gonitve/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(String id)
         {
             var gonitev = await _context.Gonitve.FindAsync(id);
             _context.Gonitve.Remove(gonitev);

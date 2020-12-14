@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - web</title>
+    <title>@ViewData["Title"] eShepherd</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -11,27 +11,41 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
+
+                <p class="site-title">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="https://lh3.googleusercontent.com/SSQ5WAG-fqk3PftNM3QRQtRcbp6lo0EJIbrgSccHta0lJZ5XLoISByP6JM1GAZCi2yTti9k=s85" alt="" />
+                    </a>
+                </p>
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">eShepherd</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="About">About</a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+
+                    <partial name="_LoginPartial" />
+
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Ovce" asp-action="Index">Seznam Ovc</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Ovce" asp-action="Index">Ovce</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Kotitve" asp-action="Index">Seznam Kotitev</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Kotitve" asp-action="Index">Kotitve</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Gonitve" asp-action="Index">Seznam Gonitev</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Gonitve" asp-action="Index">Gonitve</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Crede" asp-action="Index">Črede</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Jagenjcki" asp-action="Index">Jagenjcki</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Ovni" asp-action="Index">Ovni</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Jagenjcki" asp-action="Index">Jagenjčki</a>
                         </li>
                     </ul>
                 </div>
@@ -46,7 +60,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - FRI - Tinkara Končan, Benjamin Kovač Keber - <a asp-area="" asp-controller="Home" asp-action="Privacy">Zasebnost</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
