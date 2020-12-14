@@ -75,7 +75,7 @@
                 <a asp-action="Delete" asp-route-id="@item.kotitevID">Odstrani</a> | 
                 <a asp-action="Index" asp-route-kotitevID="@item.kotitevID"
                    asp-route-pageNumber="@(Model.Kotitve.PageIndex)">Izberi</a> | 
-                <a asp-controller="Jagenjcki" asp-action="Create" asp-route-kotitevID="@item.kotitevID">Dodaj jagenjcka tej kotitvi</a>
+                <a asp-controller="Jagenjcki" asp-action="Create" asp-route-ID="@item.kotitevID">Dodaj jagenjcka tej kotitvi</a>
             </td>
         </tr>
 }

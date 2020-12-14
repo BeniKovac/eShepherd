@@ -98,9 +98,11 @@ namespace web.Controllers
 
         // GET: Jagenjcki/Create
 
-        public IActionResult Create(int kotitevID)
+        public IActionResult Create(int ID)
         {
-            return View();
+            var jagenjcek = new Jagenjcek();
+            jagenjcek.kotitevID = ID;
+            return View(jagenjcek);
         }
 
         // POST: Jagenjcki/Create
