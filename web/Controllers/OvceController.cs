@@ -69,7 +69,7 @@ namespace web.Controllers
                     break;
             }
 
-            int pageSize = 3;
+            int pageSize = 10;
             var novModel = new OvceIndexData();
             novModel.Ovce = await PaginatedList<Ovca>.CreateAsync(ovce.AsNoTracking(), pageNumber ?? 1, pageSize);
         

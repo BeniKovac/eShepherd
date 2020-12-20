@@ -7,7 +7,11 @@ namespace web.Models
 {
     public class Kotitev
     {
-        
+        public Kotitev()
+        {
+
+            jagenjcki = new List<Jagenjcek>();
+        }
         [Key]
         
         public int kotitevID { get; set; }
@@ -20,6 +24,14 @@ namespace web.Models
 
         [Display(Name = "Število jagenjčkov")] 
         public int SteviloMladih { get; set; }
+            /*get {
+                int skupno = 0;
+                if (jagenjcki != null && SteviloMrtvih != null) {
+                    skupno = jagenjcki.Count + SteviloMrtvih;
+                }
+                return skupno;
+            } }
+            */
          
         [Display(Name = "Ovca")] 
         public string OvcaID { get; set; }
@@ -33,6 +45,7 @@ namespace web.Models
         public Oven Oven { get; set; }
        
         [Display(Name = "Število mrtvorojenih jagenjčkov")] 
+        
         public int? SteviloMrtvih { get; set; }
 
         public string? Opombe { get; set; }

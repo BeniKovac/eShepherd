@@ -24,19 +24,16 @@
     <thead>
         <tr>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["IDSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">GonitevID</a>
-            </th>
-            <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["GonitevDatumSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Datum gonitve</a>
             </th>
             <th>
-                Ovca
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["IDSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Ovca</a>
             </th>
             <th>
                 Oven
             </th>
             <th>
-                PredvidenaKotitev
+                Predviden datum kotitve
             </th>
             <th>
                 Opombe
@@ -47,9 +44,6 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.GonitevID)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DatumGonitve)
             </td>

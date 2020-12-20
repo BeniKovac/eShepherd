@@ -23,9 +23,6 @@
     <thead>
         <tr>
             <th>
-                Št. kotitve
-            </th>
-            <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Datum kotitve</a>            
             </th>
             <th>
@@ -50,8 +47,6 @@
 @foreach (var item in Model.Kotitve) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.kotitevID)
-            <td>
                 @Html.DisplayFor(modelItem => item.DatumKotitve)
             </td>
             <td>
@@ -74,8 +69,8 @@
                 <a asp-action="Details" asp-route-id="@item.kotitevID">Podrobnosti</a> |
                 <a asp-action="Delete" asp-route-id="@item.kotitevID">Odstrani</a> | 
                 <a asp-action="Index" asp-route-kotitevID="@item.kotitevID"
-                   asp-route-pageNumber="@(Model.Kotitve.PageIndex)">Izberi</a> | 
-                <a asp-controller="Jagenjcki" asp-action="Create" asp-route-ID="@item.kotitevID">Dodaj jagenjcka tej kotitvi</a>
+                   asp-route-pageNumber="@(Model.Kotitve.PageIndex)">Prikaži jagenjčke</a> | 
+                <a asp-controller="Jagenjcki" asp-action="Create" asp-route-ID="@item.kotitevID">Dodaj jagenjčka</a>
             </td>
         </tr>
 }

@@ -66,7 +66,7 @@ namespace web.Controllers
                         gonitve = gonitve.OrderBy(g => g.ovca.OvcaID);
                         break;
                 }
-                int pageSize = 3;
+                int pageSize = 10;
                 return View(await PaginatedList<Gonitev>.CreateAsync(gonitve.AsNoTracking(), pageNumber ?? 1, pageSize));
             }
 
@@ -194,7 +194,7 @@ namespace web.Controllers
         // POST: Gonitve/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(String id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var gonitev = await _context.Gonitve.FindAsync(id);
             _context.Gonitve.Remove(gonitev);
