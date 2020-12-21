@@ -24,16 +24,17 @@ namespace web.Models
         public DateTime DatumKotitve { get; set; }
 
         [Display(Name = "Število jagenjčkov")] 
-        public int SteviloMladih { get; set; }
-            /*get {
+        public int SteviloMladih { 
+             get { 
                 int skupno = 0;
                 if (jagenjcki != null) {
                     skupno += jagenjcki.Count;
                 }
                 skupno += SteviloMrtvih;
                 return skupno;
-            } }
-            */
+            } 
+        }
+            
             
          
         [Display(Name = "Ovca")] 
