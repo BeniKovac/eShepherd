@@ -72,7 +72,7 @@ namespace web.Controllers
             }
             ViewBag.LastKotitevID = maxID;
             
-                int pageSize = 3;
+                int pageSize = 10;
                 return View(await PaginatedList<Jagenjcek>.CreateAsync(jagenjcki.AsNoTracking(), pageNumber ?? 1, pageSize));
             }
 

@@ -64,10 +64,10 @@ namespace web.Data
 
             var kotitve = new Kotitev[]
             {
-                new Kotitev{DatumKotitve=DateTime.Parse("12-01-2019"), SteviloMladih=3, OvcaID=ovce[1].OvcaID, OvenID = ovni[1].OvenID, SteviloMrtvih = 0},
-                new Kotitev{DatumKotitve=DateTime.Parse("20-12-2019"), SteviloMladih=2, OvcaID=ovce[2].OvcaID, OvenID = ovni[1].OvenID, SteviloMrtvih = 0},
-                new Kotitev{DatumKotitve=DateTime.Parse("01-12-2020"), SteviloMladih=2, OvcaID=ovce[5].OvcaID, OvenID = ovni[2].OvenID, SteviloMrtvih = 0},
-                new Kotitev{DatumKotitve=DateTime.Parse("03-12-2020"), SteviloMladih=2, OvcaID=ovce[4].OvcaID, OvenID = ovni[2].OvenID, SteviloMrtvih = 0},
+                new Kotitev{DatumKotitve=DateTime.Parse("12-01-2019"),  OvcaID=ovce[1].OvcaID, OvenID = ovni[1].OvenID, SteviloMrtvih = 0},
+                new Kotitev{DatumKotitve=DateTime.Parse("20-12-2019"),  OvcaID=ovce[2].OvcaID, OvenID = ovni[1].OvenID, SteviloMrtvih = 0},
+                new Kotitev{DatumKotitve=DateTime.Parse("01-12-2020"),  OvcaID=ovce[5].OvcaID, OvenID = ovni[2].OvenID, SteviloMrtvih = 0},
+                new Kotitev{DatumKotitve=DateTime.Parse("03-12-2020"),  OvcaID=ovce[4].OvcaID, OvenID = ovni[2].OvenID, SteviloMrtvih = 0},
                 
             };
             foreach (Kotitev k in kotitve)

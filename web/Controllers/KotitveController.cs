@@ -74,7 +74,7 @@ namespace web.Controllers
             }
             ViewBag.LastKotitevID = maxID;
 
-            int pageSize = 3;
+            int pageSize = 10;
             var novModel = new KotitveIndexData();
             novModel.Kotitve = await PaginatedList<Kotitev>.CreateAsync(kotitve.AsNoTracking(), pageNumber ?? 1, pageSize);
         

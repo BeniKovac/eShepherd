@@ -25,7 +25,9 @@ namespace web.Controllers_Api
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Creda>>> GetCrede()
         {
-            return await _context.Crede.ToListAsync();
+            return await _context.Crede
+            .Include(c => c.SeznamOvac)
+            .ToListAsync();
         }
 
         // GET: api/CredeApi/5

@@ -57,43 +57,45 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OvenID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DatumRojstva)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.creda.CredeID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pasma)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.mamaID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.oceID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SteviloSorojencev)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Stanje)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Opombe)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Poreklo)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.OvenID">Uredi</a> |
-                <a asp-action="Details" asp-route-id="@item.OvenID">Podrobnosti</a> |
-                <a asp-action="Delete" asp-route-id="@item.OvenID">Odstrani</a>
-            </td>
-        </tr>
+    @if (item.OvenID != "/") {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OvenID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatumRojstva)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.creda.CredeID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pasma)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mamaID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.oceID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SteviloSorojencev)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stanje)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Opombe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Poreklo)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.OvenID">Uredi</a> |
+                    <a asp-action="Details" asp-route-id="@item.OvenID">Podrobnosti</a> |
+                    <a asp-action="Delete" asp-route-id="@item.OvenID">Odstrani</a>
+                </td>
+            </tr>
+    }
 }
     </tbody>
 </table>
