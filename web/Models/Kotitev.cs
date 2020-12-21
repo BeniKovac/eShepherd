@@ -11,6 +11,7 @@ namespace web.Models
         {
 
             jagenjcki = new List<Jagenjcek>();
+            SteviloMrtvih = 0;
         }
         [Key]
         
@@ -23,14 +24,16 @@ namespace web.Models
         public DateTime DatumKotitve { get; set; }
 
         [Display(Name = "Število jagenjčkov")] 
-        public int SteviloMladih { //get; set; }
-            get {
+        public int SteviloMladih { get; set; }
+            /*get {
                 int skupno = 0;
-                if (jagenjcki != null && SteviloMrtvih != null) {
-                    skupno = jagenjcki.Count + SteviloMrtvih;
+                if (jagenjcki != null) {
+                    skupno += jagenjcki.Count;
                 }
+                skupno += SteviloMrtvih;
                 return skupno;
             } }
+            */
             
          
         [Display(Name = "Ovca")] 
