@@ -23,15 +23,15 @@ namespace web.Models
         public DateTime DatumKotitve { get; set; }
 
         [Display(Name = "Število jagenjčkov")] 
-        public int SteviloMladih { get; set; }
-            /*get {
+        public int SteviloMladih { //get; set; }
+            get {
                 int skupno = 0;
                 if (jagenjcki != null && SteviloMrtvih != null) {
                     skupno = jagenjcki.Count + SteviloMrtvih;
                 }
                 return skupno;
             } }
-            */
+            
          
         [Display(Name = "Ovca")] 
         public string OvcaID { get; set; }
@@ -46,7 +46,7 @@ namespace web.Models
        
         [Display(Name = "Število mrtvorojenih jagenjčkov")] 
         
-        public int? SteviloMrtvih { get; set; }
+        public int SteviloMrtvih { get; set; } = 0;
 
         public string? Opombe { get; set; }
 
