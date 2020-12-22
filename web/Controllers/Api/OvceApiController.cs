@@ -25,7 +25,10 @@ namespace web.Controllers_Api
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Ovca>>> GetOvce()
         {
-            return await _context.Ovce.ToListAsync();
+            return await _context.Ovce
+            .Include(o => o.SeznamKotitev)
+            .Include(o => o.SeznamGonitev)
+            .ToListAsync();
         }
 
         // GET: api/OvceApi/5
