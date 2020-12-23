@@ -25,7 +25,7 @@ namespace web.Controllers_Api
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Kotitev>>> GetKotitve()
         {
-            return await _context.Kotitve.ToListAsync();
+            return await _context.Kotitve.Include(k => k.jagenjcki).ToListAsync();
         }
 
         // GET: api/KotitveApi/5

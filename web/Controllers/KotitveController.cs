@@ -74,7 +74,7 @@ namespace web.Controllers
             }
             ViewBag.LastKotitevID = maxID;
 
-            int pageSize = 3;
+            int pageSize = 10;
             var novModel = new KotitveIndexData();
             novModel.Kotitve = await PaginatedList<Kotitev>.CreateAsync(kotitve.AsNoTracking(), pageNumber ?? 1, pageSize);
         
@@ -134,11 +134,20 @@ namespace web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("kotitevID,DatumKotitve,SteviloMladih,OvenID,OvcaID,SteviloMrtvih,Opombe")] Kotitev kotitev)
         {
+            int maxID = -1;
+            foreach(Kotitev kot in _context.Kotitve){
+                if(kot.kotitevID > maxID){
+                    maxID = kot.kotitevID;
+                }
+            }
+            ViewBag.LastKotitevID = maxID;
+
             if (ModelState.IsValid)
             {
                 _context.Add(kotitev);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ViewBag.LastKotitevID = maxID;
+                return RedirectToAction(nameof(Create), "Jagenjcki", new {ID = maxID});
             }
             ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID", kotitev.OvcaID);
             ViewData["OvenID"] = new SelectList(_context.Ovni, "OvenID", "OvenID", kotitev.OvenID);

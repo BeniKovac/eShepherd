@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using web.Data;
 
 namespace web.Migrations
 {
     [DbContext(typeof(eShepherdContext))]
-    partial class eShepherdContextModelSnapshot : ModelSnapshot
+    [Migration("20201221130942_jagenjcek")]
+    partial class jagenjcek
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -318,9 +320,6 @@ namespace web.Migrations
 
                     b.Property<string>("OvenID")
                         .HasColumnType("nvarchar(10)");
-
-                    b.Property<int>("SteviloMladih")
-                        .HasColumnType("int");
 
                     b.Property<int>("SteviloMrtvih")
                         .HasColumnType("int");

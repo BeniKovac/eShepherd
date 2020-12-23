@@ -14,11 +14,10 @@
 
                 <p class="site-title">
                     <a href="@Url.Action("Index", "Home")">
-                        <img src="https://lh3.googleusercontent.com/SSQ5WAG-fqk3PftNM3QRQtRcbp6lo0EJIbrgSccHta0lJZ5XLoISByP6JM1GAZCi2yTti9k=s85" alt="" />
+                        <img src="https://turtlesport191137813.files.wordpress.com/2020/12/kekec-2.jpeg" alt="" />
                     </a>
                 </p>
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">eShepherd</a>
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="About">About</a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -29,6 +28,9 @@
                     <partial name="_LoginPartial" />
 
                     <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">Statistika</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Ovce" asp-action="Index">Ovce</a>
                         </li>

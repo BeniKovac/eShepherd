@@ -72,7 +72,7 @@ namespace web.Controllers
             }
             ViewBag.LastKotitevID = maxID;
             
-                int pageSize = 3;
+                int pageSize = 10;
                 return View(await PaginatedList<Jagenjcek>.CreateAsync(jagenjcki.AsNoTracking(), pageNumber ?? 1, pageSize));
             }
 
@@ -98,9 +98,11 @@ namespace web.Controllers
 
         // GET: Jagenjcki/Create
 
-        public IActionResult Create(int kotitevID)
+        public IActionResult Create(int ID)
         {
-            return View();
+            var jagenjcek = new Jagenjcek();
+            jagenjcek.kotitevID = ID;
+            return View(jagenjcek);
         }
 
         // POST: Jagenjcki/Create

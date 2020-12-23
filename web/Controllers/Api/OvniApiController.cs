@@ -25,7 +25,10 @@ namespace web.Controllers_Api
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Oven>>> GetOvni()
         {
-            return await _context.Ovni.ToListAsync();
+            return await _context.Ovni
+            .Include(o => o.vseKotitve)
+            .Include(o => o.vseGonitve)
+            .ToListAsync();
         }
 
         // GET: api/OvniApi/5
