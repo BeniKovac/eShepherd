@@ -48,7 +48,7 @@ namespace web.Controllers_Api
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCreda(int id, Creda creda)
+        public async Task<IActionResult> PutCreda(String id, Creda creda)
         {
             if (id != creda.CredeID)
             {
@@ -104,7 +104,7 @@ namespace web.Controllers_Api
             return creda;
         }
 
-        private bool CredaExists(int id)
+        private bool CredaExists(String id)
         {
             return _context.Crede.Any(e => e.CredeID == id);
         }

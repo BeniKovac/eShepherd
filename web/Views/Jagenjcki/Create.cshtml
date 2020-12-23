@@ -17,11 +17,14 @@
                 <input asp-for="IdJagenjcka" class="form-control" />
                 <span asp-validation-for="IdJagenjcka" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display: none;">
                 <label asp-for="kotitevID" class="control-label"></label>
                 <input asp-for="kotitevID" class="form-control" />
                 <span asp-validation-for="kotitevID" class="text-danger"></span>
             </div>
+
+            <label>Datum kotitve: </label> <p><strong>@TempData["Datum"]</strong></p>
+            <label>Številka mame: </label> <p><strong>@TempData["Mama"]</strong></p>
             <div class="form-group">
                 <label asp-for="spol" class="control-label"></label>
                 <input asp-for="spol" class="form-control" />

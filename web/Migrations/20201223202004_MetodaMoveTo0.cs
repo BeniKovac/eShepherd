@@ -2,7 +2,7 @@
 
 namespace web.Migrations
 {
-    public partial class jagenjcek2 : Migration
+    public partial class MetodaMoveTo0 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

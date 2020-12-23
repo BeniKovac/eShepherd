@@ -23,7 +23,7 @@ namespace web.Models.eShepherdViewModels
         }
 
         // GET: Crede
-        public async Task<IActionResult> Index(int? credaID)
+        public async Task<IActionResult> Index(String credaID)
         {
             var viewModel = new CredeIndexData();
             viewModel.Crede = await _context.Crede
@@ -31,9 +31,9 @@ namespace web.Models.eShepherdViewModels
                             .ToListAsync();
                 if (credaID != null)
                 {
-                    ViewData["CredeID"] = credaID.Value;
+                    ViewData["CredeID"] = credaID;
                     Creda creda = viewModel.Crede.Where(
-                        c => c.CredeID == credaID.Value).Single();
+                        c => c.CredeID.Equals(credaID)).Single();
                         viewModel.Ovce = creda.SeznamOvac;
                 }
              
@@ -54,7 +54,7 @@ namespace web.Models.eShepherdViewModels
 
             var creda = await _context.Crede
             .Include(k => k.SeznamOvac)
-            .FirstOrDefaultAsync(m => m.CredeID == id);
+            .FirstOrDefaultAsync(m => m.CredeID.Equals(id.ToString()));
             if (creda == null)
             {
                 return NotFound();
@@ -106,9 +106,9 @@ namespace web.Models.eShepherdViewModels
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CredeID,SteviloOvc,Opombe")] Creda creda)
+        public async Task<IActionResult> Edit(String id, [Bind("CredeID,SteviloOvc,Opombe")] Creda creda)
         {
-            if (id != creda.CredeID)
+            if (id !=creda.CredeID)
             {
                 return NotFound();
             }
@@ -137,7 +137,7 @@ namespace web.Models.eShepherdViewModels
         }
 
         // GET: Crede/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(String id)
         {
             if (id == null)
             {
@@ -145,7 +145,7 @@ namespace web.Models.eShepherdViewModels
             }
 
             var creda = await _context.Crede
-                .FirstOrDefaultAsync(m => m.CredeID == id);
+                .FirstOrDefaultAsync(m => m.CredeID == (id));
             if (creda == null)
             {
                 return NotFound();
@@ -157,7 +157,7 @@ namespace web.Models.eShepherdViewModels
         // POST: Crede/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(String id)
         {
             var creda = await _context.Crede.FindAsync(id);
             _context.Crede.Remove(creda);
@@ -165,7 +165,7 @@ namespace web.Models.eShepherdViewModels
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CredaExists(int id)
+        private bool CredaExists(String id)
         {
             return _context.Crede.Any(e => e.CredeID == id);
         }

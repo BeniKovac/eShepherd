@@ -115,14 +115,6 @@ namespace web.Controllers
         {
             ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID");
             ViewData["OvenID"] = new SelectList(_context.Ovni, "OvenID", "OvenID");
-            
-            int maxID = -1;
-            foreach(Kotitev kot in _context.Kotitve){
-                if(kot.kotitevID > maxID){
-                    maxID = kot.kotitevID;
-                }
-            }
-            ViewBag.LastKotitevID = maxID;
 
             return View();
         }
@@ -135,18 +127,23 @@ namespace web.Controllers
         public async Task<IActionResult> Create([Bind("kotitevID,DatumKotitve,SteviloMladih,OvenID,OvcaID,SteviloMrtvih,Opombe")] Kotitev kotitev)
         {
             int maxID = -1;
+            var datetime = DateTime.Now;
+            var Idmame = "str";
             foreach(Kotitev kot in _context.Kotitve){
                 if(kot.kotitevID > maxID){
                     maxID = kot.kotitevID;
+                    datetime = kot.DatumKotitve;
+                    Idmame = kot.OvcaID;
                 }
             }
-            ViewBag.LastKotitevID = maxID;
+            TempData["Datum"] = datetime.ToShortDateString();
+            TempData["Mama"] = Idmame;
 
             if (ModelState.IsValid)
             {
                 _context.Add(kotitev);
                 await _context.SaveChangesAsync();
-                ViewBag.LastKotitevID = maxID;
+                //ViewBag.LastKotitevID = maxID;
                 return RedirectToAction(nameof(Create), "Jagenjcki", new {ID = maxID});
             }
             ViewData["OvcaID"] = new SelectList(_context.Ovce, "OvcaID", "OvcaID", kotitev.OvcaID);

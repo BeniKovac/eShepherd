@@ -26,6 +26,9 @@
     </thead>
     <tbody>
 @foreach (var item in Model.Crede) {
+    if(item.CredeID == "0"){
+        continue;
+    }
         <tr>
             <td><b>
                 @Html.DisplayFor(modelItem => item.CredeID)

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace web.Migrations
 {
-    public partial class ConnectionSwitch : Migration
+    public partial class DBIupdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -53,9 +53,7 @@ namespace web.Migrations
                 name: "Crede",
                 columns: table => new
                 {
-                    CredeID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SteviloOvc = table.Column<int>(nullable: false),
+                    CredeID = table.Column<string>(nullable: false),
                     Opombe = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -174,7 +172,7 @@ namespace web.Migrations
                 columns: table => new
                 {
                     OvenID = table.Column<string>(maxLength: 10, nullable: false),
-                    CredaID = table.Column<int>(nullable: false),
+                    CredaID = table.Column<string>(nullable: true),
                     DatumRojstva = table.Column<DateTime>(nullable: true),
                     Pasma = table.Column<string>(nullable: true),
                     mamaID = table.Column<string>(nullable: true),
@@ -192,7 +190,7 @@ namespace web.Migrations
                         column: x => x.CredaID,
                         principalTable: "Crede",
                         principalColumn: "CredeID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -200,16 +198,14 @@ namespace web.Migrations
                 columns: table => new
                 {
                     OvcaID = table.Column<string>(maxLength: 10, nullable: false),
-                    CredaID = table.Column<int>(nullable: false),
+                    CredaID = table.Column<string>(nullable: true),
                     DatumRojstva = table.Column<DateTime>(nullable: true),
                     Pasma = table.Column<string>(nullable: true),
                     mamaID = table.Column<string>(nullable: true),
                     oceID = table.Column<string>(nullable: true),
                     SteviloSorojencev = table.Column<int>(nullable: true),
                     Stanje = table.Column<string>(nullable: true),
-                    Opombe = table.Column<string>(nullable: true),
-                    SteviloKotitev = table.Column<int>(nullable: false),
-                    PovprecjeJagenjckov = table.Column<int>(nullable: false)
+                    Opombe = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -219,7 +215,7 @@ namespace web.Migrations
                         column: x => x.CredaID,
                         principalTable: "Crede",
                         principalColumn: "CredeID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Ovca_Ovca_mamaID",
                         column: x => x.mamaID,
@@ -269,10 +265,9 @@ namespace web.Migrations
                     kotitevID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DatumKotitve = table.Column<DateTime>(nullable: false),
-                    SteviloMladih = table.Column<int>(nullable: false),
                     OvcaID = table.Column<string>(nullable: true),
                     OvenID = table.Column<string>(nullable: true),
-                    SteviloMrtvih = table.Column<int>(nullable: true),
+                    SteviloMrtvih = table.Column<int>(nullable: false),
                     Opombe = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -301,7 +296,7 @@ namespace web.Migrations
                     IdJagenjcka = table.Column<string>(nullable: false),
                     kotitevID = table.Column<int>(nullable: false),
                     spol = table.Column<string>(nullable: true),
-                    CredaCredeID = table.Column<int>(nullable: true)
+                    CredaCredeID = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

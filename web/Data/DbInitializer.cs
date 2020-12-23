@@ -20,9 +20,9 @@ namespace web.Data
 
             var crede = new Creda[]
             {
-                new Creda{Opombe = "/"},
-                new Creda{Opombe = "V štali"},
-                new Creda{Opombe = "Na pašniku"}
+                new Creda{CredeID = "0", Opombe = "/"},
+                new Creda{CredeID = "1", Opombe = "V štali"},
+                new Creda{CredeID = "2", Opombe = "Na pašniku"}
             };
 
             foreach (Creda c in crede) {
@@ -33,7 +33,7 @@ namespace web.Data
 
             var ovce = new Ovca[]
             {
-                new Ovca{OvcaID="/", CredaID=crede[0].CredeID},
+                new Ovca{OvcaID="/", CredaID="0"},
                 new Ovca{OvcaID="632", CredaID=crede[1].CredeID, DatumRojstva=DateTime.Parse("20.2.2014"), Pasma="JSR", Stanje="Živa", Opombe="Bella, Pako"},
                 new Ovca{OvcaID="639",  CredaID=crede[1].CredeID, Pasma="JSR", Stanje="Živa", Opombe="Effie, Pako"}, 
                 new Ovca{OvcaID="772", CredaID=crede[1].CredeID, Pasma="JS", DatumRojstva=DateTime.Parse("6.7.2017")},
@@ -50,7 +50,7 @@ namespace web.Data
             
             var ovni = new Oven[]
             {
-                new Oven{OvenID="/", CredaID=crede[0].CredeID},
+                new Oven{OvenID="/", CredaID="0"},
                 new Oven{OvenID="102", CredaID=crede[1].CredeID, Pasma="Dorper", SteviloSorojencev = 2, Poreklo = "Avstrija"},
                 new Oven{OvenID="666", CredaID=crede[2].CredeID, Pasma="Dorper", SteviloSorojencev = 2, Poreklo = "Slovenija"}
                

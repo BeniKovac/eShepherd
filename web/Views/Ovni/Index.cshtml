@@ -57,7 +57,9 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-    @if (item.OvenID != "/") {
+    @if (item.creda.CredeID == "0") {
+        continue;
+    }
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.OvenID)
@@ -95,7 +97,6 @@
                     <a asp-action="Delete" asp-route-id="@item.OvenID">Odstrani</a>
                 </td>
             </tr>
-    }
 }
     </tbody>
 </table>
