@@ -64,7 +64,7 @@ namespace web.Controllers
                         break;
                 }
 
-                int maxID = -1;
+            int maxID = -1;
             foreach(Kotitev kot in _context.Kotitve){
                 if(kot.kotitevID > maxID){
                     maxID = kot.kotitevID;
@@ -103,12 +103,10 @@ namespace web.Controllers
             var jagenjcek = new Jagenjcek();
             jagenjcek.kotitevID = ID;
 
-            int maxID = -1;
             var datetime = DateTime.Now;
             var Idmame = "str";
             foreach(Kotitev kot in _context.Kotitve){
-                if(kot.kotitevID > maxID){
-                    maxID = kot.kotitevID;
+                if(kot.kotitevID == ID){
                     datetime = kot.DatumKotitve;
                     Idmame = kot.OvcaID;
                 }

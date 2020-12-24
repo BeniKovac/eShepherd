@@ -66,14 +66,6 @@ namespace web.Controllers
                     break;
             }
 
-            int maxID = -1;
-            foreach(Kotitev kot in _context.Kotitve){
-                if(kot.kotitevID > maxID){
-                    maxID = kot.kotitevID;
-                }
-            }
-            ViewBag.LastKotitevID = maxID;
-
             int pageSize = 10;
             var novModel = new KotitveIndexData();
             novModel.Kotitve = await PaginatedList<Kotitev>.CreateAsync(kotitve.AsNoTracking(), pageNumber ?? 1, pageSize);

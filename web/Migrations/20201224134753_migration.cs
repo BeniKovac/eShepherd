@@ -2,7 +2,7 @@
 
 namespace web.Migrations
 {
-    public partial class DBIupdate2 : Migration
+    public partial class migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
