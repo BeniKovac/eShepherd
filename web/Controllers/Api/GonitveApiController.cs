@@ -30,7 +30,7 @@ namespace web.Controllers_Api
 
         // GET: api/GonitveApi/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Gonitev>> GetGonitev(string id)
+        public async Task<ActionResult<Gonitev>> GetGonitev(int id)
         {
             var gonitev = await _context.Gonitve.FindAsync(id);
 
@@ -102,7 +102,7 @@ namespace web.Controllers_Api
 
         // DELETE: api/GonitveApi/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Gonitev>> DeleteGonitev(string id)
+        public async Task<ActionResult<Gonitev>> DeleteGonitev(int id)
         {
             var gonitev = await _context.Gonitve.FindAsync(id);
             if (gonitev == null)
