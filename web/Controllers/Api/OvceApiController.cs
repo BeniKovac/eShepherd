@@ -35,7 +35,9 @@ namespace web.Controllers_Api
         [HttpGet("{id}")]
         public async Task<ActionResult<Ovca>> GetOvca(string id)
         {
-            var ovca = await _context.Ovce.FindAsync(id);
+            var ovca = await _context.Ovce
+                                .Include(c => c.SeznamKotitev)
+                                .Include(g => g.SeznamGonitev).FirstOrDefaultAsync(n => n.OvcaID == id);
 
             if (ovca == null)
             {

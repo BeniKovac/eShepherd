@@ -32,9 +32,10 @@ namespace web.Controllers_Api
 
         // GET: api/CredeApi/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Creda>> GetCreda(int id)
+        public async Task<ActionResult<Creda>> GetCreda(String id)
         {
-            var creda = await _context.Crede.FindAsync(id);
+            var creda = await _context.Crede
+                    .Include(c => c.SeznamOvac).FirstOrDefaultAsync(m => m.CredeID == id);
 
             if (creda == null)
             {

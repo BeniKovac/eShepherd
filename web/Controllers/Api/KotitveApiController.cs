@@ -32,7 +32,8 @@ namespace web.Controllers_Api
         [HttpGet("{id}")]
         public async Task<ActionResult<Kotitev>> GetKotitev(int id)
         {
-            var kotitev = await _context.Kotitve.FindAsync(id);
+            var kotitev = await _context.Kotitve
+                            .Include(k => k.jagenjcki).FirstOrDefaultAsync(m => m.kotitevID == id);
 
             if (kotitev == null)
             {
