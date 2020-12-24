@@ -10,8 +10,8 @@ using web.Data;
 namespace web.Migrations
 {
     [DbContext(typeof(eShepherdContext))]
-    [Migration("20201223202004_MetodaMoveTo0")]
-    partial class MetodaMoveTo0
+    [Migration("20201224152017_Fixing")]
+    partial class Fixing
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
