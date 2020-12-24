@@ -101,6 +101,15 @@ namespace web.Controllers
             return View(oven);
         }
 
+
+       public async Task<IActionResult> MoveTo0(string id, Oven oven)
+        {
+            oven.CredaID = "0";
+            _context.Update(oven);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index), new { id = id, saveChangesError = true });
+        }
+
         // GET: Ovni/Edit/5
         public async Task<IActionResult> Edit(string id)
         {

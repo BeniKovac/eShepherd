@@ -20,7 +20,7 @@ namespace web.Models
         public string OvcaID { get; set; }
 
         [Display(Name = "Trenutna čreda")] 
-        public int CredaID { get; set; }
+        public String CredaID { get; set; }
         [Display(Name = "Trenutna čreda")] 
         public Creda creda { get; set; }
 

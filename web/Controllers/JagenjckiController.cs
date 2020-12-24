@@ -102,6 +102,20 @@ namespace web.Controllers
         {
             var jagenjcek = new Jagenjcek();
             jagenjcek.kotitevID = ID;
+
+            int maxID = -1;
+            var datetime = DateTime.Now;
+            var Idmame = "str";
+            foreach(Kotitev kot in _context.Kotitve){
+                if(kot.kotitevID > maxID){
+                    maxID = kot.kotitevID;
+                    datetime = kot.DatumKotitve;
+                    Idmame = kot.OvcaID;
+                }
+            }
+            TempData["Datum"] = datetime.ToShortDateString();
+            TempData["Mama"] = Idmame;
+
             return View(jagenjcek);
         }
 
@@ -112,6 +126,7 @@ namespace web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("skritIdJagenjcka,IdJagenjcka,kotitevID,spol")] Jagenjcek jagenjcek, int kotitevID)
         {
+
             if (ModelState.IsValid)
             {
                 _context.Add(jagenjcek);

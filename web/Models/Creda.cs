@@ -12,9 +12,9 @@ namespace web.Models
             SeznamOvac = new List<Ovca>();
         }
         
-        [Key]
         [Display(Name = "ID črede")] 
-        public int CredeID { get; set; }
+        [Key]
+        public String CredeID { get; set; }
 
         [Display(Name = "Seznam ovac, ki so v čredi")] 
         public ICollection<Ovca>? SeznamOvac { get; set; }

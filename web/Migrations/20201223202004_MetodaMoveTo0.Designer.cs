@@ -10,8 +10,8 @@ using web.Data;
 namespace web.Migrations
 {
     [DbContext(typeof(eShepherdContext))]
-    [Migration("20201210205831_DodajanjeJagenjckovAttempt1")]
-    partial class DodajanjeJagenjckovAttempt1
+    [Migration("20201223202004_MetodaMoveTo0")]
+    partial class MetodaMoveTo0
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -232,10 +232,8 @@ namespace web.Migrations
 
             modelBuilder.Entity("web.Models.Creda", b =>
                 {
-                    b.Property<int>("CredeID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("CredeID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Opombe")
                         .HasColumnType("nvarchar(max)");
@@ -280,8 +278,8 @@ namespace web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CredaCredeID")
-                        .HasColumnType("int");
+                    b.Property<string>("CredaCredeID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("IdJagenjcka")
                         .IsRequired()
@@ -321,10 +319,7 @@ namespace web.Migrations
                     b.Property<string>("OvenID")
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<int>("SteviloMladih")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SteviloMrtvih")
+                    b.Property<int>("SteviloMrtvih")
                         .HasColumnType("int");
 
                     b.HasKey("kotitevID");
@@ -342,8 +337,8 @@ namespace web.Migrations
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
-                    b.Property<int>("CredaID")
-                        .HasColumnType("int");
+                    b.Property<string>("CredaID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("DatumRojstva")
                         .HasColumnType("datetime2");
@@ -383,8 +378,8 @@ namespace web.Migrations
                         .HasColumnType("nvarchar(10)")
                         .HasMaxLength(10);
 
-                    b.Property<int>("CredaID")
-                        .HasColumnType("int");
+                    b.Property<string>("CredaID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("DatumRojstva")
                         .HasColumnType("datetime2");
@@ -507,9 +502,7 @@ namespace web.Migrations
                 {
                     b.HasOne("web.Models.Creda", "creda")
                         .WithMany("SeznamOvac")
-                        .HasForeignKey("CredaID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CredaID");
 
                     b.HasOne("web.Models.Ovca", "mama")
                         .WithMany()
@@ -524,9 +517,7 @@ namespace web.Migrations
                 {
                     b.HasOne("web.Models.Creda", "creda")
                         .WithMany()
-                        .HasForeignKey("CredaID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CredaID");
                 });
 #pragma warning restore 612, 618
         }

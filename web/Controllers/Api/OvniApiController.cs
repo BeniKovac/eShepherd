@@ -35,7 +35,9 @@ namespace web.Controllers_Api
         [HttpGet("{id}")]
         public async Task<ActionResult<Oven>> GetOven(string id)
         {
-            var oven = await _context.Ovni.FindAsync(id);
+            var oven = await _context.Ovni
+                        .Include(c => c.vseKotitve)
+                        .Include(g => g.vseGonitve).FirstOrDefaultAsync(n => n.OvenID == id);
 
             if (oven == null)
             {

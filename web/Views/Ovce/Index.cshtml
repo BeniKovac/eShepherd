@@ -60,7 +60,9 @@
     </thead>
     <tbody>
 @foreach (var item in Model.Ovce) {
-        @if (item.OvcaID != "/") {
+        @if (item.creda.CredeID == "0") {
+            continue;
+        }
         <tr>
              <td>
                 <b>
@@ -106,7 +108,6 @@
                    asp-route-pageNumber="@(Model.Ovce.PageIndex)">Izberi</a>
             </td>
         </tr>
-}
 }
     </tbody>
 </table>

@@ -137,6 +137,14 @@ namespace web.Controllers
             return View(ovca);
         }
 
+       public async Task<IActionResult> MoveTo0(string id, Ovca ovca)
+        {
+            ovca.CredaID = "0";
+            _context.Update(ovca);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index), new { id = id, saveChangesError = true });
+        }
+
         // GET: Ovce3/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
