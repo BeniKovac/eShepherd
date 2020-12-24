@@ -91,7 +91,7 @@ namespace web.Controllers_Api
 
         // DELETE: api/CredeApi/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Creda>> DeleteCreda(int id)
+        public async Task<ActionResult<Creda>> DeleteCreda(String id)
         {
             var creda = await _context.Crede.FindAsync(id);
             if (creda == null)

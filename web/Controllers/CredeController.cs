@@ -45,7 +45,7 @@ namespace web.Models.eShepherdViewModels
         }
 
         // GET: Crede/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(String? id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace web.Models.eShepherdViewModels
         }
 
         // GET: Crede/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(String? id)
         {
             if (id == null)
             {
