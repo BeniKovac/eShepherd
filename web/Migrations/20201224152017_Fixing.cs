@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace web.Migrations
 {
-    public partial class DBIupdate : Migration
+    public partial class Fixing : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

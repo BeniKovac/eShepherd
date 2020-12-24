@@ -134,18 +134,17 @@
 @if(Model.Kotitve != null){
 <table class="table">
                 <tr>
-                    <th>ID Kotitve</th>
                     <th>Datum kotitve</th>
+                    <th>Stevilo mladih</th>
                 </tr>
                 @foreach (var item in Model.Kotitve)
                 {
-
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.kotitevID)
+                            @Html.DisplayFor(modelItem => item.DatumKotitve)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DatumKotitve)
+                            @Html.DisplayFor(modelItem => item.SteviloMladih)
                         </td>
                     </tr>
                 }
@@ -154,18 +153,17 @@
 @if(Model.Gonitve != null){
 <table class="table">
                 <tr>
-                    <th>ID Gonitve</th>
                     <th>Datum gonitve</th>
+                    <th>Predviden datum kotitve</th>
                 </tr>
                 @foreach (var item in Model.Gonitve)
                 {
-
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.GonitevID)
+                            @Html.DisplayFor(modelItem => item.DatumGonitve)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DatumGonitve)
+                            @Html.DisplayFor(modelItem => item.PredvidenaKotitev)
                         </td>
                     </tr>
                 }
