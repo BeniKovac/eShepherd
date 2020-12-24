@@ -36,7 +36,7 @@ namespace web.Models
 
         [DisplayFormat(NullDisplayText = "/")]
         [Display(Name = "Število sorojencev")] 
-        public int? SteviloSorojencev { get; set; }
+        public int? SteviloSorojencev { get; set; } = 0;
 
 
          [DisplayFormat(NullDisplayText = "/")]        
