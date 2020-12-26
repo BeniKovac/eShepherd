@@ -7,11 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using web.Data;
 using web.Models;
-
+using web.Filters;
 namespace web.Controllers_Api
 {
     [Route("api/v1/Jagenjcki")]
     [ApiController]
+    [ApiKeyAuth]
     public class JagenjckiApiController : ControllerBase
     {
         private readonly eShepherdContext _context;

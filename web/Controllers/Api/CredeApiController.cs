@@ -7,11 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using web.Data;
 using web.Models;
-
+using web.Filters;
 namespace web.Controllers_Api
 {
     [Route("api/v1/Crede")]
     [ApiController]
+    [ApiKeyAuth]
     public class CredeApiController : ControllerBase
     {
         private readonly eShepherdContext _context;
