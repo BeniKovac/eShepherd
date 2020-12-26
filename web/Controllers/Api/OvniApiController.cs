@@ -12,7 +12,7 @@ namespace web.Controllers_Api
 {
     [Route("api/v1/Ovni")]
     [ApiController]
-    [ApiKeyAuth]
+    //[ApiKeyAuth]
     public class OvniApiController : ControllerBase
     {
         private readonly eShepherdContext _context;
