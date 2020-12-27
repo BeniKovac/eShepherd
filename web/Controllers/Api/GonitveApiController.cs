@@ -12,7 +12,7 @@ namespace web.Controllers_Api
 {
     [Route("api/v1/Gonitve")]
     [ApiController]
-    //[ApiKeyAuth]
+    [ApiKeyAuth]
     public class GonitveApiController : ControllerBase
     {
         private readonly eShepherdContext _context;

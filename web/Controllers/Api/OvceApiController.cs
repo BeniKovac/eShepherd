@@ -12,7 +12,7 @@ namespace web.Controllers_Api
 {
     [Route("api/v1/Ovce")]
     [ApiController]
-    //[ApiKeyAuth]
+    [ApiKeyAuth]
     public class OvceApiController : ControllerBase
     {
         private readonly eShepherdContext _context;

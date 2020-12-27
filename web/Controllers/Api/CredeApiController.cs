@@ -12,7 +12,7 @@ namespace web.Controllers_Api
 {
     [Route("api/v1/Crede")]
     [ApiController]
-    //[ApiKeyAuth]
+    [ApiKeyAuth]
     public class CredeApiController : ControllerBase
     {
         private readonly eShepherdContext _context;
