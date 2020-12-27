@@ -17,11 +17,14 @@ namespace web.Models
         public int kotitevID { get; set; }
         public Kotitev kotitev { get; set; }
 
-        // prikaz ID mame in datum kotitve?
-
 
         [Display(Name = "Spol")] 
         public string spol { get; set; }
+        
+        public string? opombe { get; set; }
+
+        public string? stanje { get; set; }
+        
 
     }
 }

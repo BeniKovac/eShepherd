@@ -122,7 +122,7 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("skritIdJagenjcka,IdJagenjcka,kotitevID,spol")] Jagenjcek jagenjcek, int kotitevID)
+        public async Task<IActionResult> Create([Bind("skritIdJagenjcka,IdJagenjcka,kotitevID,spol, stanje, opombe")] Jagenjcek jagenjcek, int kotitevID)
         {
 
             if (ModelState.IsValid)
@@ -157,7 +157,7 @@ namespace web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("skritIdJagenjcka,IdJagenjcka,kotitevID,spol")] Jagenjcek jagenjcek)
+        public async Task<IActionResult> Edit(int id, [Bind("skritIdJagenjcka,IdJagenjcka,kotitevID,spol, stanje, opombe")] Jagenjcek jagenjcek)
         {
             if (id != jagenjcek.skritIdJagenjcka)
             {

@@ -68,15 +68,26 @@ namespace web.Models
         [Display(Name = "Povprečno število jagenjčkov na kotitev")] 
         public int PovprecjeJagenjckov { 
             get
-                {
-                    if (SteviloKotitev == 0) {
-                        return 0;
+                {                    
+                    Dictionary<int, int> count = new Dictionary<int, int>();
+                    foreach (var kotitev in SeznamKotitev) 
+                    {
+                        if (count.ContainsKey(kotitev.SteviloMladih)) 
+                            count[kotitev.SteviloMladih]++;
+                        else 
+                            count.Add(kotitev.SteviloMladih, 1);
                     }
-                    int jagenjcki = 0;
-                    foreach (var kotitev in SeznamKotitev) {
-                        jagenjcki += kotitev.SteviloMladih;
+                    int mostCommon = 0;
+                    int highestCount = 0;
+                    foreach(KeyValuePair<int, int> c in count) 
+                    {
+                        if (c.Value > highestCount)
+                        {
+                            mostCommon = c.Key;
+                            highestCount = c.Value;
+                        }
                     }
-                    return jagenjcki / SteviloKotitev;
+                    return mostCommon;
                     
                 }
             }

@@ -12,7 +12,7 @@ namespace web.Controllers_Api
 {
     [Route("api/v1/Kotitve")]
     [ApiController]
-    //[ApiKeyAuth]
+    [ApiKeyAuth]
     public class KotitveApiController : ControllerBase
     {
         private readonly eShepherdContext _context;

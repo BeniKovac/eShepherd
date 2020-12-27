@@ -65,14 +65,37 @@ namespace web.Data
             var kotitve = new Kotitev[]
             {
                 new Kotitev{DatumKotitve=DateTime.Parse("12-01-2019"),  OvcaID=ovce[1].OvcaID, OvenID = ovni[1].OvenID, SteviloMrtvih = 0},
-                new Kotitev{DatumKotitve=DateTime.Parse("20-12-2019"),  OvcaID=ovce[2].OvcaID, OvenID = ovni[1].OvenID, SteviloMrtvih = 0},
+                new Kotitev{DatumKotitve=DateTime.Parse("20-12-2019"),  OvcaID=ovce[2].OvcaID, OvenID = ovni[1].OvenID, SteviloMrtvih = 1},
                 new Kotitev{DatumKotitve=DateTime.Parse("01-12-2020"),  OvcaID=ovce[5].OvcaID, OvenID = ovni[2].OvenID, SteviloMrtvih = 0},
-                new Kotitev{DatumKotitve=DateTime.Parse("03-12-2020"),  OvcaID=ovce[4].OvcaID, OvenID = ovni[2].OvenID, SteviloMrtvih = 0},
+                new Kotitev{DatumKotitve=DateTime.Parse("03-12-2020"),  OvcaID=ovce[4].OvcaID, OvenID = ovni[2].OvenID, SteviloMrtvih = 1},
+                new Kotitev{DatumKotitve=DateTime.Parse("12-12-2020"),  OvcaID=ovce[2].OvcaID, OvenID = ovni[1].OvenID, SteviloMrtvih = 0},
+                new Kotitev{DatumKotitve=DateTime.Parse("31-12-2020"),  OvcaID=ovce[3].OvcaID, OvenID = ovni[1].OvenID, SteviloMrtvih = 2},
                 
             };
             foreach (Kotitev k in kotitve)
             {
                 context.Kotitve.Add(k);
+            }
+            context.SaveChanges();
+
+            var jagenjcki = new Jagenjcek[]
+            {
+                new Jagenjcek{IdJagenjcka="1", kotitevID = kotitve[0].kotitevID, spol="ž"},
+                new Jagenjcek{IdJagenjcka="50", kotitevID = kotitve[0].kotitevID, spol="m"},
+                new Jagenjcek{IdJagenjcka="2", kotitevID = kotitve[1].kotitevID, spol="ž"},
+                new Jagenjcek{IdJagenjcka="3", kotitevID = kotitve[1].kotitevID, spol="ž"},
+                new Jagenjcek{IdJagenjcka="51", kotitevID = kotitve[2].kotitevID, spol="m"},
+                new Jagenjcek{IdJagenjcka="52", kotitevID = kotitve[2].kotitevID, spol="m"},
+                new Jagenjcek{IdJagenjcka="53", kotitevID = kotitve[2].kotitevID, spol="m"},
+                new Jagenjcek{IdJagenjcka="4", kotitevID = kotitve[3].kotitevID, spol="ž"},
+                new Jagenjcek{IdJagenjcka="5", kotitevID = kotitve[4].kotitevID, spol="ž"},
+                new Jagenjcek{IdJagenjcka="6", kotitevID = kotitve[4].kotitevID, spol="ž"},
+
+                
+            };
+            foreach (Jagenjcek j in jagenjcki)
+            {
+                context.Jagenjcki.Add(j);
             }
             context.SaveChanges();
 
