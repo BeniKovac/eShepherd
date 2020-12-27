@@ -26,12 +26,13 @@ namespace web.Models
         [Display(Name = "Število jagenjčkov")] 
         public int SteviloMladih { 
              get { 
-                int skupno = 0;
+                /*int skupno = 0;
                 if (jagenjcki != null) {
                     skupno += jagenjcki.Count;
                 }
                 skupno += SteviloMrtvih;
-                return skupno;
+                */
+                return SteviloMrtvih + jagenjcki.Count;
             } 
         }
             
