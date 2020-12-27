@@ -32,7 +32,7 @@ namespace web
 );;
 
             services.AddDbContext<eShepherdContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("eShepherdContext")));
+            options.UseSqlServer(Configuration.GetConnectionString("AzureContext")));
                 services.AddIdentity<ApplicationUser, IdentityRole>(options => 
                 options.Stores.MaxLengthForKeys = 128)
                 .AddEntityFrameworkStores<eShepherdContext>().AddDefaultUI().AddDefaultTokenProviders();
