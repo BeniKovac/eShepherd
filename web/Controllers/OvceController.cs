@@ -76,6 +76,7 @@ namespace web.Controllers
         if(ovcaID != null){
             var ovca = await _context.Ovce
                 .Include(k => k.SeznamKotitev)
+                    .ThenInclude(k => k.jagenjcki)
                 .Include(k => k.SeznamGonitev)
                 .FirstOrDefaultAsync(m => m.OvcaID == ovcaID.ToString());
                 novModel.Kotitve = ovca.SeznamKotitev;
