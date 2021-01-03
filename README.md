@@ -19,12 +19,16 @@ Najin sistem je namenjen manjšim in večjim rejcem ovac. Omogoča enostavno vod
 ![aplikacija dodaj ovco](https://turtlesport191137813.files.wordpress.com/2021/01/app-add-ovca.jpg)
 ![aplikacija seznam kotitev](https://turtlesport191137813.files.wordpress.com/2021/01/app-kotitve.jpg)
 
-##Razdelitev nalog
+## Podatkovna baza
+![database](https://turtlesport191137813.files.wordpress.com/2021/01/diagram_mini.png)
+
+## Razdelitev nalog
 Na začetku sva sistem izdelovala skupaj (skupaj sva naredila modele in controllerje), nato pa sva si delo porazdelila. 
 ### Benjamin:
     - spletna aplikacija:
       - iskanje, listanje, filtriranje
       - azure baza
+      - 
     - android:
       - prikazi seznamov
       - homescreen
@@ -42,3 +46,4 @@ Na začetku sva sistem izdelovala skupaj (skupaj sva naredila modele in controll
       - urejanje
       - podrobnosti
       - brisanje
+  
