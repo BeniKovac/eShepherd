@@ -5,11 +5,11 @@
 
 ## Opis sistema
 Najin sistem je namenjen manjšim in večjim rejcem ovac. Omogoča enostavno vodenje evidence o ovcah, ovnih, kotitvah, gonitvah, čredah in jagenjčkih. Rejci imajo enostaven pregled nad svojim staležem. Dodajajo lahko npr. nove ovce, imajo nadzor nad kotitvami in gonitvami in podobno. Narejena je tako, da je enostavna za uporabo. Nudi osnovne funkcionalnosti, kot so:
-    - dodajanje
-    - urejanje
-    - brisanje/odstranjevanje
-    - iskanje (po ID živali)
-    - ...
+    * dodajanje
+    * urejanje
+    * brisanje/odstranjevanje
+    * iskanje (po ID živali)
+    * ...
   
 ## Zaslonske slike
 ![home page](https://turtlesport191137813.files.wordpress.com/2021/01/eshepherd-ovce.png)
@@ -28,22 +28,27 @@ Na začetku sva sistem izdelovala skupaj (skupaj sva naredila modele in controll
     - spletna aplikacija:
       - iskanje, listanje, filtriranje
       - azure baza
-      - 
+      - prenos podatkov med viewi
     - android:
       - prikazi seznamov
       - homescreen
       - sortiranje, iskanje
       - brisanje
       - prikaz specifičnih kotitev/gonitev/jagenjčkov
-
+      - bottom navigation view
+      - alerti
+      - ohranjanje podatkov (savedInstanceState)
+      - ...
 ### Tinkara:
     - spletna aplikacija:
       - azure baza
       - API
       - avtorizacija
     - android:
-      - dodajanje
-      - urejanje
-      - podrobnosti
+      - dodajanje modelov
+      - urejanje modelov
+      - podrobnosti modelov
       - brisanje
+      - prejemanje/pošiljanje volley
+      - ...
   
