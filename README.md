@@ -20,7 +20,7 @@ Najin sistem je namenjen manjšim in večjim rejcem ovac. Omogoča enostavno vod
 ![aplikacija seznam kotitev](https://turtlesport191137813.files.wordpress.com/2021/01/app-kotitve.jpg)
 
 ## Podatkovna baza
-![database](https://turtlesport191137813.files.wordpress.com/2021/01/diagram_mini.png)
+![database](https://turtlesport191137813.files.wordpress.com/2021/01/diagram-zmanjsan.png)
 
 ## Razdelitev nalog
 Na začetku sva sistem izdelovala skupaj (skupaj sva naredila modele in controllerje), nato pa sva si delo porazdelila. 
