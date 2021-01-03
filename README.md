@@ -14,10 +14,10 @@ Najin sistem je namenjen manjšim in večjim rejcem ovac. Omogoča enostavno vod
 ## Zaslonske slike
 ![home page](https://turtlesport191137813.files.wordpress.com/2021/01/eshepherd-ovce.png)
 ![ovce](https://turtlesport191137813.files.wordpress.com/2021/01/eshepherd_zacetna.png)
-![aplikacija home sreen](https://turtlesport191137813.files.wordpress.com/2021/01/eshepherd-app-home-screen.jpg)
-![aplikacija seznam ovac](https://turtlesport191137813.files.wordpress.com/2021/01/eshepherd-app-ovce-display.jpg)
-![aplikacija dodaj ovco](https://turtlesport191137813.files.wordpress.com/2021/01/eshepherd-app-ovce-add.jpg)
-![aplikacija seznam kotitev](https://turtlesport191137813.files.wordpress.com/2021/01/eshepherd-app-kotitev-display.jpg)
+![aplikacija home screen](https://turtlesport191137813.files.wordpress.com/2021/01/app-home-screen.jpg)
+![aplikacija seznam ovac](https://turtlesport191137813.files.wordpress.com/2021/01/app-ovce.jpg)
+![aplikacija dodaj ovco](https://turtlesport191137813.files.wordpress.com/2021/01/app-add-ovca.jpg)
+![aplikacija seznam kotitev](https://turtlesport191137813.files.wordpress.com/2021/01/app-kotitve.jpg)
 
 ##Razdelitev nalog
 Na začetku sva sistem izdelovala skupaj (skupaj sva naredila modele in controllerje), nato pa sva si delo porazdelila. 
