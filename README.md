@@ -12,6 +12,7 @@ Najin sistem je namenjen manjšim in večjim rejcem ovac. Omogoča enostavno vod
 * pregled podrobnosti
 * sortiranje
 * ...
+
 Za vsako ovco lahko pogledamo njene kotitve in gonitve, pri kotitvah lahko pogledamo, kateri jagenjčki so bili skoteni, pri čredah pa lahko vidimo, katere ovce so v določeni čredi. 
 Aplikacija zahteva registracijo z uporabniškim imenom in geslom, tako da je s tem omogočena dodatna stopnja varnosti.
 
