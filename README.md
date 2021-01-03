@@ -10,6 +10,9 @@ Najin sistem je namenjen manjšim in večjim rejcem ovac. Omogoča enostavno vod
     - brisanje/odstranjevanje
     - iskanje (po ID živali)
     - ...
+  
+## Zaslonske slike
+![home page](https://turtlesport191137813.files.wordpress.com/2021/01/eshepherd-ovce.png)
 
 ##Razdelitev nalog
 Na začetku sva sistem izdelovala skupaj (skupaj sva naredila modele in controllerje), nato pa sva si delo porazdelila. 
