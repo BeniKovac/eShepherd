@@ -9,8 +9,13 @@ Najin sistem je namenjen manjšim in večjim rejcem ovac. Omogoča enostavno vod
 * urejanje
 * brisanje/odstranjevanje
 * iskanje (po ID živali)
+* pregled podrobnosti
+* sortiranje
 * ...
-  
+Za vsako ovco lahko pogledamo njene kotitve in gonitve, pri kotitvah lahko pogledamo, kateri jagenjčki so bili skoteni, pri čredah pa lahko vidimo, katere ovce so v določeni čredi. 
+Aplikacija zahteva registracijo z uporabniškim imenom in geslom, tako da je s tem omogočena dodatna stopnja varnosti.
+
+ 
 ## Zaslonske slike
 ![home page](https://turtlesport191137813.files.wordpress.com/2021/01/eshepherd-ovce.png)
 ![ovce](https://turtlesport191137813.files.wordpress.com/2021/01/eshepherd_zacetna.png)
